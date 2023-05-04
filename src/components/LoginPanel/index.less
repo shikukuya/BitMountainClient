@@ -1,0 +1,237 @@
+.loginPanel {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  //outline: solid 1px;
+  //background-color: red;
+  //background-color: #2b2b2b;
+  color: #01fe01;
+
+  .kuku() {
+    background-color: #bae78d;
+    //padding: 0.5em;
+    border: none;
+    outline: none;
+    color: #000;
+    border-radius: 5px;
+    border-bottom: 2px solid #aaa;
+    position: relative;
+    top: 0;
+    transition: all 0.1s;
+
+    &:active,
+    &:focus-visible {
+      border-bottom-width: 0;
+      top: 2px;
+    }
+  }
+
+  .panel {
+    width: 400px;
+    height: 500px;
+    position: absolute;
+    left: 50%;
+    margin-left: -200px;
+    top: 50%;
+    margin-top: -250px;
+    padding: 30px;
+    //background-color: whitesmoke;
+    background-color: #242424;
+    border-radius: 30px;
+    border: solid 2px lightgreen;
+    box-shadow: inset 0 0 25px greenyellow;
+
+    .topLine {
+      @H: 65px;
+      //outline: solid 1px black;
+      height: @H;
+      text-align: center;
+
+      .logoImg {
+        @L: 100px;
+        width: @L;
+        height: @L;
+        vertical-align: middle;
+        //outline: solid 1px;
+        margin-right: 10px;
+      }
+
+      span {
+        font-size: 25px;
+        //color: #205d95;
+        vertical-align: middle;
+        line-height: @H;
+        font-weight: bolder;
+      }
+    }
+
+    input {
+      text-indent: 1em;
+      background-color: black;
+      color: greenyellow;
+      .kuku();
+    }
+
+    .moodTitle {
+      font-size: 20px;
+      margin-top: 10px;
+    }
+
+    @InputLineHeight: 40px;
+
+    .inputLine, .loginButton {
+      display: block;
+      height: @InputLineHeight;
+      line-height: 2em;
+      margin: 20px auto;
+      width: 80%;
+      .kuku();
+    }
+
+    .loginButton {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    // 登录等待状态
+    .loginWait {
+      color: red;
+
+      &:hover {
+        cursor: not-allowed !important;
+      }
+    }
+
+    .subLine {
+      @H: 50px;
+      height: @H;
+      //outline: solid 1px;
+      width: 80%;
+      margin: 0 auto;
+      user-select: none;
+
+      .left {
+        width: 50%;
+        float: left;
+        height: @H;
+
+        p {
+          cursor: pointer;
+        }
+      }
+
+      .right {
+        width: 50%;
+        float: right;
+        height: @H;
+        text-align: right;
+
+        a {
+          color: #28ff28;
+        }
+
+        p {
+          cursor: pointer;
+        }
+      }
+    }
+
+    // 最开始没有，后来才出现的登录是否成功的文字提示
+    .passwordMoodHint, .emailMoodHint {
+      color: orangered;
+    }
+
+    .emailMood {
+      .inputLine {
+        //outline: solid 1px;
+
+        .inputCode {
+          display: block;
+          float: left;
+          height: @InputLineHeight;
+          width: 60%;
+        }
+
+        .getCodeBtn {
+          display: block;
+          float: right;
+          height: @InputLineHeight;
+          width: 40%;
+          .kuku();
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+
+    }
+
+    // 我同意用户协议
+    .bottomLine {
+      //position: absolute;
+      height: 20px;
+      //outline: solid 1px;
+      //color: lightgreen;
+      a {
+        color: greenyellow;
+      }
+    }
+
+
+  }
+
+  .blackGround {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: black;
+    opacity: 30%;
+  }
+
+  .close {
+    position: absolute;
+    left: 105%;
+    top: 0;
+    font-size: 30px;
+    color: whitesmoke;
+    cursor: pointer;
+    text-shadow: black 0 0 10px;
+    transition: all 0.2s;
+
+    &:hover {
+      transform: scale(1.5);
+    }
+  }
+}
+
+.shakeClass {
+  animation-name: shake;
+  animation-iteration-count: 1;
+  animation-play-state: running;
+  animation-duration: 0.5s;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(10px);
+  }
+  50% {
+    transform: translateX(-10px);
+  }
+  75% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

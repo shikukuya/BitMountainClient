@@ -1,0 +1,75 @@
+.gobangPage {
+  height: 90vh;
+}
+.gobangPage .left,
+.gobangPage .right {
+  width: 50%;
+  height: 100%;
+  float: left;
+}
+.gobangPage .left {
+  position: relative;
+  padding-left: 10px;
+}
+.gobangPage .left .matchList {
+  width: 230px;
+  height: 550px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.gobangPage .left .matchList h2 {
+  text-align: center;
+  line-height: 2em;
+}
+.gobangPage .left .bottomArea {
+  width: 100%;
+  height: 120px;
+  position: absolute;
+  bottom: 0;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+.gobangPage .left .bottomArea::-webkit-scrollbar {
+  width: 10px;
+}
+.gobangPage .left .bottomArea::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 5px rgba(0, 255, 0, 0.2);
+  background: rgba(0, 255, 0, 0.2);
+}
+.gobangPage .left .bottomArea::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgba(0, 255, 0, 0.2);
+  border-radius: 0;
+  background: rgba(0, 0, 0, 0.1);
+}
+.gobangPage .right .codeNameInput {
+  line-height: 2em;
+  background-color: #1e1e1e;
+  outline: none;
+  border: none;
+  color: greenyellow;
+  text-indent: 1em;
+  margin: 5px;
+  width: 250px;
+  border-radius: 10px;
+}
+.gobangPage .right .submitBtn {
+  line-height: 2em;
+  outline: none;
+  border: none;
+  transition: all 0.2s;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: greenyellow;
+  border-radius: 10px;
+}
+.gobangPage .right .submitBtn:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+.gobangPage .right .submitBtn:active {
+  transform: scale(0.9);
+}
+/*# sourceMappingURL=index.css.map */

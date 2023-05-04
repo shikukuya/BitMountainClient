@@ -1,0 +1,10 @@
+.addFriend .result {
+  font-size: 15px;
+  color: greenyellow;
+}
+.addFriend .pleaseLogin {
+  text-align: center;
+  color: greenyellow;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+/*# sourceMappingURL=index.css.map */

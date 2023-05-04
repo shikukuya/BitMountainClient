@@ -1,0 +1,124 @@
+.autoChessBoard {
+  text-align: center;
+}
+.autoChessBoard h2 {
+  text-align: center;
+}
+.autoChessBoard .matrix {
+  width: 456px;
+  height: 456px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+.autoChessBoard .matrix .robot1,
+.autoChessBoard .matrix .robot2 {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  text-align: center;
+  line-height: 24px;
+  font-size: 20.4px;
+  transition: all 0.5s;
+  z-index: 500;
+}
+.autoChessBoard .matrix .boom {
+  width: 72px;
+  height: 72px;
+  margin-left: -24px;
+  margin-top: -24px;
+  position: absolute;
+  border-radius: 50%;
+  background-color: #00a2ff;
+  opacity: 0.5;
+  z-index: 600;
+  animation-name: boomAni;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+.autoChessBoard .matrix .robot1View,
+.autoChessBoard .matrix .robot2View {
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  transition: all 0.5s;
+  box-shadow: 0 0 10px #bbbbbb inset;
+  border-radius: 10px;
+  z-index: 505;
+}
+.autoChessBoard .matrix .line {
+  height: 24px;
+}
+.autoChessBoard .matrix .line .box {
+  height: 24px;
+  width: 24px;
+  float: left;
+  background-color: #2f5f29;
+  position: relative;
+}
+.autoChessBoard .matrix .line .box:hover {
+  box-shadow: 0 0 2px white inset;
+}
+.autoChessBoard .matrix .line .box .rock {
+  width: 24px;
+  height: 24px;
+  background-color: lightslategray;
+  box-shadow: #596b7d 0 0 8px inset;
+}
+.autoChessBoard .matrix .line .box .blackPiece,
+.autoChessBoard .matrix .line .box .whitePiece {
+  border-radius: 50%;
+  height: 24px;
+  transition: all 0.2s;
+  user-select: none;
+}
+.autoChessBoard .matrix .line .box .blackPiece {
+  background-color: black;
+  box-shadow: gray 0 0 2px inset;
+}
+.autoChessBoard .matrix .line .box .whitePiece {
+  background-color: white;
+  box-shadow: gray 0 0 2px inset;
+}
+.autoChessBoard button {
+  background-color: #1e1e1e;
+  color: greenyellow;
+  border: none;
+  height: 20px;
+  width: 20px;
+  line-height: 20px;
+}
+.autoChessBoard button:hover {
+  cursor: pointer;
+}
+.autoChessBoard .bar {
+  outline: solid 1px;
+  width: 300px;
+}
+.autoChessBoard input[type="range"]::-webkit-slider-runnable-track {
+  background: black;
+}
+.autoChessBoard input[type="range"]::-moz-range-track {
+  background: black;
+}
+.autoChessBoard input[type="range"]::-webkit-slider-thumb {
+  background: lightgreen;
+  cursor: pointer;
+}
+.autoChessBoard input[type="range"]::-moz-range-thumb {
+  background: lightgreen;
+}
+@keyframes boomAni {
+  from {
+    transform: scale(1);
+    border-radius: 20%;
+    opacity: 0.5;
+  }
+  to {
+    transform: scale(0);
+    border-radius: 50%;
+    opacity: 0.2;
+  }
+}
+/*# sourceMappingURL=index.css.map */

@@ -1,0 +1,88 @@
+.userAbilityPanel {
+  // 绝对定位居中
+  position: absolute;
+  @h: 500px;
+  @w: 1000px;
+  width: @w;
+  height: @h;
+  left: 50%;
+  top: 50%;
+  margin-left: -(@w/2);
+  margin-top: -(@h/2);
+  //
+  z-index: 200;
+
+  background-color: rgba(47, 81, 81, 0.95);
+  box-shadow: black 0 0 30px;
+
+  .close {
+    width: 30px;
+    height: 30px;
+    background-color: orangered;
+    color: white;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  h2 {
+    text-align: center;
+    line-height: 2em;
+    font-size: 30px;
+  }
+
+  .content {
+    width: 100%;
+    overflow: hidden;
+    padding: 0;
+
+    .left, .right {
+      height: 100%;
+      float: left;
+      margin: 0;
+    }
+
+    .left {
+      width: 30%;
+    }
+
+    .right {
+      width: 70%;
+      height: 400px;
+      position: relative;
+    }
+
+    .left {
+      .line {
+        background-color: transparent;
+
+        .headImg {
+          width: 50px;
+          vertical-align: middle;
+          display: inline-block;
+          margin-right: 2em;
+        }
+
+        span {
+          line-height: 50px;
+          vertical-align: middle;
+        }
+
+        .levelImg {
+          width: 30px;
+          //outline: solid 1px;
+          vertical-align: middle;
+        }
+
+        .score {
+          margin-left: 0;
+        }
+      }
+
+    }
+  }
+}

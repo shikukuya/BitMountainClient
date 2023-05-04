@@ -1,0 +1,61 @@
+.normalContestPage {
+  height: calc(100vh - 60px);
+  width: 98%;
+  margin: 0 auto;
+}
+.normalContestPage .left,
+.normalContestPage .right {
+  width: 50%;
+  height: 100%;
+  float: left;
+}
+.normalContestPage .right .codeArea,
+.normalContestPage .right .bottomArea {
+  width: 100%;
+}
+.normalContestPage .right .codeArea {
+  height: 80%;
+  position: relative;
+  overflow: hidden;
+}
+.normalContestPage .right .bottomArea {
+  height: 20%;
+  position: relative;
+}
+.normalContestPage .right .bottomArea .contestTable,
+.normalContestPage .right .bottomArea .userPanel {
+  height: 100%;
+  float: left;
+}
+.normalContestPage .right .bottomArea .contestTable {
+  width: 80%;
+}
+.normalContestPage .right .bottomArea .userPanel {
+  width: 20%;
+}
+.normalContestPage .right .bottomArea .userPanel .submitBtn {
+  display: block;
+  margin: 5px auto;
+  padding: 2px 10px 2px 10px;
+  background-color: darkgreen;
+  color: greenyellow;
+  outline: none;
+  border: none;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 10px;
+}
+.normalContestPage .right .bottomArea .userPanel .submitBtn:hover {
+  cursor: pointer;
+}
+.normalContestPage .right .bottomArea .userPanel .disabled {
+  background-color: #626400;
+  color: #ffdc2f;
+}
+.normalContestPage .right .bottomArea .userPanel .disabled:hover {
+  cursor: not-allowed;
+}
+.normalContestPage .right .bottomArea .userPanel span {
+  user-select: none;
+}
+/*# sourceMappingURL=index.css.map */

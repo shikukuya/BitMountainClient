@@ -1,0 +1,71 @@
+.matchArea {
+  width: 100%;
+  height: 80vh;
+}
+.matchArea h2 {
+  text-align: center;
+  line-height: 2em;
+  font-size: 50px;
+}
+.matchArea .cancelBtn {
+  display: block;
+  height: 30px;
+  line-height: 30px;
+  width: 100px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: darkgreen;
+  color: greenyellow;
+  outline: none;
+  border: none;
+  transition: all 0.2s;
+}
+.matchArea .cancelBtn:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  text-decoration: none;
+}
+.matchArea .tips {
+  text-align: center;
+  line-height: 2em;
+}
+.matchArea .waiting {
+  width: 250px;
+  height: 250px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -125px;
+  margin-top: -125px;
+}
+.matchArea .waiting .box {
+  width: 70%;
+  height: 70%;
+  margin: 0 auto;
+  position: absolute;
+  left: 15.5%;
+  top: 15.5%;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  outline: solid 3px greenyellow;
+  animation-name: rotate;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+    outline-color: greenyellow;
+  }
+  50% {
+    transform: rotate(180deg);
+    outline-color: orangered;
+    border-radius: 50%;
+  }
+  100% {
+    transform: rotate(360deg);
+    outline-color: greenyellow;
+  }
+}
+/*# sourceMappingURL=index.css.map */

@@ -1,0 +1,45 @@
+.chessPlayerItem {
+  width: 100px;
+  height: 80px;
+  float: left;
+  margin: 10px;
+  border-radius: 10px;
+  background-color: #1e1e1e;
+  user-select: none;
+}
+.chessPlayerItem .line {
+  height: 20px;
+  text-align: center;
+  vertical-align: middle;
+}
+.chessPlayerItem .line span {
+  vertical-align: middle;
+}
+.chessPlayerItem .codeName {
+  font-size: 12px;
+}
+.chessPlayerItem .headImg {
+  width: 20px;
+  outline: solid 1px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+.chessPlayerItem .levelImg {
+  width: 20px;
+  vertical-align: middle;
+}
+.chessPlayerItem button {
+  background-color: black;
+  color: greenyellow;
+  border: none;
+  font-size: 15px;
+  padding: 0 5px;
+}
+.chessPlayerItem button:hover {
+  color: orangered;
+  cursor: pointer;
+}
+.chessPlayerItem .codeSize {
+  font-size: 12px;
+}
+/*# sourceMappingURL=index.css.map */

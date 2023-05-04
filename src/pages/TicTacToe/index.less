@@ -1,0 +1,141 @@
+.TicTacToePage {
+  overflow: hidden;
+  height: clac(100vh - 60px);
+
+  .left, .right, .mid {
+    float: left;
+    //outline: solid 1px;
+    height: 100%;
+  }
+
+  .left {
+    width: 25%;
+  }
+
+  .mid {
+    width: 25%;
+  }
+
+  .left {
+    h2 {
+      text-align: center;
+      line-height: 2em;
+      font-size: 20px;
+    }
+  }
+
+  .mid {
+    h2 {
+      text-align: center;
+    }
+
+    .ticTacToeMatchList {
+      overflow-y: scroll;
+      height: 265px;
+      padding-bottom: 100px;
+
+      //outline: solid 1px;
+
+      // 以下粘贴在含有滚动条的div样式内
+      &::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        box-shadow: inset 0 0 5px rgba(0, 255, 0, 0.2);
+        background: rgba(0, 255, 0, 0.2);
+      }
+
+      &::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px rgba(0, 255, 0, 0.2);
+        border-radius: 0;
+        background: rgba(0, 0, 0, 0.1);
+      }
+
+      .green {
+        color: #28ff28;
+      }
+
+      .red {
+        color: red;
+      }
+
+      .ticTacToeMatchItem {
+        margin-top: 10px;
+        background-color: #1e1e1e;
+        padding: 10px;
+        position: relative;
+        overflow: hidden;
+
+        .itemLine {
+          margin: 5px;
+        }
+
+        button {
+          border-radius: 10px;
+          padding: 0 5px;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+        span {
+          margin-right: 10px;
+        }
+
+        .littleTitle {
+          text-align: center;
+          margin-top: 15px;
+        }
+
+        .finalResult {
+          position: absolute;
+          font-size: 55px;
+          outline: solid 1px;
+          width: 100px;
+          height: 100px;
+          text-align: center;
+          line-height: 100px;
+          right: -10px;
+          bottom: -10px;
+          border-radius: 50%;
+          transform: rotate(30deg);
+          font-family: 宋体, serif;
+        }
+      }
+    }
+
+  }
+
+  .right {
+    width: 50%;
+    padding: 5px;
+
+    //.codeMirrorEle {
+    //  outline: solid 1px;
+    //}
+    //
+    //.CodeMirror {
+    //  height: 600px;
+    //  font-size: 18px;
+    //  line-height: 24px;
+    //}
+
+    .submitBtn {
+      height: 30px;
+      border-radius: 10px;
+      margin: 5px;
+      padding: 0 10px;
+      background-color: #1e1e1e;
+      color: greenyellow;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+
+}

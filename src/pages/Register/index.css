@@ -1,0 +1,75 @@
+.registerPage {
+  padding-bottom: 100px;
+}
+.registerPage button {
+  border-radius: 10px;
+}
+.registerPage button:hover {
+  cursor: pointer;
+}
+.registerPage .banBtn:hover {
+  cursor: not-allowed;
+}
+.registerPage input {
+  line-height: 2em;
+  outline: none;
+  border-radius: 10px;
+}
+.registerPage main {
+  width: 60%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.registerPage h1 {
+  text-align: center;
+  font-size: 35px;
+}
+.registerPage .headImgArea {
+  margin: 20px;
+}
+.registerPage .headImgArea .selected {
+  box-shadow: greenyellow 0 0 10px;
+}
+.registerPage .headImgArea img {
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  padding: 5px;
+  outline: solid 3px;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+.registerPage .headImgArea img:hover {
+  cursor: pointer;
+  transform: scale(1.5);
+}
+.registerPage .line {
+  height: 30px;
+  margin: 20px;
+}
+.registerPage .line span {
+  line-height: 30px;
+}
+.registerPage .line input {
+  height: 30px;
+  margin-right: 10px;
+  text-indent: 1em;
+  width: 250px;
+}
+.registerPage .line button {
+  height: 30px;
+  padding: 0 20px 0 20px;
+}
+.registerPage .line .confirmBtn {
+  display: block;
+  margin: 0 auto;
+}
+.registerPage .testImgArea {
+  margin: 20px;
+}
+.registerPage .testImgArea img {
+  padding: 10px;
+  outline: solid 1px whitesmoke;
+}
+/*# sourceMappingURL=index.css.map */

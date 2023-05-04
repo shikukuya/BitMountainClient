@@ -1,0 +1,150 @@
+.typeWritingContestPage {
+  width: 100%;
+  padding-bottom: 500px;
+
+  // 右上角的小面板
+  .rightTopPanel {
+    outline: solid 1px;
+    width: 260px;
+    //height: 100px;
+    padding: 10px;
+    position: fixed;
+    right: 5px;
+    top: 65px;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.5);
+    font-size: 13px;
+    border-radius: 10px;
+
+    .line {
+      height: 30px;
+      //text-align: center;
+    }
+  }
+
+  h1 {
+    text-align: center;
+    line-height: 2em;
+    font-size: 30px;
+  }
+
+  .article {
+    width: 75%;
+    margin: 0 auto;
+    outline: solid 1px;
+    position: relative;
+
+    // 自己和对手的行标位置
+    .myLineLoc, .opponentLineLoc {
+      position: absolute;
+      top: 0;
+      outline: solid 1px;
+      height: 40px;
+      width: 90px;
+      line-height: 40px;
+      text-align: center;
+      transition: all 0.5s;
+      left: -100px;
+      transform-origin: right center;
+      border-top-right-radius: 50%;
+      border-bottom-right-radius: 50%;
+    }
+
+    .myLineLoc {
+
+      color: greenyellow;
+      background-color: darkgreen;
+      transform: rotate(30deg);
+    }
+
+    .opponentLineLoc {
+      //right: -100px;
+      color: orangered;
+      background-color: #500000;
+      transform: rotate(-30deg);
+
+    }
+
+    // 自己和对手的详细位置
+    .myCharLoc, .opponentCharLoc {
+      width: 0;
+      height: 0;
+      position: absolute;
+      left: 0;
+      top: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid gray;
+      transition: all 0.5s;
+      transform: translateY(30px);
+    }
+
+    .myCharLoc {
+      border-bottom-color: greenyellow;
+
+    }
+
+    .opponentCharLoc {
+      border-bottom-color: orangered;
+    }
+
+    .line {
+      //margin: 10px;
+
+      .lineOrigin, input {
+        width: 100%;
+        font-size: 20px;
+        line-height: 2em;
+        // 实际的高度是40px
+        margin: 0;
+        padding: 0;
+        font-family: "Courier New", Courier, monospace;
+        //font-family: "Microsoft YaHei UI", serif;
+      }
+
+      .lineOrigin {
+        user-select: none;
+
+        &:hover {
+          cursor: not-allowed;
+        }
+
+        span {
+          //outline: solid 1px;
+          width: 20px; // 强行字符宽度一致
+          float: left;
+          transition: all 0.2s;
+        }
+
+        // 还没有检测的字
+        .default {
+
+        }
+
+        // 正确的字
+        .correct {
+          color: greenyellow;
+        }
+
+        .wrong {
+          color: indianred;
+          outline: solid 1px;
+          border-radius: 50%;
+        }
+      }
+
+      input {
+        background-color: black;
+        color: greenyellow;
+        border: none;
+        letter-spacing: 0;
+        font-family: "Courier New", Courier, monospace;
+
+        &:focus {
+          outline: solid 1px green;
+        }
+      }
+    }
+  }
+
+}

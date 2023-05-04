@@ -1,0 +1,74 @@
+.normalContestPage {
+  height: calc(100vh - 60px);
+  width: 98%;
+  margin: 0 auto;
+
+  .left, .right {
+    width: 50%;
+    height: 100%;
+    float: left;
+  }
+
+  .right {
+    .codeArea, .bottomArea {
+      width: 100%;
+    }
+
+    .codeArea {
+      height: 80%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bottomArea {
+      height: 20%;
+      position: relative;
+
+      .contestTable, .userPanel {
+        height: 100%;
+        float: left;
+      }
+
+      .contestTable {
+        width: 80%;
+      }
+
+      .userPanel {
+        width: 20%;
+      }
+
+
+      .userPanel {
+        .submitBtn {
+          display: block;
+          margin: 5px auto;
+          padding: 2px 10px 2px 10px;
+          background-color: darkgreen;
+          color: greenyellow;
+          outline: none;
+          border: none;
+          height: 30px;
+          line-height: 30px;
+          border-radius: 10px;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+        .disabled {
+          background-color: #626400;
+          color: #ffdc2f;
+
+          &:hover {
+            cursor: not-allowed;
+          }
+        }
+
+        span {
+          user-select: none;
+        }
+      }
+    }
+  }
+}

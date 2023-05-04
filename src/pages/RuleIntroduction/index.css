@@ -1,0 +1,25 @@
+.rulePage h1 {
+  text-align: center;
+  line-height: 3em;
+}
+.rulePage main {
+  width: 60%;
+  min-height: calc(100vh - 60px);
+  margin: 0 auto;
+  padding: 0 60px;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.rulePage main h1 {
+  font-size: 30px;
+}
+.rulePage main .mood {
+  margin: 20px 0 20px 0;
+}
+.rulePage main .mood h2 {
+  font-size: 25px;
+  line-height: 2em;
+}
+.rulePage main .mood p {
+  line-height: 2em;
+}
+/*# sourceMappingURL=index.css.map */

@@ -1,0 +1,50 @@
+.sendEmojiArea {
+  position: relative;
+}
+.sendEmojiArea .sendBtn {
+  display: block;
+  margin: 5px auto;
+  padding: 2px 10px 2px 10px;
+  background-color: darkgreen;
+  color: greenyellow;
+  outline: none;
+  border: none;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 10px;
+}
+.sendEmojiArea .sendBtn:hover {
+  cursor: pointer;
+}
+.sendEmojiArea .choicePanel {
+  display: none;
+  position: fixed;
+  z-index: 5000;
+  left: 78%;
+  top: 60%;
+  width: 250px;
+  height: 179px;
+  background-color: rgba(120, 120, 120, 0.5);
+  border-radius: 10px;
+  padding: 10px;
+  outline: solid 1px greenyellow;
+}
+.sendEmojiArea .choicePanel button {
+  display: inline-block;
+  color: whitesmoke;
+  background-color: black;
+  font-size: 14px;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 2px;
+  border-radius: 5px;
+}
+.sendEmojiArea .choicePanel button:hover {
+  color: greenyellow;
+  cursor: pointer;
+}
+.sendEmojiArea .choicePanel .banBtn {
+  background-color: darkred;
+  color: yellow;
+}
+/*# sourceMappingURL=index.css.map */

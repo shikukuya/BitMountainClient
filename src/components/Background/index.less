@@ -1,0 +1,145 @@
+.backgroundArea {
+  background-color: black;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  z-index: -1;
+
+  .greenShadow {
+    box-shadow: lawngreen 0 0 50px,
+    inset lawngreen 0 0 50px -20px;
+  }
+
+  .redShadow {
+    box-shadow: #fc0000 0 0 50px,
+    inset #fc0071 0 0 50px -20px;
+  }
+
+  .top {
+    height: 70%;
+    position: relative;
+
+    .digitCanvas {
+      //outline: solid 1px;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    .tri() {
+      position: absolute;
+      width: 0;
+      height: 0;
+      left: 300px;
+      bottom: 0;
+      border-style: solid;
+      // 山的高度，山的半径
+      border-width: 30px 100px;
+      transition: all 0.5s;
+
+      border-top-color: transparent;
+      border-left-color: transparent;
+      border-right-color: transparent;
+
+      filter: blur(2px);
+      opacity: 0.8;
+    }
+
+    .greenTriangle {
+      .tri();
+      border-bottom-color: #228e22;
+    }
+
+    .redTriangle {
+      .tri();
+      border-bottom-color: #c13636;
+    }
+
+    .triangle {
+
+    }
+  }
+
+  .down {
+    height: 30%;
+    perspective: 600px;
+    //background-color: pink;
+
+
+    .grid {
+      outline: solid 1px green;
+      width: 1800px;
+      height: 1000px;
+      transform-style: preserve-3d;
+      transform-origin: center top;
+      transition: all 0.5s;
+
+      transform: rotateX(70deg);
+
+      @h: 60px;
+      @w: 100px;
+
+      .gridLine {
+        //outline: solid 1px greenyellow;
+        height: @h;
+
+        .box {
+          height: @h;
+          width: @w;
+          float: left;
+          //transform: scale(0.9);
+          outline: solid 1px;
+          transition: all 0.5s;
+
+          animation-iteration-count: infinite;
+          animation-duration: 2s;
+
+        }
+
+        .greenBox {
+          outline-color: greenyellow;
+          animation-name: greenBoxAni;
+
+          &:hover {
+            background-color: greenyellow;
+          }
+        }
+
+        .redBox {
+          outline-color: #ff5151;
+          animation-name: redBoxAni;
+
+          &:hover {
+            background-color: orangered;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes redBoxAni {
+  0% {
+    box-shadow: #cd3232 0 0 30px;
+  }
+  50% {
+    box-shadow: #ff00b2 0 0 20px;
+  }
+  100% {
+    box-shadow: #cd3232 0 0 30px;
+  }
+}
+
+@keyframes greenBoxAni {
+  0% {
+    box-shadow: yellowgreen 0 0 30px;
+  }
+  50% {
+    box-shadow: #408d22 0 0 20px;
+  }
+  100% {
+    box-shadow: yellowgreen 0 0 30px;
+  }
+}

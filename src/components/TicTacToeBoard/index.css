@@ -1,0 +1,143 @@
+.ticTacToeBoard {
+  text-align: center;
+}
+.ticTacToeBoard .title {
+  text-align: center;
+  height: 30px;
+  line-height: 30px;
+}
+.ticTacToeBoard .board {
+  margin: 15px auto;
+  position: relative;
+}
+.ticTacToeBoard .board .line {
+  height: 100px;
+  width: 300px;
+  margin: 0 auto;
+}
+.ticTacToeBoard .board .line .box {
+  height: 100px;
+  width: 100px;
+  float: left;
+  transform: scale(0.9);
+  transition: all 0.2s;
+  border-radius: 10px;
+  background-color: #1e1e1e;
+}
+.ticTacToeBoard .board .line .box .piece {
+  height: 100px;
+  width: 100px;
+  text-align: center;
+  line-height: 100px;
+  font-size: 100px;
+  user-select: none;
+  animation-name: putPice;
+  animation-duration: 0.2s;
+  animation-fill-mode: forwards;
+}
+.ticTacToeBoard .board .winLine {
+  position: absolute;
+  width: 300px;
+  height: 10px;
+  background-color: greenyellow;
+  z-index: 300;
+  border-radius: 50%;
+  animation-name: winLineFadeIn;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+.ticTacToeBoard .board .xLine1 {
+  top: 50px;
+}
+.ticTacToeBoard .board .xLine2 {
+  top: 150px;
+}
+.ticTacToeBoard .board .xLine3 {
+  top: 250px;
+}
+.ticTacToeBoard .board .xLine1,
+.ticTacToeBoard .board .xLine2,
+.ticTacToeBoard .board .xLine3 {
+  left: 50%;
+  margin-left: -150px;
+}
+.ticTacToeBoard .board .yLine1,
+.ticTacToeBoard .board .yLine2,
+.ticTacToeBoard .board .yLine3 {
+  width: 10px;
+  height: 300px;
+  top: 0;
+  left: 50%;
+  transform: translateX(-5px);
+}
+.ticTacToeBoard .board .yLine1 {
+  margin-left: -100px;
+}
+.ticTacToeBoard .board .yLine2 {
+  margin-left: 0;
+}
+.ticTacToeBoard .board .yLine3 {
+  margin-left: 100px;
+}
+.ticTacToeBoard .board .sLine1,
+.ticTacToeBoard .board .sLine2 {
+  width: 424.2px;
+  height: 10px;
+  left: 50%;
+  top: 50%;
+  margin-left: -212.1px;
+  margin-top: -5px;
+}
+.ticTacToeBoard .board .sLine1 {
+  transform: rotate(45deg);
+}
+.ticTacToeBoard .board .sLine2 {
+  transform: rotate(-45deg);
+}
+.ticTacToeBoard .rangeEle {
+  width: 200px;
+}
+.ticTacToeBoard input[type="range"]::-webkit-slider-runnable-track {
+  background: black;
+}
+.ticTacToeBoard input[type="range"]::-moz-range-track {
+  background: black;
+}
+.ticTacToeBoard input[type="range"]::-webkit-slider-thumb {
+  background: lightgreen;
+  cursor: pointer;
+}
+.ticTacToeBoard input[type="range"]::-moz-range-thumb {
+  background: lightgreen;
+}
+.ticTacToeBoard .stepBtn {
+  color: lightgreen;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  width: 50px;
+  height: 50px;
+  outline: none;
+  font-weight: bolder;
+}
+.ticTacToeBoard .stepBtn:hover {
+  cursor: pointer;
+}
+@keyframes putPice {
+  from {
+    transform: scale(0.1);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes winLineFadeIn {
+  from {
+    opacity: 0.1;
+    box-shadow: 0 0 80px red;
+  }
+  to {
+    opacity: 1;
+    box-shadow: 0 0 5px lightgreen;
+  }
+}
+/*# sourceMappingURL=index.css.map */

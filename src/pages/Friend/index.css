@@ -1,0 +1,102 @@
+.friendPage {
+  height: 100vh;
+  width: 80%;
+  margin: 0 auto;
+}
+.friendPage .left {
+  width: 25%;
+}
+.friendPage .right {
+  width: 70%;
+}
+.friendPage .left {
+  float: left;
+  height: 90%;
+  margin: 10px;
+  padding: 5px;
+}
+.friendPage .left h2,
+.friendPage .left h4 {
+  text-align: center;
+  line-height: 3em;
+  font-size: 20px;
+}
+.friendPage .left .line {
+  min-height: 30px;
+  line-height: 30px;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.friendPage .left .line input {
+  line-height: 2em;
+  font-size: 15px;
+  margin-right: 5px;
+  height: 30px;
+  vertical-align: center;
+  text-indent: 0.5em;
+  background-color: #102c10;
+  outline: none;
+  border: none;
+  color: lightgreen;
+}
+.friendPage .left .line input::placeholder {
+  color: forestgreen;
+}
+.friendPage .left .line button {
+  height: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+  vertical-align: center;
+  border: none;
+  outline: none;
+  color: greenyellow;
+  background-color: darkgreen;
+  transition: all 0.2s;
+}
+.friendPage .left .line button:hover {
+  cursor: pointer;
+  color: ghostwhite;
+}
+.friendPage .left .line .userId {
+  font-size: 13px;
+  text-align: center;
+  color: greenyellow;
+}
+.friendPage .left .line .copyBtn {
+  display: block;
+  margin: 0 auto;
+}
+.friendPage .left .line span {
+  margin-right: 5px;
+}
+.friendPage .right {
+  float: left;
+  height: 90%;
+  margin: 10px;
+  padding: 5px;
+}
+.friendPage .right .topLine {
+  height: 50px;
+}
+.friendPage .right .topLine .top-switch {
+  width: 50%;
+  height: 100%;
+  background-color: black;
+  color: whitesmoke;
+  outline: none;
+  border: none;
+}
+.friendPage .right .topLine .top-switch:hover {
+  cursor: pointer;
+}
+.friendPage .right .topLine .active {
+  box-shadow: greenyellow 0 0 20px inset;
+  color: lawngreen;
+}
+.friendPage .right .downBody {
+  background-color: #193729;
+  height: 600px;
+  width: 100%;
+  overflow-y: auto;
+}
+/*# sourceMappingURL=index.css.map */

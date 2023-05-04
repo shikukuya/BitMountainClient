@@ -1,0 +1,9 @@
+.copyUUIDPanel {
+  overflow: hidden;
+  position: relative;
+}
+.copyUUIDPanel textarea {
+  position: absolute;
+  left: -900px;
+}
+/*# sourceMappingURL=index.css.map */

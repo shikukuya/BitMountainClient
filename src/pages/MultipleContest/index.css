@@ -1,0 +1,67 @@
+.multipleContestPage {
+  height: calc(100vh - 60px);
+}
+.multipleContestPage .left,
+.multipleContestPage .middle,
+.multipleContestPage .right {
+  height: 100%;
+  float: left;
+}
+.multipleContestPage .left {
+  width: 10%;
+}
+.multipleContestPage .middle {
+  width: 40%;
+}
+.multipleContestPage .right {
+  width: 50%;
+}
+.multipleContestPage .right .codeArea,
+.multipleContestPage .right .bottomArea {
+  width: 100%;
+}
+.multipleContestPage .right .codeArea {
+  height: 80%;
+  position: relative;
+  overflow: hidden;
+}
+.multipleContestPage .right .bottomArea {
+  height: 20%;
+  position: relative;
+}
+.multipleContestPage .right .bottomArea .multipleContestTable,
+.multipleContestPage .right .bottomArea .userPanel {
+  height: 100%;
+  float: left;
+}
+.multipleContestPage .right .bottomArea .multipleContestTable {
+  width: 80%;
+}
+.multipleContestPage .right .bottomArea .userPanel {
+  width: 20%;
+}
+.multipleContestPage .right .bottomArea .userPanel .submitBtn {
+  display: block;
+  margin: 5px auto;
+  padding: 2px 10px 2px 10px;
+  background-color: darkgreen;
+  color: greenyellow;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  height: 30px;
+}
+.multipleContestPage .right .bottomArea .userPanel .submitBtn:hover {
+  cursor: pointer;
+}
+.multipleContestPage .right .bottomArea .userPanel .disabled {
+  background-color: #626400;
+  color: #ffdc2f;
+}
+.multipleContestPage .right .bottomArea .userPanel .disabled:hover {
+  cursor: not-allowed;
+}
+.multipleContestPage .right .bottomArea .userPanel span {
+  user-select: none;
+}
+/*# sourceMappingURL=index.css.map */

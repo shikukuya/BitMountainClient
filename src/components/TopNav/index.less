@@ -1,0 +1,315 @@
+.top-nav {
+  //outline: solid 1px;
+  @H: 60px;
+  height: @H;
+  background: rgba(60, 63, 65, 0.78);
+
+  // 溢出隐藏，用于做刀刃特效
+  overflow: hidden;
+
+  border-bottom: solid 3px greenyellow;
+  position: relative;
+  animation-name: topNavAni;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+
+  .left {
+    height: @H;
+    float: left;
+    width: 30%;
+    z-index: 100;
+
+    .LOGO {
+      height: @H;
+      float: left;
+      margin-left: 30px;
+    }
+
+    .title {
+      // 比特山
+      font-size: 25px;
+      line-height: @H;
+      margin-left: 30px;
+      color: #28ff28;
+    }
+  }
+
+  .middle {
+    height: @H;
+    float: left;
+    width: 40%;
+    //outline: solid 1px;
+    vertical-align: center;
+    z-index: 100;
+    // 对局模式
+    p, div {
+      height: @H;
+      float: left;
+      line-height: @H;
+    }
+
+    .VS {
+      font-size: 23px;
+      font-weight: bolder;
+      margin-left: 10px;
+      margin-right: 10px;
+      color: greenyellow;
+    }
+
+    .user {
+      height: @H;
+      line-height: @H;
+
+      //outline: solid 1px;
+
+
+      img, span {
+        display: block;
+        float: left;
+        height: @H;
+        line-height: @H;
+        //vertical-align: center;
+      }
+
+      img {
+        width: @H*0.5;
+        height: @H*0.5;
+        margin: 0;
+        padding: 0;
+        //transform: scale(0.8);
+        //outline: solid 1px;
+        margin-top: 15px;
+        border-radius: 50%;
+        margin-left: 10px;
+      }
+
+      .userName {
+        margin-left: 3px;
+      }
+
+      .userLevel {
+        //outline: none;
+      }
+    }
+
+    // 非对局模式
+    li {
+      height: @H;
+      float: left;
+      text-decoration: none;
+      line-height: @H;
+      list-style-type: none;
+      //outline: solid 1px red;
+      padding-left: 20px;
+      padding-right: 20px;
+
+      .clickItem {
+        height: @H;
+        line-height: @H;
+        //outline: solid 1px;
+        text-decoration: none;
+        color: white;
+        transition: all 0.2s;
+        position: relative;
+
+        &:hover {
+          //outline: solid 1px;
+          color: greenyellow;
+
+          .lightDote {
+            opacity: 1;
+            transform: scale(4.5);
+            border-right-color: transparent;
+            border-left-color: transparent;
+          }
+        }
+
+        &:active {
+          transform: scale(0.5);
+
+          .lightDote {
+            opacity: 1;
+            transform: scale(1) rotate(90deg);
+            border-right-color: transparent;
+            border-left-color: transparent;
+          }
+        }
+
+        .lightDote {
+          @w: 10px;
+          @h: 10px;
+          width: @w;
+          height: @h;
+          margin-left: -(@w/2);
+          margin-top: -(@h/2);
+          left: 50%;
+          top: 50%;
+          position: absolute;
+          transition: 0.3s;
+          color: greenyellow;
+          border: solid 1px;
+          border-radius: 50%;
+
+          opacity: 0;
+        }
+      }
+    }
+  }
+
+  .right {
+    width: 30%;
+    height: @H;
+    float: left;
+    //outline: solid 1px;
+
+    // 退出比赛按钮
+    .exitContest {
+      background-color: darkred;
+      color: orange;
+      //line-height: @H;
+      display: inline;
+      height: @H;
+      line-height: @H;
+      font-size: 18px;
+      padding: 5px 15px 5px 15px;
+      vertical-align: middle;
+
+      transition: all 0.2s;
+
+      &:hover {
+        //transform: scale(1.1);
+      }
+    }
+
+    .headImg {
+      outline: solid 1px;
+      width: 30px;
+      height: 30px;
+      line-height: @H;
+      vertical-align: middle;
+      margin: 5px;
+      border-radius: 50%;
+      //cursor: pointer;
+    }
+
+
+    .login, .register, .userName, .score, .userLevel, .headImg {
+      line-height: @H;
+      vertical-align: middle;
+      color: #d4d4d4;
+      user-select: none;
+      margin-right: 10px;
+    }
+
+    .userLevel {
+      width: 30px;
+      height: 30px;
+      //outline: solid 1px;
+      margin-right: 0;
+      transition: all 0.2s;
+
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.5);
+      }
+    }
+
+    .score {
+      margin-left: 0;
+    }
+
+    .login {
+      cursor: pointer;
+      margin-right: 10px;
+      margin-left: 10px;
+    }
+
+    .register {
+      cursor: pointer;
+    }
+  }
+
+  .left, .middle, .right {
+    z-index: 50;
+  }
+
+  .light {
+    z-index: 1;
+  }
+
+  // 白光刃
+  .light {
+    height: @H;
+    width: 100px;
+    background-color: #272727;
+    margin-left: 0;
+    transform: skewX(30deg);
+    position: absolute;
+
+    //animation-name: lightMove;
+    //animation-duration: 1s;
+    //animation-fill-mode: forwards;
+    z-index: 0;
+    animation-timing-function: ease-in;
+  }
+
+  .MBtn() {
+    @L: 40px;
+    font-size: 22px;
+    position: absolute;
+    height: @L;
+    width: @L;
+    line-height: @L;
+    margin-top: -(@L/2);
+    top: 50%;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #1e1e1e;
+    user-select: none;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &:active {
+      transform: scale(0.9);
+    }
+  }
+
+  .musicBtn {
+    .MBtn();
+    right: 30px;
+  }
+
+  .soundBtn {
+    .MBtn();
+    right: 75px;
+  }
+}
+
+@keyframes lightMove {
+  from {
+    margin-left: 0;
+    width: 100px;
+    //left: 0;
+  }
+  to {
+    margin-left: 2000px;
+    width: 500px;
+    //left: 2000px;
+  }
+}
+
+@keyframes topNavAni {
+  0% {
+    border-bottom: solid 3px greenyellow;
+  }
+  50% {
+    border-bottom: solid 3px green;
+  }
+  100% {
+    border-bottom: solid 3px greenyellow;
+  }
+}

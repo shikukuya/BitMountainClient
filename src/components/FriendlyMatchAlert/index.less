@@ -1,0 +1,81 @@
+.friendlyMatchAlert {
+
+  outline: solid 1px greenyellow;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  @w: 400px;
+  @h: 400px;
+  width: @w;
+  height: @h;
+  margin-left: -(@w/2);
+  margin-top: -(@w/2);
+  z-index: 500;
+  background-color: black;
+  text-align: center;
+
+  .close {
+    width: 50px;
+    height: 50px;
+    outline: solid 1px;
+    border: none;
+    color: white;
+    background-color: crimson;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 20px;
+    line-height: 2.5em;
+  }
+
+  p {
+    line-height: 2em;
+  }
+
+  .line {
+    height: 40px;
+
+
+    .levelImg {
+      width: 30px;
+      vertical-align: middle;
+    }
+  }
+
+  .headImg {
+    border-radius: 50%;
+    width: 100px;
+
+  }
+
+  .affirmBtn, .refuseBtn {
+    width: 80px;
+    margin: 15px 5px;
+    padding: 4px;
+    border: none;
+    color: white;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .affirmBtn {
+    background-color: forestgreen;
+  }
+
+  .refuseBtn {
+    background-color: darkred;
+  }
+}
+
+

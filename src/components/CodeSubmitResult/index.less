@@ -1,0 +1,48 @@
+.codeResult {
+  // 高度
+  height: 150px;
+  width: 100%;
+  bottom: -150px;
+
+  position: absolute;
+  @backgroundColor: #1e1e1e;
+
+  padding: 10px 20px;
+  outline: solid 1px;
+  background-color: @backgroundColor;
+  transition: all 0.5s;
+
+  .close {
+    @h: 30px;
+    width: 40px;
+    height: @h;
+    background-color: @backgroundColor;
+    position: absolute;
+    top: -(@h);
+    right: 0;
+    line-height: @h;
+    text-align: center;
+    border-top-left-radius: 20px;
+    //border-top-right-radius: 20px;
+
+    user-select: none;
+    border-top: solid 1px whitesmoke;
+
+    &:hover {
+      cursor: pointer;
+      color: greenyellow;
+    }
+  }
+
+  .wrongData {
+    color: orangered;
+    font-size: 13px;
+    margin: 5px 0;
+  }
+
+  .err {
+    background-color: black;
+    padding: 0 5px 0 5px;
+    color: darkorange;
+  }
+}

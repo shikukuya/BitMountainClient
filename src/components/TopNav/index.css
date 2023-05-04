@@ -1,0 +1,261 @@
+.top-nav {
+  height: 60px;
+  background: rgba(60, 63, 65, 0.78);
+  overflow: hidden;
+  border-bottom: solid 3px greenyellow;
+  position: relative;
+  animation-name: topNavAni;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+}
+.top-nav .left {
+  height: 60px;
+  float: left;
+  width: 30%;
+  z-index: 100;
+}
+.top-nav .left .LOGO {
+  height: 60px;
+  float: left;
+  margin-left: 30px;
+}
+.top-nav .left .title {
+  font-size: 25px;
+  line-height: 60px;
+  margin-left: 30px;
+  color: #28ff28;
+}
+.top-nav .middle {
+  height: 60px;
+  float: left;
+  width: 40%;
+  vertical-align: center;
+  z-index: 100;
+}
+.top-nav .middle p,
+.top-nav .middle div {
+  height: 60px;
+  float: left;
+  line-height: 60px;
+}
+.top-nav .middle .VS {
+  font-size: 23px;
+  font-weight: bolder;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: greenyellow;
+}
+.top-nav .middle .user {
+  height: 60px;
+  line-height: 60px;
+}
+.top-nav .middle .user img,
+.top-nav .middle .user span {
+  display: block;
+  float: left;
+  height: 60px;
+  line-height: 60px;
+}
+.top-nav .middle .user img {
+  width: 30px;
+  height: 30px;
+  margin: 0;
+  padding: 0;
+  margin-top: 15px;
+  border-radius: 50%;
+  margin-left: 10px;
+}
+.top-nav .middle .user .userName {
+  margin-left: 3px;
+}
+.top-nav .middle li {
+  height: 60px;
+  float: left;
+  text-decoration: none;
+  line-height: 60px;
+  list-style-type: none;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.top-nav .middle li .clickItem {
+  height: 60px;
+  line-height: 60px;
+  text-decoration: none;
+  color: white;
+  transition: all 0.2s;
+  position: relative;
+}
+.top-nav .middle li .clickItem:hover {
+  color: greenyellow;
+}
+.top-nav .middle li .clickItem:hover .lightDote {
+  opacity: 1;
+  transform: scale(4.5);
+  border-right-color: transparent;
+  border-left-color: transparent;
+}
+.top-nav .middle li .clickItem:active {
+  transform: scale(0.5);
+}
+.top-nav .middle li .clickItem:active .lightDote {
+  opacity: 1;
+  transform: scale(1) rotate(90deg);
+  border-right-color: transparent;
+  border-left-color: transparent;
+}
+.top-nav .middle li .clickItem .lightDote {
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;
+  margin-top: -5px;
+  left: 50%;
+  top: 50%;
+  position: absolute;
+  transition: 0.3s;
+  color: greenyellow;
+  border: solid 1px;
+  border-radius: 50%;
+  opacity: 0;
+}
+.top-nav .right {
+  width: 30%;
+  height: 60px;
+  float: left;
+}
+.top-nav .right .exitContest {
+  background-color: darkred;
+  color: orange;
+  display: inline;
+  height: 60px;
+  line-height: 60px;
+  font-size: 18px;
+  padding: 5px 15px 5px 15px;
+  vertical-align: middle;
+  transition: all 0.2s;
+}
+.top-nav .right .headImg {
+  outline: solid 1px;
+  width: 30px;
+  height: 30px;
+  line-height: 60px;
+  vertical-align: middle;
+  margin: 5px;
+  border-radius: 50%;
+}
+.top-nav .right .login,
+.top-nav .right .register,
+.top-nav .right .userName,
+.top-nav .right .score,
+.top-nav .right .userLevel,
+.top-nav .right .headImg {
+  line-height: 60px;
+  vertical-align: middle;
+  color: #d4d4d4;
+  user-select: none;
+  margin-right: 10px;
+}
+.top-nav .right .userLevel {
+  width: 30px;
+  height: 30px;
+  margin-right: 0;
+  transition: all 0.2s;
+}
+.top-nav .right .userLevel:hover {
+  cursor: pointer;
+  transform: scale(1.5);
+}
+.top-nav .right .score {
+  margin-left: 0;
+}
+.top-nav .right .login {
+  cursor: pointer;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.top-nav .right .register {
+  cursor: pointer;
+}
+.top-nav .left,
+.top-nav .middle,
+.top-nav .right {
+  z-index: 50;
+}
+.top-nav .light {
+  z-index: 1;
+}
+.top-nav .light {
+  height: 60px;
+  width: 100px;
+  background-color: #272727;
+  margin-left: 0;
+  transform: skewX(30deg);
+  position: absolute;
+  z-index: 0;
+  animation-timing-function: ease-in;
+}
+.top-nav .musicBtn {
+  font-size: 22px;
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  margin-top: -20px;
+  top: 50%;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #1e1e1e;
+  user-select: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  right: 30px;
+}
+.top-nav .musicBtn:hover {
+  transform: scale(1.1);
+}
+.top-nav .musicBtn:active {
+  transform: scale(0.9);
+}
+.top-nav .soundBtn {
+  font-size: 22px;
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  margin-top: -20px;
+  top: 50%;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #1e1e1e;
+  user-select: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  right: 75px;
+}
+.top-nav .soundBtn:hover {
+  transform: scale(1.1);
+}
+.top-nav .soundBtn:active {
+  transform: scale(0.9);
+}
+@keyframes lightMove {
+  from {
+    margin-left: 0;
+    width: 100px;
+  }
+  to {
+    margin-left: 2000px;
+    width: 500px;
+  }
+}
+@keyframes topNavAni {
+  0% {
+    border-bottom: solid 3px greenyellow;
+  }
+  50% {
+    border-bottom: solid 3px green;
+  }
+  100% {
+    border-bottom: solid 3px greenyellow;
+  }
+}
+/*# sourceMappingURL=index.css.map */

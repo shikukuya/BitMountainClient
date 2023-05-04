@@ -1,0 +1,93 @@
+.multipleContestPage {
+  height: calc(100vh - 60px);
+  //width: 98%;
+  //margin: 0 auto;
+
+
+  // ----------处理左中右三个布局大框架
+  .left, .middle, .right {
+    height: 100%;
+    float: left;
+  }
+
+  .left {
+    width: 10%;
+  }
+
+  .middle {
+    width: 40%;
+  }
+
+  .right {
+    width: 50%;
+  }
+
+  // ----------处理左中右三个布局大框架完毕
+
+  .left {
+
+
+  }
+
+  .right {
+    .codeArea, .bottomArea {
+      width: 100%;
+      //outline: solid 1px;
+    }
+
+    .codeArea {
+      height: 80%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bottomArea {
+      height: 20%;
+      position: relative;
+
+      .multipleContestTable, .userPanel {
+        height: 100%;
+        float: left;
+      }
+
+      .multipleContestTable {
+        width: 80%;
+      }
+
+      .userPanel {
+        width: 20%;
+      }
+
+      .userPanel {
+        .submitBtn {
+          display: block;
+          margin: 5px auto;
+          padding: 2px 10px 2px 10px;
+          background-color: darkgreen;
+          color: greenyellow;
+          outline: none;
+          border: none;
+          border-radius: 10px;
+          height: 30px;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+        .disabled {
+          background-color: #626400;
+          color: #ffdc2f;
+
+          &:hover {
+            cursor: not-allowed;
+          }
+        }
+
+        span {
+          user-select: none;
+        }
+      }
+    }
+  }
+}

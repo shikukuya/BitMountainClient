@@ -1,0 +1,81 @@
+.multiContestItem {
+  width: 100%;
+  height: 20%;
+  position: relative;
+
+  .questionIcon {
+    position: absolute;
+    @L: 80px;
+    height: @L;
+    width: @L;
+    left: 50%;
+    top: 50%;
+    margin-left: -(@L/2);
+    margin-top: -(@L/2);
+    line-height: @L;
+    text-align: center;
+    background-color: darkslategray;
+    color: greenyellow;
+    font-size: 20px;
+    font-family: Consolas, serif;
+
+    user-select: none;
+
+    transition: all 0.5s;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #213939;
+      font-size: 30px;
+      transform: translateX(10px);
+    }
+
+    &:active {
+      background-color: darkslategray;
+      color: greenyellow;
+      font-size: 20px;
+      transform: translateX(1px) scale(0.2);
+    }
+  }
+
+  @stageL: 30px;
+  // 阶段图标
+  .stageIcon {
+    position: absolute;
+    width: @stageL;
+    height: @stageL;
+    line-height: @stageL;
+    font-size: (@stageL*0.8);
+    //top: 50%;
+    bottom: 5px;
+    //margin-top: -(@stageL/2);
+    z-index: 20;
+  }
+
+  .myStage {
+    left: 20%;
+    // 水平反转180，向右
+    transform: rotateY(180deg);
+  }
+
+  .opStage {
+    right: 20%;
+  }
+
+  // 提交历史
+  .submitList {
+    position: absolute;
+    z-index: 18;
+    width: 30px;
+    height: 80%;
+    top: 20%;
+  }
+
+  .mySubmit {
+    left: 0;
+  }
+
+  .opSubmit {
+    right: 0;
+  }
+}

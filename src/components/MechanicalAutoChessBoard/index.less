@@ -1,0 +1,156 @@
+.autoChessBoard {
+  @L: 24px;
+  text-align: center;
+
+  h2 {
+    text-align: center;
+  }
+
+  .matrix {
+    width: @L * 19;
+    height: @L*19;
+    margin: 0 auto;
+    //margin-left: 15px;
+    position: relative;
+    overflow: hidden;
+
+    .robot1, .robot2 {
+      position: absolute;
+      width: @L;
+      height: @L;
+      text-align: center;
+      line-height: @L;
+      font-size: @L*0.85;
+      transition: all 0.5s;
+      z-index: 500;
+    }
+
+    .boom {
+      // 爆炸火花
+      @w: @L*3;
+      @h: @L*3;
+      width: @w;
+      height: @h;
+      margin-left: -@L;
+      margin-top: -@L;
+      position: absolute;
+
+      border-radius: 50%;
+      background-color: #00a2ff;
+      opacity: 0.5;
+      z-index: 600;
+
+      animation-name: boomAni;
+      animation-duration: 1s;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+    }
+
+    .robot1View, .robot2View {
+      @w: @L*5;
+      @h: @L*5;
+      width: @w;
+      height: @h;
+      position: absolute;
+      //outline: solid 1px;
+      transition: all 0.5s;
+      box-shadow: 0 0 10px #bbbbbb inset;
+      border-radius: 10px;
+      z-index: 505;
+    }
+
+    .line {
+      height: @L;
+
+      .box {
+        height: @L;
+        width: @L;
+        float: left;
+        background-color: #2f5f29;
+        position: relative;
+
+        &:hover {
+          box-shadow: 0 0 2px white inset;
+        }
+
+        .rock {
+          width: @L;
+          height: @L;
+          background-color: lightslategray;
+          box-shadow: #596b7d 0 0 8px inset;
+        }
+
+        .blackPiece, .whitePiece {
+          border-radius: 50%;
+          height: @L;
+          transition: all 0.2s;
+          user-select: none;
+        }
+
+        .blackPiece {
+          background-color: black;
+          box-shadow: gray 0 0 2px inset;
+        }
+
+        .whitePiece {
+          background-color: white;
+          box-shadow: gray 0 0 2px inset;
+        }
+      }
+    }
+  }
+
+  button {
+    background-color: #1e1e1e;
+    color: greenyellow;
+    border: none;
+    @L: 20px;
+    height: @L;
+    width: @L;
+    line-height: @L;
+    //border-radius: 10px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .bar {
+    outline: solid 1px;
+    width: 300px;
+  }
+
+  input[type="range"]::-webkit-slider-runnable-track {
+    background: black;
+    //outline: solid 1px lightgreen;
+  }
+
+  input[type="range"]::-moz-range-track {
+    background: black;
+    //outline: solid 1px lightgreen;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    background: lightgreen;
+    //outline: solid 1px gold;
+    cursor: pointer;
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    background: lightgreen;
+  }
+}
+
+// 爆炸动画
+@keyframes boomAni {
+  from {
+    transform: scale(1);
+    border-radius: 20%;
+    opacity: 0.5;
+  }
+  to {
+    transform: scale(0);
+    border-radius: 50%;
+    opacity: 0.2;
+  }
+}

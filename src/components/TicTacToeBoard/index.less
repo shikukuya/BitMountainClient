@@ -1,0 +1,180 @@
+.ticTacToeBoard {
+  .title {
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+  }
+
+  text-align: center;
+
+  .board {
+    @L: 100px;
+    margin: 15px auto;
+    position: relative;
+
+    .line {
+      height: @L;
+      width: @L*3;
+      margin: 0 auto;
+
+      .box {
+        height: @L;
+        width: @L;
+        float: left;
+        //outline: solid 5px #1e1e1e;
+        transform: scale(0.9);
+        transition: all 0.2s;
+        border-radius: 10px;
+        background-color: #1e1e1e;
+
+        .piece {
+          height: @L;
+          width: @L;
+          // 文字
+          text-align: center;
+          line-height: @L;
+          font-size: @L;
+          user-select: none;
+
+          animation-name: putPice;
+          animation-duration: 0.2s;
+          animation-fill-mode: forwards;
+        }
+
+      }
+    }
+
+    //  赢了的线条
+    .winLine {
+      position: absolute;
+      width: @L*3;
+      height: 10px;
+      background-color: greenyellow;
+      z-index: 300;
+      border-radius: 50%;
+
+      animation-name: winLineFadeIn;
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
+    }
+
+    .xLine1 {
+      top: (0*@L)+(@L/2);
+    }
+
+    .xLine2 {
+      top: (1*@L)+(@L/2);
+    }
+
+    .xLine3 {
+      top: (2*@L)+(@L/2);
+    }
+
+    .xLine1, .xLine2, .xLine3 {
+      left: 50%;
+      margin-left: -(@L*3/2);
+    }
+
+    .yLine1, .yLine2, .yLine3 {
+      width: 10px;
+      height: @L*3;
+      top: 0;
+      left: 50%;
+      transform: translateX(-5px);
+    }
+
+    .yLine1 {
+      margin-left: -@L;
+    }
+
+    .yLine2 {
+      margin-left: 0;
+    }
+
+    .yLine3 {
+      margin-left: @L;
+    }
+
+    .sLine1, .sLine2 {
+      width: (@L*3)*1.414;
+      height: 10px;
+      left: 50%; // 奇怪
+      top: 50%;
+      margin-left: -((@L*3*1.414)/2);
+      margin-top: -(10px/2);
+    }
+
+    .sLine1 {
+      transform: rotate(45deg);
+    }
+
+    .sLine2 {
+      transform: rotate(-45deg);
+    }
+
+  }
+
+  .rangeEle {
+    width: 200px;
+  }
+
+  input[type="range"]::-webkit-slider-runnable-track {
+    background: black;
+    //outline: solid 1px lightgreen;
+  }
+
+  input[type="range"]::-moz-range-track {
+    background: black;
+    //outline: solid 1px lightgreen;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    background: lightgreen;
+    //outline: solid 1px gold;
+    cursor: pointer;
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    background: lightgreen;
+  }
+
+  .stepBtn {
+    color: lightgreen;
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    @L: 50px;
+    width: @L;
+    height: @L;
+    //border: solid 1px;
+    outline: none;
+    //font-size: @L*0.6;
+    font-weight: bolder;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+// 放置棋子
+@keyframes putPice {
+  from {
+    transform: scale(0.1);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes winLineFadeIn {
+  from {
+    opacity: 0.1;
+    //outline: solid 30px transparent;
+    box-shadow: 0 0 80px red;
+  }
+  to {
+    opacity: 1;
+    //outline: solid 0 greenyellow;
+    box-shadow: 0 0 5px lightgreen;
+  }
+}

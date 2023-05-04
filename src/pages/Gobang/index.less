@@ -1,0 +1,91 @@
+.gobangPage {
+  height: 90vh;
+
+  .left, .right {
+    width: 50%;
+    height: 100%;
+    float: left;
+    //outline: solid 1px white;
+  }
+
+  .left {
+    position: relative;
+    padding-left: 10px;
+
+    .matchList {
+      width: 230px;
+      height: 550px;
+      position: absolute;
+      right: 0;
+      top: 0;
+      //outline: solid 1px;
+
+      h2 {
+        text-align: center;
+        line-height: 2em;
+      }
+    }
+
+    .bottomArea {
+      width: 100%;
+      height: 120px;
+      position: absolute;
+      bottom: 0;
+
+      overflow: scroll;
+      overflow-x: hidden;
+
+      // 以下粘贴在含有滚动条的div样式内
+      &::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        box-shadow: inset 0 0 5px rgba(0, 255, 0, 0.2);
+        background: rgba(0, 255, 0, 0.2);
+      }
+
+      &::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px rgba(0, 255, 0, 0.2);
+        border-radius: 0;
+        background: rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+
+  .right {
+    .codeNameInput {
+      line-height: 2em;
+      background-color: #1e1e1e;
+      outline: none;
+      border: none;
+      color: greenyellow;
+      text-indent: 1em;
+      margin: 5px;
+      width: 250px;
+      border-radius: 10px;
+    }
+
+    .submitBtn {
+      line-height: 2em;
+      outline: none;
+      border: none;
+      transition: all 0.2s;
+      padding-left: 10px;
+      padding-right: 10px;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: greenyellow;
+      border-radius: 10px;
+
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+      }
+
+      &:active {
+        transform: scale(0.9);
+      }
+    }
+  }
+}

@@ -1,0 +1,43 @@
+.myAlertWrap {
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.myAlertWrap .massage {
+  position: fixed;
+  color: #28ff28;
+  outline: solid 1px;
+  text-align: center;
+  font-size: 20px;
+  line-height: 2em;
+  background-color: rgba(0, 0, 0, 0.75);
+  padding: 10px;
+  box-shadow: 0 0 20px black;
+  z-index: 3000;
+  top: 20%;
+  left: 50%;
+  margin-left: -175px;
+  width: 350px;
+  border-radius: 15px;
+  animation-name: tipsFadeIn;
+  animation-duration: 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+@keyframes tipsFadeIn {
+  0% {
+    top: 20%;
+    opacity: 0;
+  }
+  10% {
+    top: 15%;
+    opacity: 1;
+  }
+  100% {
+    top: 5%;
+    opacity: 0;
+  }
+}
+/*# sourceMappingURL=index.css.map */

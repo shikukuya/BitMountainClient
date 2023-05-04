@@ -1,0 +1,10 @@
+.progressBar {
+  display: inline-block;
+  border: solid 1px whitesmoke;
+  vertical-align: middle;
+}
+.progressBar .inner {
+  height: 100%;
+  float: left;
+}
+/*# sourceMappingURL=index.css.map */

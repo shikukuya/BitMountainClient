@@ -1,0 +1,62 @@
+.MechanicalAutoChessPage {
+  height: calc(100vh - 60px);
+}
+.MechanicalAutoChessPage .left,
+.MechanicalAutoChessPage .right {
+  height: 100%;
+  float: left;
+  width: 50%;
+}
+.MechanicalAutoChessPage .left .leftTop {
+  position: relative;
+  height: 500px;
+}
+.MechanicalAutoChessPage .left .leftBottom {
+  height: calc(100% - 500px);
+  overflow-y: scroll;
+}
+.MechanicalAutoChessPage .left .leftBottom::-webkit-scrollbar {
+  width: 10px;
+}
+.MechanicalAutoChessPage .left .leftBottom::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 5px rgba(0, 255, 0, 0.2);
+  background: rgba(0, 255, 0, 0.2);
+}
+.MechanicalAutoChessPage .left .leftBottom::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgba(0, 255, 0, 0.2);
+  border-radius: 0;
+  background: rgba(0, 0, 0, 0.1);
+}
+.MechanicalAutoChessPage .left .dataPanel {
+  outline: solid 1px;
+  position: absolute;
+  width: 200px;
+  height: 100%;
+  right: 0;
+  top: 0;
+  padding-top: 60px;
+}
+.MechanicalAutoChessPage .right .codeNameInput {
+  height: 30px;
+  line-height: 30px;
+  text-indent: 1em;
+  width: 300px;
+  margin-top: 5px;
+  border-radius: 10px;
+  background-color: #1e1e1e;
+  color: greenyellow;
+}
+.MechanicalAutoChessPage .right .submitBtn {
+  margin-top: 5px;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 10px;
+  border-radius: 10px;
+  background-color: black;
+  color: greenyellow;
+}
+.MechanicalAutoChessPage .right .submitBtn:hover {
+  cursor: pointer;
+}
+/*# sourceMappingURL=index.css.map */

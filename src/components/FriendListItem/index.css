@@ -1,0 +1,113 @@
+/* 一条朋友样式 */
+.friendItem {
+  height: 60px;
+  padding-left: 20px;
+  margin: 20px 10px 20px 10px;
+  line-height: 60px;
+  background-color: #254c3a;
+  box-shadow: #78a435 2px 2px 10px;
+  transition: all 1s;
+  overflow: hidden;
+}
+.friendItem .delBtn,
+.friendItem .matchBtn,
+.friendItem .detailsBtn {
+  opacity: 0;
+}
+.friendItem:hover .delBtn,
+.friendItem:hover .matchBtn,
+.friendItem:hover .detailsBtn {
+  opacity: 1;
+}
+.friendItem .headImg {
+  width: 40px;
+  height: 40px;
+  vertical-align: middle;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+.friendItem .levelImg {
+  width: 40px;
+  height: 40px;
+  vertical-align: middle;
+}
+.friendItem span {
+  vertical-align: middle;
+  line-height: 60px;
+}
+.friendItem .name {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.friendItem button {
+  outline: none;
+  border: none;
+  margin: 5px;
+  height: 30px;
+  font-size: 15px;
+  vertical-align: middle;
+  padding: 5px;
+  background-color: #002900;
+  color: greenyellow;
+  transition: all 0.2s;
+}
+.friendItem button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+.friendItem .delBtn {
+  background-color: indianred;
+  color: #3d0000;
+}
+.friendItem .friendlyMatchSettings {
+  position: fixed;
+  width: 250px;
+  height: 250px;
+  left: 50%;
+  top: 50%;
+  margin-left: -125px;
+  margin-top: -125px;
+  padding: 20px;
+  outline: solid 1px greenyellow;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  box-shadow: 0 0 10px greenyellow inset;
+}
+.friendItem .friendlyMatchSettings .closeBtn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 25px;
+  height: 25px;
+  background-color: darkred;
+  color: white;
+}
+.friendItem .friendlyMatchSettings .sendBtn {
+  display: block;
+  margin: 10px auto;
+  padding: 5px;
+}
+.friendItem .friendlyMatchSettings select {
+  width: 60%;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  border-radius: 5px;
+}
+.friendItem .friendlyMatchSettings select option {
+  padding: 10px;
+  font-size: 16px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+}
+.friendItem .friendlyMatchSettings select option:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.friendItem .friendlyMatchSettings select option:checked {
+  background-color: #5b782d;
+  font-weight: bold;
+}
+/*# sourceMappingURL=index.css.map */

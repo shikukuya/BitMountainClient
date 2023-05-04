@@ -1,0 +1,78 @@
+.contestTableLine {
+  &::after {
+    content: '';
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+
+  &:nth-child(1) {
+    line-height: 2em;
+
+    .box {
+      color: whitesmoke;
+      font-family: "Microsoft YaHei UI", serif;
+    }
+  }
+
+  .shakeAni {
+    animation-name: shaking;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+  }
+
+  .box {
+    height: 30px;
+    line-height: 30px;
+    width: 25%;
+    float: left;
+    text-align: center;
+    //font-family: Consolas, serif;
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-left: 5px;
+    background-color: #2b2b2b;
+
+    &:nth-child(1) {
+      position: relative;
+      overflow: visible;
+      //outline: solid 1px red;
+    }
+
+    &:nth-child(2) {
+      width: 18%;
+      color: red;
+    }
+
+    &:nth-child(3) {
+      width: 23%;
+    }
+
+    &:nth-child(4) {
+      width: 13%;
+    }
+
+    &:nth-child(5) {
+      width: 13%;
+    }
+  }
+}
+
+@keyframes shaking {
+  0% {
+    transform: translateX(3px) translateY(3px);
+  }
+  25% {
+    transform: translateX(-3px) translateY(-2px);
+  }
+  50% {
+    transform: translateX(0) translateY(0);
+  }
+  75% {
+    transform: translateX(3px) translateY(-2px);
+  }
+  100% {
+    transform: translateX(3px) translateY(3px);
+  }
+}

@@ -1,0 +1,38 @@
+.codeResult {
+  height: 150px;
+  width: 100%;
+  bottom: -150px;
+  position: absolute;
+  padding: 10px 20px;
+  outline: solid 1px;
+  background-color: #1e1e1e;
+  transition: all 0.5s;
+}
+.codeResult .close {
+  width: 40px;
+  height: 30px;
+  background-color: #1e1e1e;
+  position: absolute;
+  top: -30px;
+  right: 0;
+  line-height: 30px;
+  text-align: center;
+  border-top-left-radius: 20px;
+  user-select: none;
+  border-top: solid 1px whitesmoke;
+}
+.codeResult .close:hover {
+  cursor: pointer;
+  color: greenyellow;
+}
+.codeResult .wrongData {
+  color: orangered;
+  font-size: 13px;
+  margin: 5px 0;
+}
+.codeResult .err {
+  background-color: black;
+  padding: 0 5px 0 5px;
+  color: darkorange;
+}
+/*# sourceMappingURL=index.css.map */

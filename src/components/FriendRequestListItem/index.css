@@ -1,0 +1,91 @@
+.friendRequestItem {
+  margin: 20px 10px 20px 10px;
+  min-height: 80px;
+  line-height: 80px;
+  background-color: #254c3a;
+  box-shadow: #78a435 2px 2px 10px;
+  overflow: hidden;
+  padding-bottom: 15px;
+}
+.friendRequestItem .left,
+.friendRequestItem .mid,
+.friendRequestItem .right {
+  float: left;
+  display: block;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+.friendRequestItem .left {
+  width: 20%;
+}
+.friendRequestItem .mid {
+  width: 50%;
+}
+.friendRequestItem .right {
+  width: 30%;
+}
+.friendRequestItem .left {
+  text-align: center;
+}
+.friendRequestItem .left .headImg {
+  width: 80px;
+  display: inline;
+  border-radius: 50%;
+  padding: 10px;
+}
+.friendRequestItem .mid .basicData {
+  height: 40px;
+}
+.friendRequestItem .mid .basicData .name,
+.friendRequestItem .mid .basicData .level,
+.friendRequestItem .mid .basicData .score {
+  display: block;
+  float: left;
+  height: 40px;
+  line-height: 40px;
+  margin: 0;
+}
+.friendRequestItem .mid .basicData .name {
+  margin-right: 10px;
+}
+.friendRequestItem .mid .basicData .level {
+  height: 40px;
+  width: 40px;
+  vertical-align: middle;
+}
+.friendRequestItem .mid .basicData .score {
+  margin-right: 20px;
+}
+.friendRequestItem .mid .note {
+  font-size: 15px;
+  line-height: 2em;
+  text-indent: 2em;
+}
+.friendRequestItem .right button {
+  display: inline;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 0;
+  outline: none;
+  border: none;
+  transition: all 0.2s;
+}
+.friendRequestItem .right button:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+.friendRequestItem .right .confirmBtn {
+  background-color: lightgreen;
+  color: darkgreen;
+}
+.friendRequestItem .right .refuseBtn {
+  background-color: indianred;
+  color: #440000;
+}
+.friendRequestItem span {
+  line-height: 80px;
+}
+/*# sourceMappingURL=index.css.map */

@@ -1,0 +1,113 @@
+.typeWritingContestPage {
+  width: 100%;
+  padding-bottom: 500px;
+}
+.typeWritingContestPage .rightTopPanel {
+  outline: solid 1px;
+  width: 260px;
+  padding: 10px;
+  position: fixed;
+  right: 5px;
+  top: 65px;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 13px;
+  border-radius: 10px;
+}
+.typeWritingContestPage .rightTopPanel .line {
+  height: 30px;
+}
+.typeWritingContestPage h1 {
+  text-align: center;
+  line-height: 2em;
+  font-size: 30px;
+}
+.typeWritingContestPage .article {
+  width: 75%;
+  margin: 0 auto;
+  outline: solid 1px;
+  position: relative;
+}
+.typeWritingContestPage .article .myLineLoc,
+.typeWritingContestPage .article .opponentLineLoc {
+  position: absolute;
+  top: 0;
+  outline: solid 1px;
+  height: 40px;
+  width: 90px;
+  line-height: 40px;
+  text-align: center;
+  transition: all 0.5s;
+  left: -100px;
+  transform-origin: right center;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+.typeWritingContestPage .article .myLineLoc {
+  color: greenyellow;
+  background-color: darkgreen;
+  transform: rotate(30deg);
+}
+.typeWritingContestPage .article .opponentLineLoc {
+  color: orangered;
+  background-color: #500000;
+  transform: rotate(-30deg);
+}
+.typeWritingContestPage .article .myCharLoc,
+.typeWritingContestPage .article .opponentCharLoc {
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid gray;
+  transition: all 0.5s;
+  transform: translateY(30px);
+}
+.typeWritingContestPage .article .myCharLoc {
+  border-bottom-color: greenyellow;
+}
+.typeWritingContestPage .article .opponentCharLoc {
+  border-bottom-color: orangered;
+}
+.typeWritingContestPage .article .line .lineOrigin,
+.typeWritingContestPage .article .line input {
+  width: 100%;
+  font-size: 20px;
+  line-height: 2em;
+  margin: 0;
+  padding: 0;
+  font-family: "Courier New", Courier, monospace;
+}
+.typeWritingContestPage .article .line .lineOrigin {
+  user-select: none;
+}
+.typeWritingContestPage .article .line .lineOrigin:hover {
+  cursor: not-allowed;
+}
+.typeWritingContestPage .article .line .lineOrigin span {
+  width: 20px;
+  float: left;
+  transition: all 0.2s;
+}
+.typeWritingContestPage .article .line .lineOrigin .correct {
+  color: greenyellow;
+}
+.typeWritingContestPage .article .line .lineOrigin .wrong {
+  color: indianred;
+  outline: solid 1px;
+  border-radius: 50%;
+}
+.typeWritingContestPage .article .line input {
+  background-color: black;
+  color: greenyellow;
+  border: none;
+  letter-spacing: 0;
+  font-family: "Courier New", Courier, monospace;
+}
+.typeWritingContestPage .article .line input:focus {
+  outline: solid 1px green;
+}
+/*# sourceMappingURL=index.css.map */

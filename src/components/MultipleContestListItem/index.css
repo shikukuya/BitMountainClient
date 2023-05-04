@@ -1,0 +1,64 @@
+.multiContestItem {
+  width: 100%;
+  height: 20%;
+  position: relative;
+}
+.multiContestItem .questionIcon {
+  position: absolute;
+  height: 80px;
+  width: 80px;
+  left: 50%;
+  top: 50%;
+  margin-left: -40px;
+  margin-top: -40px;
+  line-height: 80px;
+  text-align: center;
+  background-color: darkslategray;
+  color: greenyellow;
+  font-size: 20px;
+  font-family: Consolas, serif;
+  user-select: none;
+  transition: all 0.5s;
+}
+.multiContestItem .questionIcon:hover {
+  cursor: pointer;
+  background-color: #213939;
+  font-size: 30px;
+  transform: translateX(10px);
+}
+.multiContestItem .questionIcon:active {
+  background-color: darkslategray;
+  color: greenyellow;
+  font-size: 20px;
+  transform: translateX(1px) scale(0.2);
+}
+.multiContestItem .stageIcon {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 24px;
+  bottom: 5px;
+  z-index: 20;
+}
+.multiContestItem .myStage {
+  left: 20%;
+  transform: rotateY(180deg);
+}
+.multiContestItem .opStage {
+  right: 20%;
+}
+.multiContestItem .submitList {
+  position: absolute;
+  z-index: 18;
+  width: 30px;
+  height: 80%;
+  top: 20%;
+}
+.multiContestItem .mySubmit {
+  left: 0;
+}
+.multiContestItem .opSubmit {
+  right: 0;
+}
+/*# sourceMappingURL=index.css.map */

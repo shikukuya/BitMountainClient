@@ -1,0 +1,107 @@
+
+.registerPage {
+  padding-bottom: 100px;
+
+  button {
+    border-radius: 10px;
+  }
+
+  button:hover {
+    cursor: pointer;
+  }
+
+  .banBtn {
+    &:hover {
+      cursor: not-allowed;
+    }
+  }
+
+  input {
+    line-height: 2em;
+    outline: none;
+    border-radius: 10px;
+  }
+
+  main {
+    width: 60%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 35px;
+  }
+
+  // 头像选择区域
+  .headImgArea {
+    margin: 20px;
+
+    .selected {
+      box-shadow: greenyellow 0 0 10px;
+    }
+
+    img {
+      width: 50px;
+      height: 50px;
+      margin: 10px;
+      padding: 5px;
+      outline: solid 3px;
+      border-radius: 50%;
+      transition: all 0.2s;
+
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.5);
+      }
+    }
+  }
+
+  .line {
+    @H: 30px;
+    height: @H;
+    //outline: solid 1px;
+    margin: 20px;
+
+    input, span {
+
+    }
+
+    span {
+      line-height: @H;
+    }
+
+    input {
+      height: @H;
+      margin-right: 10px;
+      text-indent: 1em;
+      width: 250px;
+    }
+
+    button {
+      height: @H;
+      padding: 0 20px 0 20px;
+    }
+
+    .confirmBtn {
+      display: block;
+      margin: 0 auto;
+    }
+
+    // 结果文字
+    .result {
+
+    }
+  }
+
+  .testImgArea {
+    margin: 20px;
+
+    img {
+      padding: 10px;
+      outline: solid 1px whitesmoke;
+    }
+  }
+
+}
