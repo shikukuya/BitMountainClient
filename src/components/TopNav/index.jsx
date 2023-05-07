@@ -1,22 +1,31 @@
-import React, {Component} from 'react';
-import "./index.css";
+import React, { Component } from 'react';
+import './index.css';
 
-import {Navigate, NavLink} from "react-router-dom";
-import LoginPanel from "../LoginPanel";
-import USER_DATA from "../../globalData/userData";
-import {computeLevel} from "../../model/level";
-import PubSub from "pubsub-js"
-import {connectStr} from "../../utils/js/strTools"
-import SOCKET_OBJ from "../../globalData/socketObject";
-import MyAlert from "../MyAlert";
-import {pauseBackgroundMusic, playBackgroundMusic} from "../../utils/js/backgroundMusic";
-import FriendlyMatchAlert from "../FriendlyMatchAlert";
-import myAlert from "../../utils/js/alertMassage";
+import { Navigate, NavLink } from 'react-router-dom';
+import LoginPanel from '../LoginPanel';
+import USER_DATA, { USER_DATA_DEFAULT } from '../../globalData/userData';
+import { computeLevel } from '../../model/level';
+import PubSub from 'pubsub-js';
+import { connectStr } from '../../utils/js/strTools';
+import SOCKET_OBJ from '../../globalData/socketObject';
+import MyAlert from '../MyAlert';
+import {
+  pauseBackgroundMusic,
+  playBackgroundMusic,
+} from '../../utils/js/backgroundMusic';
+import FriendlyMatchAlert from '../FriendlyMatchAlert';
+import myAlert from '../../utils/js/alertMassage';
 
 class TopNav extends Component {
   constructor(props) {
     super(props);
     // USER_DATA
+    const a = JSON.parse(localStorage.getItem('USER_DATA'));
+    if (a) {
+      Object.keys(a).forEach((key) => {
+        USER_DATA[key] = a[key];
+      });
+    }
   }
 
   state = {
@@ -25,42 +34,45 @@ class TopNav extends Component {
     // 玩家是否在对局
     isUserPlaying: false,
     // 当前的游戏模式
-    modeName: "什么模式",
+    modeName: '什么模式',
     // 音乐是否开启
     isMusicPlay: false,
     // 音效是否开启
     isSoundPlay: false,
     // 跳转链接
-    gotoLink: <div/>
-  }
-
+    gotoLink: <div />,
+  };
 
   render() {
     return (
-        <div className="top-nav">
-          <div className="left">
-            <img className="LOGO" src={require("../../utils/img/bitMountainLogo.png")} alt=""/>
-            <div className="title">比特山</div>
-          </div>
-          {this.getMiddleEle()}
-          {this.getRightEle()}
-
-          {/*一个小小的登录面板*/}
-          <LoginPanel show={this.state.isLoginShow} closeFunc={this.closeLogin}/>
-          {/*接收弹窗的地方*/}
-          <MyAlert/>
-          {/*用绝对定位贴上一个音乐开关控制按钮*/}
-          <span className="musicBtn" onClick={this.handleMusicPlay}>
-            {this.state.isMusicPlay ? "🎼" : "🔇"}
-          </span>
-          <span className="soundBtn" onClick={this.handleSoundPlay}>
-            {this.state.isSoundPlay ? "🔊" : "🔇"}
-          </span>
-          {/*友谊赛弹窗*/}
-          <FriendlyMatchAlert/>
-          {/*跳转链接*/}
-          {this.state.gotoLink}
+      <div className="top-nav">
+        <div className="left">
+          <img
+            className="LOGO"
+            src={require('../../utils/img/bitMountainLogo.png')}
+            alt=""
+          />
+          <div className="title">比特山</div>
         </div>
+        {this.getMiddleEle()}
+        {this.getRightEle()}
+
+        {/*一个小小的登录面板*/}
+        <LoginPanel show={this.state.isLoginShow} closeFunc={this.closeLogin} />
+        {/*接收弹窗的地方*/}
+        <MyAlert />
+        {/*用绝对定位贴上一个音乐开关控制按钮*/}
+        <span className="musicBtn" onClick={this.handleMusicPlay}>
+          {this.state.isMusicPlay ? '🎼' : '🔇'}
+        </span>
+        <span className="soundBtn" onClick={this.handleSoundPlay}>
+          {this.state.isSoundPlay ? '🔊' : '🔇'}
+        </span>
+        {/*友谊赛弹窗*/}
+        <FriendlyMatchAlert />
+        {/*跳转链接*/}
+        {this.state.gotoLink}
+      </div>
     );
   }
 
@@ -68,158 +80,201 @@ class TopNav extends Component {
     if (this.state.isUserPlaying) {
       // 用户正在对局
       return (
-          <div className="middle">
-            <p>{this.state.modeName}</p>
-            <div className="user">
-              <img src={require(`../../headImgs/${USER_DATA.headSculpture}.png`)} alt="no"/>
-              <span className="userName">{USER_DATA.name}</span>
-              <img className="userLevel"
-                   src={require(`../../levelIcon/level${computeLevel(USER_DATA.score)}.png`)}
-                   alt=""/>
-              <span className="score">{USER_DATA.score}</span>
-            </div>
-            <p className="VS">VS</p>
-            <div className="user">
-              <img src={require(`../../headImgs/${USER_DATA.opponent.headSculpture}.png`)} alt="no"/>
-              <span className="userName">{USER_DATA.opponent.name}</span>
-              <img className="userLevel"
-                   src={require(`../../levelIcon/level${computeLevel(USER_DATA.opponent.score)}.png`)}
-                   alt=""/>
-              <span className="score">{USER_DATA.opponent.score}</span>
-            </div>
+        <div className="middle">
+          <p>{this.state.modeName}</p>
+          <div className="user">
+            <img
+              src={require(`../../headImgs/${USER_DATA.headSculpture}.png`)}
+              alt="no"
+            />
+            <span className="userName">{USER_DATA.name}</span>
+            <img
+              className="userLevel"
+              src={require(`../../levelIcon/level${computeLevel(
+                USER_DATA.score
+              )}.png`)}
+              alt=""
+            />
+            <span className="score">{USER_DATA.score}</span>
           </div>
-      )
+          <p className="VS">VS</p>
+          <div className="user">
+            <img
+              src={require(`../../headImgs/${USER_DATA.opponent.headSculpture}.png`)}
+              alt="no"
+            />
+            <span className="userName">{USER_DATA.opponent.name}</span>
+            <img
+              className="userLevel"
+              src={require(`../../levelIcon/level${computeLevel(
+                USER_DATA.opponent.score
+              )}.png`)}
+              alt=""
+            />
+            <span className="score">{USER_DATA.opponent.score}</span>
+          </div>
+        </div>
+      );
     } else {
       // 用户没有在对局
       return (
-          <ul className="middle">
-            <li>
-              <NavLink className="clickItem" to="/home">首页
-                <div className="lightDote"/>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink className="clickItem" to="/friend">好友
-                <div className="lightDote"/>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink className="clickItem" to="/match-history">历史对局
-                <div className="lightDote"/>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink className="clickItem" to="/rule">规则介绍
-                <div className="lightDote"/>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink className="clickItem" to="/honorPath">荣誉之路
-                <div className="lightDote"/>
-              </NavLink>
-            </li>
-          </ul>
-      )
+        <ul className="middle">
+          <li>
+            <NavLink className="clickItem" to="/home">
+              首页
+              <div className="lightDote" />
+            </NavLink>
+          </li>
+          <li>
+            <NavLink className="clickItem" to="/friend">
+              好友
+              <div className="lightDote" />
+            </NavLink>
+          </li>
+          <li>
+            <NavLink className="clickItem" to="/match-history">
+              历史对局
+              <div className="lightDote" />
+            </NavLink>
+          </li>
+          <li>
+            <NavLink className="clickItem" to="/rule">
+              规则介绍
+              <div className="lightDote" />
+            </NavLink>
+          </li>
+          <li>
+            <NavLink className="clickItem" to="/honorPath">
+              荣誉之路
+              <div className="lightDote" />
+            </NavLink>
+          </li>
+        </ul>
+      );
     }
-
-  }
+  };
 
   getRightEle = () => {
     if (this.state.isUserPlaying) {
       return (
-          <div className="right">
-            <NavLink className="clickItem exitContest" to="/home"
-                     onClick={this.handleExitContest}>退出对局</NavLink>
-          </div>
-      )
+        <div className="right">
+          <NavLink
+            className="clickItem exitContest"
+            to="/home"
+            onClick={this.handleExitContest}
+          >
+            退出对局
+          </NavLink>
+        </div>
+      );
     }
     if (USER_DATA.isLogin) {
-      return <div className="right">
-        <img src={require(`../../headImgs/${USER_DATA.headSculpture}.png`)} alt="" className="headImg"/>
-        <span className="userName">{USER_DATA.name}</span>
-        <img className="userLevel" src={require(`../../levelIcon/level${computeLevel(USER_DATA.score)}.png`)}
-             alt=""/>
-        <span className="score">{USER_DATA.score}分</span>
+      return (
+        <div className="right">
+          <img
+            src={require(`../../headImgs/${USER_DATA.headSculpture}.png`)}
+            alt=""
+            className="headImg"
+          />
+          <span className="userName">{USER_DATA.name}</span>
+          <img
+            className="userLevel"
+            src={require(`../../levelIcon/level${computeLevel(
+              USER_DATA.score
+            )}.png`)}
+            alt=""
+          />
+          <span className="score">{USER_DATA.score}分</span>
 
-        <span className="login" onClick={this.handleLogin}>更换账号</span>
-        {/*<NavLink className="register" to="/register">注册新用户</NavLink>*/}
-      </div>
+          {/* <span className="login" onClick={this.handleLogin}>
+            更换账号
+          </span> */}
+          <span className="exit" onClick={this.handleExit}>
+            退出登录
+          </span>
+          {/*<NavLink className="register" to="/register">注册新用户</NavLink>*/}
+        </div>
+      );
     } else {
       return (
-          <div className="right">
-            <img src={require("./defaultUser.png")} alt="" className="headImg"/>
-            <span className="login" onClick={this.handleLogin}>登录</span>
-            <NavLink className="register" to="/register">注册</NavLink>
-
-          </div>
-
-      )
+        <div className="right">
+          <img src={require('./defaultUser.png')} alt="" className="headImg" />
+          <span className="login" onClick={this.handleLogin}>
+            登录
+          </span>
+          <NavLink className="register" to="/register">
+            注册
+          </NavLink>
+        </div>
+      );
     }
-  }
+  };
 
   componentDidMount() {
-
-    this.pubSub1 = PubSub.subscribe("导航栏修改模式", (_, data) => {
-      this.setState(data)
+    this.pubSub1 = PubSub.subscribe('导航栏修改模式', (_, data) => {
+      this.setState(data);
     });
 
     // 不停的检测是否是登录状态
     let checkInterval = setInterval(() => {
       if (USER_DATA.isLogin) {
         // 登录后收到消息
-        SOCKET_OBJ.on(`前端用户${USER_DATA.name}接收友谊战申请`, res => {
-          let data = (res);
-          myAlert("收到了友谊战申请消息");
-          PubSub.publish("友谊战弹窗组件改变状态", {
+        SOCKET_OBJ.on(`前端用户${USER_DATA.name}接收友谊战申请`, (res) => {
+          let data = res;
+          myAlert('收到了友谊战申请消息');
+          PubSub.publish('友谊战弹窗组件改变状态', {
             isShow: true,
-            moodName: data["moodName"],
-            friendData: data["senderData"],
+            moodName: data['moodName'],
+            friendData: data['senderData'],
           });
         });
 
-        SOCKET_OBJ.on(`前端用户${USER_DATA.name}友谊战申请被拒绝`, res => {
-          let data = (res);
+        SOCKET_OBJ.on(`前端用户${USER_DATA.name}友谊战申请被拒绝`, (res) => {
+          let data = res;
           myAlert(`${data['refuserName']}拒绝了您的友谊战申请`);
         });
 
-        SOCKET_OBJ.on(`前端用户${USER_DATA.name}友谊战申请被接受`, res => {
-          let data = (res);
+        SOCKET_OBJ.on(`前端用户${USER_DATA.name}友谊战申请被接受`, (res) => {
+          let data = res;
           myAlert(`${data['acceptName']}接受了您的友谊战申请`);
         });
 
-        SOCKET_OBJ.on(`前端用户${USER_DATA.name}进入友谊战`, res => {
-          let data = (res);
-          console.log("监听到了要进入友谊战", data["mood"]);
+        SOCKET_OBJ.on(`前端用户${USER_DATA.name}进入友谊战`, (res) => {
+          let data = res;
+          console.log('监听到了要进入友谊战', data['mood']);
 
-          USER_DATA.opponent.name = data["opponent"];
-          USER_DATA.opponent.score = data["opponentScore"];
-          USER_DATA.opponent.headSculpture = data["opponentHeadSculpture"];
-          USER_DATA.typewriteTitle = data["typewriteTitle"]
-          USER_DATA.questionObjList = data["randomQuestionList"]
-          switch (data["mood"]) {
-            case "普通模式":
-              this.setState({gotoLink: <Navigate to="/normalContest"/>});
+          USER_DATA.opponent.name = data['opponent'];
+          USER_DATA.opponent.score = data['opponentScore'];
+          USER_DATA.opponent.headSculpture = data['opponentHeadSculpture'];
+          USER_DATA.typewriteTitle = data['typewriteTitle'];
+          USER_DATA.questionObjList = data['randomQuestionList'];
+          switch (data['mood']) {
+            case '普通模式':
+              this.setState({ gotoLink: <Navigate to="/normalContest" /> });
               break;
-            case "极限模式":
-              this.setState({gotoLink: <Navigate to="/hardcoreContest"/>});
+            case '极限模式':
+              this.setState({ gotoLink: <Navigate to="/hardcoreContest" /> });
               break;
-            case "多题模式":
-              this.setState({gotoLink: <Navigate to="/multipleContest"/>});
+            case '多题模式':
+              this.setState({ gotoLink: <Navigate to="/multipleContest" /> });
               break;
-            case "多题极限模式":
-              this.setState({gotoLink: <Navigate to="/hardMoreContest"/>});
+            case '多题极限模式':
+              this.setState({ gotoLink: <Navigate to="/hardMoreContest" /> });
               break;
-            case "打字对决":
-              this.setState({gotoLink: <Navigate to="/typewritingContest"/>});
+            case '打字对决':
+              this.setState({
+                gotoLink: <Navigate to="/typewritingContest" />,
+              });
               break;
           }
           // 再改回来，防止无限递归？
           setTimeout(() => {
-            this.setState({gotoLink: <div/>});
+            this.setState({ gotoLink: <div /> });
           }, 500);
         });
         clearInterval(checkInterval);
       }
+      this.render();
     }, 500);
   }
 
@@ -229,10 +284,10 @@ class TopNav extends Component {
 
   handleMusicPlay = () => {
     let bool = this.state.isMusicPlay;
-    this.setState({isMusicPlay: !bool});
+    this.setState({ isMusicPlay: !bool });
     USER_DATA.isMusicEnabled = !bool;
 
-    let sound = new Audio(require("../../utils/sound/点击音效.mp3"));
+    let sound = new Audio(require('../../utils/sound/点击音效.mp3'));
     sound.play().then(() => {
       sound = null;
     });
@@ -242,18 +297,18 @@ class TopNav extends Component {
     } else {
       pauseBackgroundMusic();
     }
-  }
+  };
 
   handleSoundPlay = () => {
     let bool = this.state.isSoundPlay;
-    this.setState({isSoundPlay: !bool});
-    let sound = new Audio(require("../../utils/sound/点击音效.mp3"));
+    this.setState({ isSoundPlay: !bool });
+    let sound = new Audio(require('../../utils/sound/点击音效.mp3'));
     sound.play().then(() => {
       sound = null;
     });
 
     USER_DATA.isSoundEnabled = !bool;
-  }
+  };
 
   /**
    * 用户退出对局按钮点击
@@ -263,27 +318,34 @@ class TopNav extends Component {
 
     let contestName = connectStr(USER_DATA.name, USER_DATA.opponent.name);
 
-    SOCKET_OBJ.emit("后端处理玩家认输比赛", {
-      "contestName": contestName,
-      "exitPlayerName": USER_DATA.name,
-    })
+    SOCKET_OBJ.emit('后端处理玩家认输比赛', {
+      contestName: contestName,
+      exitPlayerName: USER_DATA.name,
+    });
 
     // 更新USER.对手 的信息，让他变成一个默认的无效
 
-    this.setState({isUserPlaying: false});
-  }
+    this.setState({ isUserPlaying: false });
+  };
   /**
    * 关闭登录界面
    */
   closeLogin = () => {
-    this.setState({isLoginShow: false});
-  }
+    this.setState({ isLoginShow: false });
+  };
   /**
    * 跳转到登录界面
    */
   handleLogin = () => {
-    this.setState({isLoginShow: true});
-  }
+    this.setState({ isLoginShow: true });
+  };
+  /**
+   * 退出登录
+   */
+  handleExit = () => {
+    localStorage.removeItem('USER_DATA');
+    window.location.reload();
+  };
 }
 
 export default TopNav;

@@ -42,7 +42,8 @@
     vertical-align: center;
     z-index: 100;
     // 对局模式
-    p, div {
+    p,
+    div {
       height: @H;
       float: left;
       line-height: @H;
@@ -62,8 +63,8 @@
 
       //outline: solid 1px;
 
-
-      img, span {
+      img,
+      span {
         display: block;
         float: left;
         height: @H;
@@ -140,8 +141,8 @@
           @h: 10px;
           width: @w;
           height: @h;
-          margin-left: -(@w/2);
-          margin-top: -(@h/2);
+          margin-left: -(@w / 2);
+          margin-top: -(@h / 2);
           left: 50%;
           top: 50%;
           position: absolute;
@@ -192,13 +193,19 @@
       //cursor: pointer;
     }
 
-
-    .login, .register, .userName, .score, .userLevel, .headImg {
+    .login,
+    .register,
+    .userName,
+    .score,
+    .userLevel,
+    .headImg,
+    .exit {
       line-height: @H;
       vertical-align: middle;
       color: #d4d4d4;
       user-select: none;
       margin-right: 10px;
+      cursor: pointer;
     }
 
     .userLevel {
@@ -229,7 +236,9 @@
     }
   }
 
-  .left, .middle, .right {
+  .left,
+  .middle,
+  .right {
     z-index: 50;
   }
 
@@ -260,7 +269,7 @@
     height: @L;
     width: @L;
     line-height: @L;
-    margin-top: -(@L/2);
+    margin-top: -(@L / 2);
     top: 50%;
     text-align: center;
     border-radius: 50%;
