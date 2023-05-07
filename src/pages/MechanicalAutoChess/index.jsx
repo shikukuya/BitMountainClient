@@ -1,26 +1,43 @@
-import React, {Component} from 'react';
-import "./index.css";
-import Editor from "@monaco-editor/react";
-import USER_DATA from "../../globalData/userData";
-import SOCKET_OBJ from "../../globalData/socketObject";
-import {calculateCodeSize} from "../../utils/js/strTools";
-import myAlert from "../../utils/js/alertMassage";
-import AutoChessBoard from "../../components/MechanicalAutoChessBoard";
-import MechanicalAutoChessPlayer from "../../components/MechanicalAutoChessPlayer";
-import getUrl from "../../utils/js/getUrl";
-import {changeBackgroundMusic} from "../../utils/js/backgroundMusic";
-import {sha3_256} from "js-sha3";
+import React, { Component } from 'react';
+import './index.css';
+import Editor from '@monaco-editor/react';
+import USER_DATA from '../../globalData/userData';
+import SOCKET_OBJ from '../../globalData/socketObject';
+import { calculateCodeSize } from '../../utils/js/strTools';
+import myAlert from '../../utils/js/alertMassage';
+import AutoChessBoard from '../../components/MechanicalAutoChessBoard';
+import MechanicalAutoChessPlayer from '../../components/MechanicalAutoChessPlayer';
+import getUrl from '../../utils/js/getUrl';
+import { changeBackgroundMusic } from '../../utils/js/backgroundMusic';
+import { sha3_256 } from 'js-sha3';
 
 let _code = localStorage.getItem(sha3_256(`${USER_DATA.name}机械自走棋代码`));
 
 let initCode = `// @ts-check
-// @ts-check
-(world, isFirst, isBegin, view, curLoc) => {
-  // 在范围 [a, b) 上随机整数
-  const randint = (a, b) => Math.floor(Math.random() * (b - a) + a);
-  // 在数组中随机选出一个元素
-  const choice = arr => arr[randint(0, arr.length)];
-
+/**
+ * @param {number[][]} world 19*19的二维数组
+ * @param {boolean} isFirst 自己是否是先手
+ * @param {boolean} isBegin 当前是否是开局选出生点的阶段
+ * @param {number[][]} view 5*5的视野矩阵
+ * \`\`\`plain
+ * -1: 超出棋盘的禁区
+ * 0: 棋盘上的空地
+ * 1: 棋盘上的石头、障碍物
+ * 2: 先手方机器人的身体
+ * 3: 后手方机器人的身体
+ * 4: 先手方机器人放置的黑色棋子
+ * 5: 后手方机器人放置的白色棋子
+ * 最中心的位置一定为2或3
+ * \`\`\`
+ * @param {{ x: number, y: number }} curLoc 自己当前的位置
+ * @param { (a: number, b: number) => number } randint 在a和b之间生成随机整数
+ * @param { <E>(arr: E[]) => E } choice 在数组中随机选出一个元素
+ * @returns {{
+    action: "move" | "put" | "attack",
+    direction: "up" | "down" | "left" | "right",
+  }}
+ */
+(world, isFirst, isBegin, view, curLoc, randint, choice) => {
   if (isBegin) {
     // 开局的出生点选择策略
     return { x: randint(0, 19), y: randint(0, 19) };
@@ -84,11 +101,7 @@ let initCode = `// @ts-check
   } else if (curLoc.y === 1) {
     // 到了
   }
-
-
-
-
-
+  
   return {
     action: choice(["move", "put", "attack"]),
     direction: choice(["up", "down", "left", "right"]),
@@ -113,86 +126,88 @@ class MechanicalAutoChess extends Component {
 
   render() {
     return (
-        <div className="MechanicalAutoChessPage">
-          <div className="left">
-            <div className="leftTop">
-              <AutoChessBoard/>
-              {/*<div className="dataPanel">*/}
-              {/*  <div className="line">*/}
-              {/*    先手棋子数量 <span>12</span>*/}
-              {/*  </div>*/}
-              {/*  <div className="line">*/}
-              {/*    后手棋子数量 <span>12</span>*/}
-              {/*  </div>*/}
-              {/*</div>*/}
-            </div>
-            <div className="leftBottom">
-              {
-                this.state.userList.map((userObj) => {
-                  return <MechanicalAutoChessPlayer {...userObj} key={userObj.name}/>
-                })
-              }
-            </div>
+      <div className="MechanicalAutoChessPage">
+        <div className="left">
+          <div className="leftTop">
+            <AutoChessBoard />
+            {/*<div className="dataPanel">*/}
+            {/*  <div className="line">*/}
+            {/*    先手棋子数量 <span>12</span>*/}
+            {/*  </div>*/}
+            {/*  <div className="line">*/}
+            {/*    后手棋子数量 <span>12</span>*/}
+            {/*  </div>*/}
+            {/*</div>*/}
           </div>
-          <div className="right">
-            <Editor
-                height="80vh"
-                value={initCode}
-                defaultLanguage="javascript"
-                defaultValue="// some comment"
-                onChange={this.handleOnChange}
-                theme="vs-dark"
-            />
-            <input type="text"
-                   ref={this.codeNameEle}
-                   maxLength={5}
-                   className="codeNameInput"
-                   placeholder="给这份代码起个霸气的名字"/>
-            <button className="submitBtn" onClick={this.handleSubmit}>提交代码到榜上</button>
+          <div className="leftBottom">
+            {this.state.userList.map((userObj) => {
+              return (
+                <MechanicalAutoChessPlayer {...userObj} key={userObj.name} />
+              );
+            })}
           </div>
         </div>
+        <div className="right">
+          <Editor
+            height="80vh"
+            value={initCode}
+            defaultLanguage="javascript"
+            defaultValue="// some comment"
+            onChange={this.handleOnChange}
+            theme="vs-dark"
+          />
+          <input
+            type="text"
+            ref={this.codeNameEle}
+            maxLength={5}
+            className="codeNameInput"
+            placeholder="给这份代码起个霸气的名字"
+          />
+          <button className="submitBtn" onClick={this.handleSubmit}>
+            提交代码到榜上
+          </button>
+        </div>
+      </div>
     );
   }
 
   componentDidMount() {
     USER_DATA.autoChessCurrentCode = this.state.userCode;
 
-    fetch(getUrl("getAutoChessUserList"), {
+    fetch(getUrl('getAutoChessUserList'), {
       method: 'GET',
-    }).then(
-        res => res.json()
-    ).then(
-        data => {
-          this.setState({userList: data});
-        }
-    );
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({ userList: data });
+      });
 
-    SOCKET_OBJ.on("前端监听机械自走棋榜上变化", res => {
-      const data = (res);
-      this.setState({userList: data["array"]});
+    SOCKET_OBJ.on('前端监听机械自走棋榜上变化', (res) => {
+      const data = res;
+      this.setState({ userList: data['array'] });
     });
 
-    changeBackgroundMusic("bigStone");
+    changeBackgroundMusic('bigStone');
   }
 
   componentWillUnmount() {
-    changeBackgroundMusic("main");
+    changeBackgroundMusic('main');
   }
 
   handleOnChange = (value, event) => {
-    this.setState({userCode: value});
+    this.setState({ userCode: value });
     // 缓存本地
     localStorage.setItem(sha3_256(`${USER_DATA.name}机械自走棋代码`), value);
-  }
+  };
 
   handleSubmit = () => {
     if (!USER_DATA.isLogin) {
-      myAlert("请您先登录");
+      myAlert('请您先登录');
     }
 
     let codeName = this.codeNameEle.current.value;
 
-    SOCKET_OBJ.emit("后端处理用户提交机械自走棋代码", {
+    SOCKET_OBJ.emit('后端处理用户提交机械自走棋代码', {
       name: USER_DATA.name,
       score: USER_DATA.score,
       headSculpture: USER_DATA.headSculpture,
@@ -200,8 +215,7 @@ class MechanicalAutoChess extends Component {
       codeName: codeName,
       codeSize: calculateCodeSize(this.state.userCode),
     });
-
-  }
+  };
 }
 
 export default MechanicalAutoChess;
