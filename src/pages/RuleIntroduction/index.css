@@ -6,8 +6,13 @@
   width: 60%;
   min-height: calc(100vh - 60px);
   margin: 0 auto;
-  padding: 0 60px;
+  padding: 0 60px 200px;
   background-color: rgba(0, 0, 0, 0.6);
+}
+.rulePage main .moodImg {
+  display: block;
+  margin: 0 auto;
+  height: 100px;
 }
 .rulePage main h1 {
   font-size: 30px;
@@ -21,5 +26,15 @@
 }
 .rulePage main .mood p {
   line-height: 2em;
+  text-indent: 2em;
+}
+.rulePage main .mood .my-list {
+  list-style-type: decimal;
+  padding-left: 4em;
+  line-height: 2em;
+}
+.rulePage main .mood img {
+  display: block;
+  margin: 0 auto;
 }
 /*# sourceMappingURL=index.css.map */
