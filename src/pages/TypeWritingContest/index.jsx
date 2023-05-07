@@ -32,7 +32,7 @@ class TypeWritingContest extends Component {
     this.myLocRef = React.createRef();
     this.opLocRef = React.createRef();
 
-    this.totalTime = 300;  // 默认两分钟，120秒
+    this.totalTime = 120;  // 默认两分钟，120秒
 
     this.state = {
       wordArr: [],

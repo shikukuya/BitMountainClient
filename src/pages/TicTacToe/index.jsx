@@ -20,10 +20,26 @@ const EgCode = `// @ts-check
  * @returns {number[]} 例如 [2,1] 表示第三行第二列
  */
 function f(board, my, opponent) {
-  // 在范围 [a, b) 上随机整数
+  /**
+   * 在范围 [a, b) 上随机整数
+   * @param {number} a 整数
+   * @param {number} b 整数
+   */
   const randint = (a, b) => {
-     return Math.floor(Math.random() * (b - a) + a);
-   }
+    return Math.floor(Math.random() * (b - a) + a);
+  }
+  if (board[1][1] === 0) {
+    // 中间位置还没有被抢占
+    return [1, 1];  // 抢占中间的位置
+  } else if (board[1][1] === my) {
+    // 中间位置已经被自己抢占了，自己有优势
+    // todo …
+  } else if (board[1][1] === opponent) {
+    // 中间位置已经被对手抢占了，要悠着点了
+    // 这里其实可以写成else。不用else if
+    // todo …
+  }
+
   // 返回[y,x]下标表示你要落子的位置
   // 例如返回[2, 1] 表示
   // [0, 0, 0],
@@ -34,6 +50,7 @@ function f(board, my, opponent) {
   // 那么系统会帮你随机下到一个空地上
   return [randint(0, 3), randint(0, 3)];
 }
+
 `;
 
 class TicTacToe extends Component {
@@ -108,8 +125,10 @@ class TicTacToe extends Component {
                           </button>
                           <span>{curObj['secondList'][1]['text']}</span>
                         </div>
-                        <div
-                            className={curObj.isWin ? "finalResult green" : "finalResult red"}>{curObj.isWin ? "胜" : "败"}</div>
+                        <div className={curObj.isWin ? "finalResult green" : "finalResult red"}>
+                          {curObj["hasErr"] ? "废" :
+                              (curObj.isWin ? "胜" : "败")}
+                        </div>
                       </div>
                   )
                 })
@@ -185,7 +204,6 @@ class TicTacToe extends Component {
       const data = (res);
       this.setState({rankList: data["rankList"]});
     });
-    console.log("井字棋界面挂载了")
 
     SOCKET_OBJ.on(`前端用户${USER_DATA.name}接收提交井字棋结果`, res => {
       const data = (res);
@@ -194,7 +212,14 @@ class TicTacToe extends Component {
         resultArray: data["resultArr"],
         isAllowSubmit: true,
       });
+    });
 
+    SOCKET_OBJ.on(`前端用户${USER_DATA.name}接收提交井字棋异常结果`, res => {
+      const data = (res);
+      myAlert(data["text"]);
+      this.setState({
+        isAllowSubmit: true,
+      });
     });
 
     changeBackgroundMusic("ticTacToe");

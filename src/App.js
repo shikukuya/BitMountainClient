@@ -64,8 +64,32 @@ export default class App extends Component {
   }
 
   componentDidMount() {
+    const konamiCode = [
+      38, // up
+      38, // up
+      40, // down
+      40, // down
+      37, // left
+      39, // right
+      37, // left
+      39, // right
+      66, // b
+      65  // a
+    ];
 
+    let konamiCodeIndex = 0;
 
+    document.addEventListener('keydown', function (event) {
+      if (event.keyCode === konamiCode[konamiCodeIndex]) {
+        konamiCodeIndex++;
+        if (konamiCodeIndex === konamiCode.length) {
+          console.log("触发了小彩蛋");
+          konamiCodeIndex = 0;
+        }
+      } else {
+        konamiCodeIndex = 0;
+      }
+    });
 
   }
 }
