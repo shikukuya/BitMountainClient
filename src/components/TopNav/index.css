@@ -147,12 +147,14 @@
 .top-nav .right .userName,
 .top-nav .right .score,
 .top-nav .right .userLevel,
-.top-nav .right .headImg {
+.top-nav .right .headImg,
+.top-nav .right .exit {
   line-height: 60px;
   vertical-align: middle;
   color: #d4d4d4;
   user-select: none;
   margin-right: 10px;
+  cursor: pointer;
 }
 .top-nav .right .userLevel {
   width: 30px;
@@ -258,4 +260,4 @@
     border-bottom: solid 3px greenyellow;
   }
 }
-/*# sourceMappingURL=index.css.map */
+/*# sourceMappingURL=./index.css.map */
