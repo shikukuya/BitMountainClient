@@ -13,17 +13,16 @@ import UserPage from "./pages/UserPage";
 import Register from "./pages/Register";
 import RuleIntroduction from "./pages/RuleIntroduction";
 import ResetPage from "./pages/Reset";
-import SOCKET_OBJ from "./globalData/socketObject";
 import NormalContest from "./pages/NormalContest";
 import TypeWritingContest from "./pages/TypeWritingContest";
 import MultipleContest from "./pages/MultipleContest";
 import TestPage from "./pages/Test";
-import myAlert from "./utils/js/alertMassage";
 import TicTacToe from "./pages/TicTacToe";
 import Gobang from "./pages/Gobang";
 import HonorPath from "./pages/HonorPath";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import MechanicalAutoChess from "./pages/MechanicalAutoChess";
+import Admin from "./pages/Admin";
 
 export default class App extends Component {
 
@@ -51,6 +50,7 @@ export default class App extends Component {
             <Route path="/honorPath" element={<HonorPath/>}/>
             <Route path="/mechanicalAutoChess" element={<MechanicalAutoChess/>}/>
             <Route path="/termsAndConditions" element={<TermsAndConditions/>}/>
+            <Route path="/admin" element={<Admin/>}/>
 
             <Route path="/" element={<Navigate to="/home"/>}/>
           </Routes>
@@ -79,11 +79,12 @@ export default class App extends Component {
 
     let konamiCodeIndex = 0;
 
-    document.addEventListener('keydown', function (event) {
+    document.addEventListener('keydown', (event) => {
       if (event.keyCode === konamiCode[konamiCodeIndex]) {
         konamiCodeIndex++;
         if (konamiCodeIndex === konamiCode.length) {
           console.log("触发了小彩蛋");
+          window.open("/#/admin");
           konamiCodeIndex = 0;
         }
       } else {
