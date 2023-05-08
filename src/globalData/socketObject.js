@@ -1,9 +1,5 @@
 import { io } from 'socket.io-client';
 
-// import serverAddress from "../utils/js/serverAddress";
-
-console.log('SOCKET_OBJ 定义前');
-// let SOCKET_OBJ = io.connect(`${serverAddress}/bitMountain`, {transports: ['websocket']});
 let socketUrl = `ws://127.0.0.1:65533`;
 let socketUrlDebug = `ws://124.221.150.160:65533`;
 
@@ -11,7 +7,6 @@ let socketUrlDebug = `ws://124.221.150.160:65533`;
 let SOCKET_OBJ = io.connect(socketUrl, {
   transports: ['websocket'],
 });
-console.log('SOCKET_OBJ 定义结束');
 
 SOCKET_OBJ.on('connect', () => {
   console.log('SOCKET_OBJ 连接服务器成功');
@@ -21,17 +16,12 @@ SOCKET_OBJ.on('connect', () => {
 SOCKET_OBJ.on('disconnect', (timeout) => {
   console.log('链接丢失');
   SOCKET_OBJ.close(); // 关闭连接
-
-  // myAlert("服务器断开连接，1秒后重连");
-  // setTimeout(() => {
-  //   SOCKET_OBJ.connect();
-  //   myAlert("服务器重新连接");
-  // }, 1000)
 });
 
 SOCKET_OBJ.on('connect_error', (err) => {
   console.warn('SOCKET_OBJ 连接失败：', err);
   console.log('SOCKET_OBJ 启用本地调试模式');
+  // 优先连接本地的，连接不上就连接
   SOCKET_OBJ.io.uri = socketUrlDebug;
 });
 
