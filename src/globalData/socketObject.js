@@ -1,4 +1,5 @@
 import { io } from 'socket.io-client';
+import myAlert from "../utils/js/alertMassage";
 
 let socketUrl = `ws://127.0.0.1:65533`;
 let socketUrlDebug = `ws://124.221.150.160:65533`;
@@ -13,9 +14,16 @@ SOCKET_OBJ.on('connect', () => {
 });
 
 // socket.io 固有事件：丢失连接时触发时间处理器
+// SOCKET_OBJ.on('disconnect', (timeout) => {
+//   console.log('链接丢失');
+//   SOCKET_OBJ.close(); // 关闭连接
+// });
+
 SOCKET_OBJ.on('disconnect', (timeout) => {
   console.log('链接丢失');
   SOCKET_OBJ.close(); // 关闭连接
+  myAlert("服务器断开连接，1秒后重连");
+  setTimeout(() => SOCKET_OBJ.connect(), 1000);
 });
 
 SOCKET_OBJ.on('connect_error', (err) => {
