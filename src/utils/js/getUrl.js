@@ -1,4 +1,3 @@
-import serverAddress from "./serverAddress";
 
 function shiftString(str, shift) {
   // 将shift变量规范化，保证它在 [0, 26) 之间
@@ -29,6 +28,6 @@ function shiftString(str, shift) {
  * @constructor
  */
 export default function getUrl(string) {
-  // return "https://5f636b72.r11.cpolar.top/" + string;
-  return `${serverAddress}/${string}`;
+  // return `${serverAddress}/${string}`;
+  return `${window.serverAddress}/${string}`;
 }

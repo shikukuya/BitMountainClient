@@ -1,3 +1,5 @@
 node_modules
 .idea
 build
+
+src/utils/js/敏感词.txt

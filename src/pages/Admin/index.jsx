@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import './index.css';
 import getUrl from "../../utils/js/getUrl";
 import SOCKET_OBJ from "../../globalData/socketObject";
-import serverAddress from "../../utils/js/serverAddress";
 import myAlert from "../../utils/js/alertMassage";
 
 class Admin extends Component {
@@ -26,7 +25,7 @@ class Admin extends Component {
           <button onClick={this.testSocket}>测试socket服务器</button>
           <input type="text" placeholder="socket发送内容" maxLength={10} ref={this.socketInput}/>
           <div>socket收到的内容：{this.state.socketReceiveText}</div>
-          <div>当前的http发送地址：{serverAddress}</div>
+          <div>当前的http发送地址：{window.serverAddress}</div>
           <button onClick={this.changeAddressToLocal}>更改http地址为本地</button>
           <button>更改http地址为服务器</button>
           <p>匹配池</p>

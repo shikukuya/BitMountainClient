@@ -8,8 +8,9 @@ import USER_DATA from "../../globalData/userData";
 import getUrl from "../../utils/js/getUrl";
 import GobangFightItem from "../../components/GobangFightItem";
 import PubSub from "pubsub-js";
-import {calculateCodeSize} from "../../utils/js/strTools";
+import {calculateCodeSize, isPoliticalSensitive} from "../../utils/js/strTools";
 import {changeBackgroundMusic} from "../../utils/js/backgroundMusic";
+import myAlert from "../../utils/js/alertMassage";
 
 const EgCode = `// @ts-check
 /**
@@ -138,8 +139,20 @@ class Gobang extends Component {
   }
 
   handleSubmit = () => {
+    if (this.state.userCode.length > 16000) {
+      myAlert("代码字符数量不能超过1万6");
+      return;
+    }
+    if (isPoliticalSensitive(this.state.userCode)) {
+      myAlert("代码中不要包涵敏感内容");
+      return;
+    }
     let codeName = this.codeNameEle.current.value;
-    console.log(codeName, "准备发送")
+    if (isPoliticalSensitive(codeName)) {
+      myAlert("代码名称中有敏感内容");
+      return;
+    }
+    console.log(codeName, "准备发送");
     SOCKET_OBJ.emit("后端处理用户提交五子棋代码", {
       name: USER_DATA.name,
       score: USER_DATA.score,

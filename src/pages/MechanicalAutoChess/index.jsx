@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './index.css';
 import Editor from '@monaco-editor/react';
 import USER_DATA from '../../globalData/userData';
 import SOCKET_OBJ from '../../globalData/socketObject';
-import { calculateCodeSize } from '../../utils/js/strTools';
+import {calculateCodeSize, isPoliticalSensitive} from '../../utils/js/strTools';
 import myAlert from '../../utils/js/alertMassage';
 import AutoChessBoard from '../../components/MechanicalAutoChessBoard';
 import MechanicalAutoChessPlayer from '../../components/MechanicalAutoChessPlayer';
 import getUrl from '../../utils/js/getUrl';
-import { changeBackgroundMusic } from '../../utils/js/backgroundMusic';
-import { sha3_256 } from 'js-sha3';
+import {changeBackgroundMusic} from '../../utils/js/backgroundMusic';
+import {sha3_256} from 'js-sha3';
 
 let _code = localStorage.getItem(sha3_256(`${USER_DATA.name}机械自走棋代码`));
 
@@ -126,48 +126,48 @@ class MechanicalAutoChess extends Component {
 
   render() {
     return (
-      <div className="MechanicalAutoChessPage">
-        <div className="left">
-          <div className="leftTop">
-            <AutoChessBoard />
-            {/*<div className="dataPanel">*/}
-            {/*  <div className="line">*/}
-            {/*    先手棋子数量 <span>12</span>*/}
-            {/*  </div>*/}
-            {/*  <div className="line">*/}
-            {/*    后手棋子数量 <span>12</span>*/}
-            {/*  </div>*/}
-            {/*</div>*/}
+        <div className="MechanicalAutoChessPage">
+          <div className="left">
+            <div className="leftTop">
+              <AutoChessBoard/>
+              {/*<div className="dataPanel">*/}
+              {/*  <div className="line">*/}
+              {/*    先手棋子数量 <span>12</span>*/}
+              {/*  </div>*/}
+              {/*  <div className="line">*/}
+              {/*    后手棋子数量 <span>12</span>*/}
+              {/*  </div>*/}
+              {/*</div>*/}
+            </div>
+            <div className="leftBottom">
+              {this.state.userList.map((userObj) => {
+                return (
+                    <MechanicalAutoChessPlayer {...userObj} key={userObj.name}/>
+                );
+              })}
+            </div>
           </div>
-          <div className="leftBottom">
-            {this.state.userList.map((userObj) => {
-              return (
-                <MechanicalAutoChessPlayer {...userObj} key={userObj.name} />
-              );
-            })}
+          <div className="right">
+            <Editor
+                height="80vh"
+                value={initCode}
+                defaultLanguage="javascript"
+                defaultValue="// some comment"
+                onChange={this.handleOnChange}
+                theme="vs-dark"
+            />
+            <input
+                type="text"
+                ref={this.codeNameEle}
+                maxLength={5}
+                className="codeNameInput"
+                placeholder="给这份代码起个霸气的名字"
+            />
+            <button className="submitBtn" onClick={this.handleSubmit}>
+              提交代码到榜上
+            </button>
           </div>
         </div>
-        <div className="right">
-          <Editor
-            height="80vh"
-            value={initCode}
-            defaultLanguage="javascript"
-            defaultValue="// some comment"
-            onChange={this.handleOnChange}
-            theme="vs-dark"
-          />
-          <input
-            type="text"
-            ref={this.codeNameEle}
-            maxLength={5}
-            className="codeNameInput"
-            placeholder="给这份代码起个霸气的名字"
-          />
-          <button className="submitBtn" onClick={this.handleSubmit}>
-            提交代码到榜上
-          </button>
-        </div>
-      </div>
     );
   }
 
@@ -177,14 +177,14 @@ class MechanicalAutoChess extends Component {
     fetch(getUrl('getAutoChessUserList'), {
       method: 'GET',
     })
-      .then((res) => res.json())
-      .then((data) => {
-        this.setState({ userList: data });
-      });
+        .then((res) => res.json())
+        .then((data) => {
+          this.setState({userList: data});
+        });
 
     SOCKET_OBJ.on('前端监听机械自走棋榜上变化', (res) => {
       const data = res;
-      this.setState({ userList: data['array'] });
+      this.setState({userList: data['array']});
     });
 
     changeBackgroundMusic('bigStone');
@@ -195,7 +195,7 @@ class MechanicalAutoChess extends Component {
   }
 
   handleOnChange = (value, event) => {
-    this.setState({ userCode: value });
+    this.setState({userCode: value});
     // 缓存本地
     localStorage.setItem(sha3_256(`${USER_DATA.name}机械自走棋代码`), value);
   };
@@ -204,9 +204,19 @@ class MechanicalAutoChess extends Component {
     if (!USER_DATA.isLogin) {
       myAlert('请您先登录');
     }
-
+    if (this.state.userCode.length > 16000) {
+      myAlert("代码字符数量不能超过1万6");
+      return;
+    }
+    if (isPoliticalSensitive(this.state.userCode)) {
+      myAlert("代码中不要包涵敏感内容");
+      return;
+    }
     let codeName = this.codeNameEle.current.value;
-
+    if (isPoliticalSensitive(codeName)) {
+      myAlert("代码名称中有敏感内容");
+      return;
+    }
     SOCKET_OBJ.emit('后端处理用户提交机械自走棋代码', {
       name: USER_DATA.name,
       score: USER_DATA.score,

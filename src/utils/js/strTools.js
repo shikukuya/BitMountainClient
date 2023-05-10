@@ -4,6 +4,7 @@
  * 字典序小的在前面。
  * by littlefean
  */
+
 export function connectStr(aStr, bStr) {
   if (aStr < bStr) {
     return aStr + bStr;
@@ -118,5 +119,119 @@ export function calculateCodeSize(code) {
  */
 export function numberToAlpha(n) {
   return String.fromCharCode(65 + n)
+}
+
+
+class TrieNode {
+  constructor() {
+    this.children = {};
+    this.isEndOfWord = false;
+  }
+}
+
+class Trie {
+  constructor() {
+    this.root = new TrieNode();
+  }
+
+  insert(word) {
+    let node = this.root;
+    for (let i = 0; i < word.length; i++) {
+      const char = word.charAt(i);
+      if (!node.children[char]) {
+        node.children[char] = new TrieNode();
+      }
+      node = node.children[char];
+    }
+    node.isEndOfWord = true;
+  }
+
+  search(word) {
+    let node = this.root;
+    for (let i = 0; i < word.length; i++) {
+      const char = word.charAt(i);
+      if (!node.children[char]) {
+        return false;
+      }
+      node = node.children[char];
+    }
+    return node.isEndOfWord;
+  }
+
+  startsWith(prefix) {
+    let node = this.root;
+    for (let i = 0; i < prefix.length; i++) {
+      const char = prefix.charAt(i);
+      if (!node.children[char]) {
+        return false;
+      }
+      node = node.children[char];
+    }
+    return true;
+  }
+}
+
+/**
+ * 用于用户输入内容中的字符串包涵关键词的检测
+ * @param string {String}
+ * @param keywordList {Array[]}
+ * @return {boolean}
+ */
+export function isStringIncludeKeywords(string, keywordList) {
+  const trie = new Trie();
+  for (const keyword of keywordList) {
+    trie.insert(keyword);
+  }
+  let i = 0;
+  while (i < string.length) {
+    let j = i;
+    let node = trie.root;
+    while (j < string.length && node.children[string.charAt(j)]) {
+      node = node.children[string.charAt(j)];
+      if (node.isEndOfWord) {
+        return true;
+      }
+      j++;
+    }
+    i++;
+  }
+  return false;
+}
+
+function encryptStrList(strArray) {
+  const result = [];
+  for (let i = 0; i < strArray.length; i++) {
+    let encrypted = '';
+    for (let j = 0; j < strArray[i].length; j++) {
+      encrypted += String.fromCharCode(strArray[i].charCodeAt(j) + 1);
+    }
+    result.push(encrypted);
+  }
+  return result;
+}
+
+function decryptStrList(strArray) {
+  const result = [];
+  for (let i = 0; i < strArray.length; i++) {
+    let decrypted = '';
+    for (let j = 0; j < strArray[i].length; j++) {
+      decrypted += String.fromCharCode(strArray[i].charCodeAt(j) - 1);
+    }
+    result.push(decrypted);
+  }
+  return result;
+}
+
+import banKeywords from "./banKeywords";
+
+const PoliticalSensitiveList = decryptStrList(banKeywords);
+
+/**
+ * 检测一个字符串中是否含有zz敏感内容
+ * @param string
+ * @return {boolean}
+ */
+export function isPoliticalSensitive(string) {
+  return isStringIncludeKeywords(string, PoliticalSensitiveList);
 }
 

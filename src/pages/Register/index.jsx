@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import "./index.css";
 import getArray from "../../utils/js/range";
-import {zip_longest} from "../../utils/js/strTools";
+import {isPoliticalSensitive, zip_longest} from "../../utils/js/strTools";
 import {sha3_512} from 'js-sha3';
 import getUrl from "../../utils/js/getUrl";
 import myAlert from "../../utils/js/alertMassage";
@@ -150,7 +150,12 @@ class Register extends Component {
       this.userNameResultEle.current.innerText = "用户名不能含有^/+*等非法英文字符！";
       this.userNameResultEle.current.style.color = "orangered";
       this.allow.userName = false;
-    } else {
+    } else if (isPoliticalSensitive(str)) {
+      this.userNameResultEle.current.innerText = "抱歉，不要含有敏感内容";
+      this.userNameResultEle.current.style.color = "orangered";
+      this.allow.userName = false;
+    }
+    else {
       this.userNameResultEle.current.innerText = "您的用户名合法✓";
       this.userNameResultEle.current.style.color = "greenyellow";
       this.allow.userName = true;

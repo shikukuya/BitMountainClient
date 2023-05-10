@@ -150,7 +150,6 @@ class TicTacToe extends Component {
               {this.state.isAllowSubmit ? "提交代码" : "代码运行中……"}
             </button>
           </div>
-          <script src="https://unpkg.com/spacingjs" defer></script>
         </div>
     );
   }
@@ -177,6 +176,10 @@ class TicTacToe extends Component {
     }
     if (!this.state.isAllowSubmit) {
       myAlert("不要频繁提交代码")
+      return;
+    }
+    if (this.state.userCode.length > 16000) {
+      myAlert("代码字符数量不能超过1万6");
       return;
     }
     this.setState({isAllowSubmit: false});
