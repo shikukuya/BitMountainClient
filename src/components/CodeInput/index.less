@@ -12,9 +12,11 @@
 // 整个区域
 .showDiv {
   width: 100%;
+  height: 100%;
   position: relative;
 
-  margin: 20px auto;
+  //margin: 20px auto;
+  margin: 0 auto;
   font-size: 20px;
   font-family: Consolas, serif;
   overflow: hidden;
@@ -26,39 +28,77 @@
   @LineHeight: 20px;
   @N: 1.2; // 行距
 
+  //display: flex;
+  //flex-direction: column;
+  // ============
+  .area1 {
+    height: 30px;
+  }
 
-  .firstLine {
+  .area2 {
+    height: calc(100% - 30px);
+    //flex: 1;
+  }
+
+  // ============
+  .area1 {
     // 语言选择框
     height: 30px;
+    display: flex;
+    align-items: center;
+
+    span {
+      font-size: 15px;
+      line-height: 30px;
+      color: floralwhite;
+      font-family: "Microsoft YaHei UI", serif;
+    }
 
     select {
+      background-color: #383a3c;
+      color: floralwhite;
+      border: none;
+      outline: none;
+      margin-right: 5px;
+      margin-left: 5px;
+      font-size: 15px;
+      height: 30px;
+      &:hover {
+        cursor: pointer;
+      }
       option {
       }
     }
+
+    input[type="checkbox"] {
+      line-height: 30px;
+      width: 16px;
+      height: 16px;
+      margin-right: 2px;
+      transition: all 0.2s;
+
+      &:hover {
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
+      }
+
+    }
   }
 
-  // 行高指标
+  // 对手位置行高指标
   .LineTarget {
-    width: 4px;
+    width: 8px;
     height: 20px;
     position: absolute;
     //outline: solid 1px;
     z-index: 200;
+    border-radius: 50%;
 
     transition: all 0.1s;
     transition-timing-function: linear;
   }
 
-  select {
-    background-color: #383a3c;
-    color: white;
-    border: none;
-    outline: none;
-    margin-right: 5px;
-    margin-left: 5px;
-    font-size: 15px;
-    height: 30px;
-  }
 
   .myLineTarget {
     left: 0;
@@ -66,8 +106,17 @@
   }
 
   .opLineTarget {
-    left: 4px;
+    left: 8px;
     background-color: orangered;
+  }
+
+  .area2 {
+    .vscodeEditor {
+
+      font-size: 18px;
+      line-height: 24px;
+    }
+
   }
 
   .CodeMirror {

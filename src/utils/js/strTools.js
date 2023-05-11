@@ -225,7 +225,6 @@ function decryptStrList(strArray) {
 }
 
 
-
 const PoliticalSensitiveList = decryptStrList(banKeywords);
 
 /**
@@ -237,3 +236,65 @@ export function isPoliticalSensitive(string) {
   return isStringIncludeKeywords(string, PoliticalSensitiveList);
 }
 
+/**
+ * 返回两个字符串的编辑距离
+ * @param s1 {String}
+ * @param s2 {String}
+ * @return {Number}
+ * @constructor
+ */
+export function strDistance(s1, s2) {
+  const m = s1.length;
+  const n = s2.length;
+
+  // 创建一个二维数组，用于记录动态规划的过程
+  const dp = new Array(m + 1).fill().map(() => new Array(n + 1).fill(0));
+
+  // 初始化边界条件
+  for (let i = 0; i <= m; i++) {
+    dp[i][0] = i;
+  }
+  for (let j = 0; j <= n; j++) {
+    dp[0][j] = j;
+  }
+
+  // 动态规划
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      if (s1[i - 1] === s2[j - 1]) {
+        dp[i][j] = dp[i - 1][j - 1];
+      } else {
+        dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]) + 1;
+      }
+    }
+  }
+
+  // 返回最终结果
+  return dp[m][n];
+}
+
+/**
+ * 代码消除注释函数，此函数会让代码无法执行发生错误
+ * 仅用于判断编辑距离之类的操作
+ * @param code {String}
+ * @return {String}
+ */
+export function compressCode(code) {
+  // 删除C语言风格注释
+  code = code.replace(/\/\*[\s\S]*?\*\//g, '');
+  // 删除Python风格注释
+  code = code.replace(/#[^\n]*\n/g, '');
+  // 删除所有空格、分号和换行符
+  code = code.replace(/\s|;|\n/g, '');
+  return code;
+}
+
+/**
+ * 获取当前代码占了多少行
+ * @param codeString {String}
+ * @return  {Number}
+ */
+export function getNumberOfLines(codeString) {
+  const lines = codeString.split('\n');
+  return lines.length;
+}

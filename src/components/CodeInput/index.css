@@ -3,28 +3,35 @@
 }
 .showDiv {
   width: 100%;
+  height: 100%;
   position: relative;
-  margin: 20px auto;
+  margin: 0 auto;
   font-size: 20px;
   font-family: Consolas, serif;
   overflow: hidden;
   background-color: #2b2b2b;
   color: #a9b7c6;
 }
-.showDiv .firstLine {
+.showDiv .area1 {
   height: 30px;
 }
-.showDiv .LineTarget {
-  width: 4px;
-  height: 20px;
-  position: absolute;
-  z-index: 200;
-  transition: all 0.1s;
-  transition-timing-function: linear;
+.showDiv .area2 {
+  height: calc(100% - 30px);
 }
-.showDiv select {
+.showDiv .area1 {
+  height: 30px;
+  display: flex;
+  align-items: center;
+}
+.showDiv .area1 span {
+  font-size: 15px;
+  line-height: 30px;
+  color: floralwhite;
+  font-family: "Microsoft YaHei UI", serif;
+}
+.showDiv .area1 select {
   background-color: #383a3c;
-  color: white;
+  color: floralwhite;
   border: none;
   outline: none;
   margin-right: 5px;
@@ -32,13 +39,41 @@
   font-size: 15px;
   height: 30px;
 }
+.showDiv .area1 select:hover {
+  cursor: pointer;
+}
+.showDiv .area1 input[type="checkbox"] {
+  line-height: 30px;
+  width: 16px;
+  height: 16px;
+  margin-right: 2px;
+  transition: all 0.2s;
+}
+.showDiv .area1 input[type="checkbox"]:hover {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+}
+.showDiv .LineTarget {
+  width: 8px;
+  height: 20px;
+  position: absolute;
+  z-index: 200;
+  border-radius: 50%;
+  transition: all 0.1s;
+  transition-timing-function: linear;
+}
 .showDiv .myLineTarget {
   left: 0;
   background-color: greenyellow;
 }
 .showDiv .opLineTarget {
-  left: 4px;
+  left: 8px;
   background-color: orangered;
+}
+.showDiv .area2 .vscodeEditor {
+  font-size: 18px;
+  line-height: 24px;
 }
 .showDiv .CodeMirror {
   height: 450px;
