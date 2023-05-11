@@ -19,6 +19,7 @@ class Matching extends Component {
     let cls = this;
     this.state = {
       currentTips: choice(cls.tipWordsArr),
+      waitingTime: 0,  // 用户等了多少秒
     }
   }
 
@@ -26,8 +27,12 @@ class Matching extends Component {
   render() {
     return (
         <div className="matchArea">
-          <h2>匹配中……</h2>
-          <button className="cancelBtn" onClick={this.props.cancelHandle}>取消匹配</button>
+          <h2>匹配中……{this.state.waitingTime}</h2>
+          {
+            this.state.waitingTime > 3 ? (
+                <button className="cancelBtn" onClick={this.props.cancelHandle}>取消匹配</button>
+            ) : null
+          }
           <div className="waiting">
 
             <div className="box">
@@ -54,11 +59,18 @@ class Matching extends Component {
     // 每隔5秒换一句话
     this.changeTips = setInterval(() => {
       this.setState({currentTips: choice(this.tipWordsArr)});
-    }, 5 * 1000)
+    }, 5 * 1000);
+
+    // 用户等待时间增加
+    this.waitInterval = setInterval(() => {
+      let n = this.state.waitingTime;
+      this.setState({waitingTime: n + 1});
+    }, 1000);
   }
 
   componentWillUnmount() {
     clearInterval(this.changeTips);
+    clearInterval(this.waitInterval);
   }
 }
 

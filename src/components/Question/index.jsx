@@ -17,11 +17,14 @@ class Question extends Component {
       ioEgg,  // [{in: "", out: "" }, {} ... ]
       tips,
       tags,
+      questionBackground,
     } = this.props;
     return (
         <div className="questionArea">
           <h1>{title}</h1>
-          <h2>题目</h2>
+          <h2>题目背景</h2>
+          <p>{questionBackground}</p>
+          <h2>题目描述</h2>
           <p dangerouslySetInnerHTML={{__html: `${describe}`}} />
           <h2>交互格式说明</h2>
           <div className="leftRight">
