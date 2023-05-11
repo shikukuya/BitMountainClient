@@ -1,5 +1,31 @@
-h2 {
+.adminPage main {
+  width: 80%;
+  margin: 0 auto;
+  padding: 30px 60px 200px 60px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.adminPage main .block {
+  margin: 20px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.adminPage main h2 {
   text-align: center;
   font-size: 2em;
+}
+.adminPage main p,
+.adminPage main span {
+  line-height: 2em;
+}
+.adminPage main button {
+  padding: 5px;
+  margin-right: 5px;
+}
+.adminPage main button:hover {
+  cursor: pointer;
+}
+.adminPage main input {
+  padding: 5px;
+  margin-right: 10px;
 }
 /*# sourceMappingURL=index.css.map */

@@ -1,3 +1,4 @@
+import SERVER_CONFIG from "./serverConfig";
 
 function shiftString(str, shift) {
   // 将shift变量规范化，保证它在 [0, 26) 之间
@@ -29,5 +30,6 @@ function shiftString(str, shift) {
  */
 export default function getUrl(string) {
   // return `${serverAddress}/${string}`;
-  return `${window.serverAddress}/${string}`;
+  // return `${window.serverAddress}/${string}`;
+  return `${SERVER_CONFIG.address}/${string}`;
 }

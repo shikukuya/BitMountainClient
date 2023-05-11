@@ -4,6 +4,8 @@
  * 字典序小的在前面。
  * by littlefean
  */
+import banKeywords from "./banKeywords";
+
 
 export function connectStr(aStr, bStr) {
   if (aStr < bStr) {
@@ -222,7 +224,7 @@ function decryptStrList(strArray) {
   return result;
 }
 
-import banKeywords from "./banKeywords";
+
 
 const PoliticalSensitiveList = decryptStrList(banKeywords);
 
