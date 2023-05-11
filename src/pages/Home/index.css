@@ -36,4 +36,13 @@
   line-height: 2em;
   background-color: black;
 }
+.homePage .record-number {
+  position: fixed;
+  right: 15px;
+  bottom: 20px;
+  font-size: 12px;
+}
+.homePage .record-number a {
+  color: greenyellow;
+}
 /*# sourceMappingURL=index.css.map */

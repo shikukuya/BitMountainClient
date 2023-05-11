@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './index.css';
-import {Navigate, NavLink} from 'react-router-dom';
+import {Navigate} from 'react-router-dom';
 import Background from '../../components/Background';
 import USER_DATA from '../../globalData/userData';
 import SOCKET_OBJ from '../../globalData/socketObject';
@@ -104,6 +104,9 @@ class Home extends Component {
           </div>
           {this.getInnerElement()}
           <div className="noticeLine">{noticeText}</div>
+          <div className="record-number">
+            <a href="https://beian.miit.gov.cn" id="beiAnId">冀ICP备2022004336号</a>
+          </div>
           <Background/>
         </div>
     );
