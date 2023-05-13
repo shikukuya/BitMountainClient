@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {submitCode, submitCode2} from "../../utils/js/glotApiTools";
+
 
 class TestPage extends Component {
     render() {
@@ -16,13 +16,10 @@ class TestPage extends Component {
     }
 
     handle = () => {
-        submitCode().finish(res => {
-            console.log(res);
-        })
+
     }
     handle2 = () => {
-        console.log(2222)
-        submitCode2();
+
     }
 }
 
