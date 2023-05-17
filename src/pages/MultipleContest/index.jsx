@@ -102,6 +102,179 @@ class MultipleContest extends Component {
     );
   }
 
+  socketHandleUserSurrender = res => {
+    let data = (res);
+    if (data.exitPlayerName === USER_DATA.opponent.name) {
+      // 对方跑了 告诉后端自己赢了
+      userContestEnd(true, this.moodName, res => {
+        PubSub.publish("导航栏修改模式", {isUserPlaying: false});
+        USER_DATA.updateFromDict(res["updateUserData"]);
+        // 展示弹窗
+        this.setState({isEnd: true, isWin: true, endReason: "对方逃跑了"})
+      });
+      winSound();
+    } else if (data.exitPlayerName === USER_DATA.name) {
+      // 跑的人竟是我自己
+      // 展示弹窗
+      userContestEnd(false, this.moodName, res => {
+        PubSub.publish("导航栏修改模式", {isUserPlaying: false});
+        USER_DATA.updateFromDict(res["updateUserData"]);
+      });
+      louseSound();
+    } else {
+      console.log("不知道是谁认输了", data.exitPlayerName);
+    }
+  }
+  socketHandleUserAc = res => {
+    let data = (res);
+    const questionIndex = data["questionIndex"];
+    PubSub.publish("表格行监听用户提交代码通过", data);
+
+    if (data["submitUser"] === USER_DATA.name) {
+      // 通过的人竟是我自己
+      let newAcArr = [...this.state.myAcList];
+      newAcArr[questionIndex] = true;
+
+      this.setState({
+        myAcList: newAcArr,
+        submitDisable: false,  // 按钮可以继续按了
+      });
+      // 告诉左侧小盒子组件我们通过了
+      PubSub.publish(`多题图标${questionIndex}更新状态`, {
+        stage: 2,
+        isMy: true,
+      });
+      PubSub.publish(`多题图标${questionIndex}增加提交语言图标`, {
+        languageName: data["language"],
+        isMy: true,
+      });
+
+      // 判断是不是赢了
+      let winFlag = 0;
+      for (const bool of newAcArr) {
+        if (bool) {
+          winFlag++;
+        }
+      }
+      console.log("自己提交通过后检测输赢状态", winFlag);
+
+      if (winFlag === 5) {
+        this.setState({
+          isWin: true,
+          isEnd: true,
+          endReason: "你率先通过了所有题目"
+        })
+        userContestEnd(true, this.moodName, res => {
+          PubSub.publish("导航栏修改模式", {isUserPlaying: false});
+          USER_DATA.updateFromDict(res["updateUserData"]);
+        });
+        winSound();
+      } else {
+        console.log("你还没赢")
+      }
+    } else {
+      let newAcArr = [...this.state.opAcList];
+      newAcArr[questionIndex] = true;
+      this.setState({opAcList: newAcArr});
+
+      // 告诉左侧小盒子组件对方通过了
+      PubSub.publish(`多题图标${questionIndex}更新状态`, {
+        stage: 2,
+        isMy: false,
+      });
+      PubSub.publish(`多题图标${questionIndex}增加提交语言图标`, {
+        languageName: data["language"],
+        isMy: false,
+      });
+      // 判断是不是赢了
+      let winFlag = 0;
+      for (const bool of newAcArr) {
+        if (bool) {
+          winFlag++;
+        }
+      }
+      if (winFlag === 5) {
+        // 对方通过了，我输了
+        this.setState({
+          isWin: false,
+          isEnd: true,
+          endReason: "对方提前通过了所有题目"
+        });
+
+        userContestEnd(false, this.moodName, res => {
+          PubSub.publish("导航栏修改模式", {isUserPlaying: false});
+          USER_DATA.updateFromDict(res["updateUserData"]);
+        });
+        louseSound();
+      }
+    }
+  }
+  socketHandleUserWa = res => {
+    /**
+     * submitUser
+     * errType
+     * errData
+     * language
+     * @type {Object}
+     */
+    let data = (res);
+
+    PubSub.publish(`多题图标${data["questionIndex"]}增加提交语言图标`, {
+      languageName: data["language"],
+      isMy: data["submitUser"] === USER_DATA.name,
+    });
+
+    PubSub.publish(`多题图标${data["questionIndex"]}更新状态`, {
+      stage: 1,
+      isMy: data["submitUser"] === USER_DATA.name,
+    });
+
+    PubSub.publish(`多题表格行${data["submitUser"]}监听掉血`, {});
+
+    if (data["submitUser"] === USER_DATA.name) {
+      // 提交错的人是我自己
+
+      let newHp = this.state.myHp - 1;
+      this.setState({
+        myHp: newHp,
+        submitDisable: false,  // 按钮可以继续按了
+      });
+
+
+      PubSub.publish("代码结果框更新状态", {
+        result: data["errType"],
+        errData: data["errData"],
+        isShow: true
+      });
+
+      if (newHp === 0) {
+        this.setState({isWin: false, isEnd: true, endReason: "生命值用光了"});
+
+        userContestEnd(false, this.moodName, res => {
+          PubSub.publish("导航栏修改模式", {isUserPlaying: false});
+          USER_DATA.updateFromDict(res["updateUserData"]);
+        });
+        louseSound();
+      }
+    } else {
+      // 对方没通过
+      let newHp = this.state.opHp - 1;
+      this.setState({
+        opHp: newHp,
+      });
+      if (newHp === 0) {
+        this.setState({
+          isEnd: true, isWin: true, endReason: "对方生命耗尽"
+        });
+        userContestEnd(true, this.moodName, res => {
+          PubSub.publish("导航栏修改模式", {isUserPlaying: false});
+          USER_DATA.updateFromDict(res["updateUserData"]);
+        });
+        winSound();
+      }
+    }
+  }
+
   componentDidMount() {
     // 监听用户切换题目
     this.token1 = PubSub.subscribe("更新用户正在看题的下标", (_, data) => {
@@ -113,183 +286,9 @@ class MultipleContest extends Component {
       this.setState(data);
     });
 
-    // 监听有用户认输
-    SOCKET_OBJ.on(`前端${this.roomName}监听对方认输`, res => {
-      let data = (res);
-      if (data.exitPlayerName === USER_DATA.opponent.name) {
-        // 对方跑了 告诉后端自己赢了
-        userContestEnd(true, this.moodName, res => {
-          PubSub.publish("导航栏修改模式", {isUserPlaying: false});
-          USER_DATA.updateFromDict(res["updateUserData"]);
-          // 展示弹窗
-          this.setState({isEnd: true, isWin: true, endReason: "对方逃跑了"})
-        });
-        winSound();
-      } else if (data.exitPlayerName === USER_DATA.name) {
-        // 跑的人竟是我自己
-        // 展示弹窗
-        userContestEnd(false, this.moodName, res => {
-          PubSub.publish("导航栏修改模式", {isUserPlaying: false});
-          USER_DATA.updateFromDict(res["updateUserData"]);
-        });
-        louseSound();
-      } else {
-        console.log("不知道是谁认输了", data.exitPlayerName);
-      }
-    });
-
-    // 监听有用户提交成功
-    SOCKET_OBJ.on(`前端单挑模式${this.roomName}房间有用户提交代码通过`, res => {
-      let data = (res);
-      const questionIndex = data["questionIndex"];
-      PubSub.publish("表格行监听用户提交代码通过", data);
-
-      if (data["submitUser"] === USER_DATA.name) {
-        // 通过的人竟是我自己
-        let newAcArr = [...this.state.myAcList];
-        newAcArr[questionIndex] = true;
-
-        this.setState({
-          myAcList: newAcArr,
-          submitDisable: false,  // 按钮可以继续按了
-        });
-        // 告诉左侧小盒子组件我们通过了
-        PubSub.publish(`多题图标${questionIndex}更新状态`, {
-          stage: 2,
-          isMy: true,
-        });
-        PubSub.publish(`多题图标${questionIndex}增加提交语言图标`, {
-          languageName: data["language"],
-          isMy: true,
-        });
-
-        // 判断是不是赢了
-        let winFlag = 0;
-        for (const bool of newAcArr) {
-          if (bool) {
-            winFlag++;
-          }
-        }
-        console.log("自己提交通过后检测输赢状态", winFlag);
-
-        if (winFlag === 5) {
-          this.setState({
-            isWin: true,
-            isEnd: true,
-            endReason: "你率先通过了所有题目"
-          })
-          userContestEnd(true, this.moodName, res => {
-            PubSub.publish("导航栏修改模式", {isUserPlaying: false});
-            USER_DATA.updateFromDict(res["updateUserData"]);
-          });
-          winSound();
-        } else {
-          console.log("你还没赢")
-        }
-      } else {
-        let newAcArr = [...this.state.opAcList];
-        newAcArr[questionIndex] = true;
-        this.setState({opAcList: newAcArr});
-
-        // 告诉左侧小盒子组件对方通过了
-        PubSub.publish(`多题图标${questionIndex}更新状态`, {
-          stage: 2,
-          isMy: false,
-        });
-        PubSub.publish(`多题图标${questionIndex}增加提交语言图标`, {
-          languageName: data["language"],
-          isMy: false,
-        });
-        // 判断是不是赢了
-        let winFlag = 0;
-        for (const bool of newAcArr) {
-          if (bool) {
-            winFlag++;
-          }
-        }
-        if (winFlag === 5) {
-          // 对方通过了，我输了
-          this.setState({
-            isWin: false,
-            isEnd: true,
-            endReason: "对方提前通过了所有题目"
-          });
-
-          userContestEnd(false, this.moodName, res => {
-            PubSub.publish("导航栏修改模式", {isUserPlaying: false});
-            USER_DATA.updateFromDict(res["updateUserData"]);
-          });
-          louseSound();
-        }
-      }
-    });
-
-    // 监听有用户提交失败
-    SOCKET_OBJ.on(`前端单挑模式${this.roomName}房间有用户提交代码未通过`, res => {
-      /**
-       * submitUser
-       * errType
-       * errData
-       * language
-       * @type {Object}
-       */
-      let data = (res);
-
-      PubSub.publish(`多题图标${data["questionIndex"]}增加提交语言图标`, {
-        languageName: data["language"],
-        isMy: data["submitUser"] === USER_DATA.name,
-      });
-
-      PubSub.publish(`多题图标${data["questionIndex"]}更新状态`, {
-        stage: 1,
-        isMy: data["submitUser"] === USER_DATA.name,
-      });
-
-      PubSub.publish(`多题表格行${data["submitUser"]}监听掉血`, {});
-
-      if (data["submitUser"] === USER_DATA.name) {
-        // 提交错的人是我自己
-
-        let newHp = this.state.myHp - 1;
-        this.setState({
-          myHp: newHp,
-          submitDisable: false,  // 按钮可以继续按了
-        });
-
-
-        PubSub.publish("代码结果框更新状态", {
-          result: data["errType"],
-          errData: data["errData"],
-          isShow: true
-        });
-
-        if (newHp === 0) {
-          this.setState({isWin: false, isEnd: true, endReason: "生命值用光了"});
-
-          userContestEnd(false, this.moodName, res => {
-            PubSub.publish("导航栏修改模式", {isUserPlaying: false});
-            USER_DATA.updateFromDict(res["updateUserData"]);
-          });
-          louseSound();
-        }
-      } else {
-        // 对方没通过
-        let newHp = this.state.opHp - 1;
-        this.setState({
-          opHp: newHp,
-        });
-        if (newHp === 0) {
-          this.setState({
-            isEnd: true, isWin: true, endReason: "对方生命耗尽"
-          });
-          userContestEnd(true, this.moodName, res => {
-            PubSub.publish("导航栏修改模式", {isUserPlaying: false});
-            USER_DATA.updateFromDict(res["updateUserData"]);
-          });
-          winSound();
-        }
-      }
-    });
+    SOCKET_OBJ.on(`前端${this.roomName}监听对方认输`, this.socketHandleUserSurrender);
+    SOCKET_OBJ.on(`前端单挑模式${this.roomName}房间有用户提交代码通过`, this.socketHandleUserAc);
+    SOCKET_OBJ.on(`前端单挑模式${this.roomName}房间有用户提交代码未通过`, this.socketHandleUserWa);
   }
 
   // 多题模式用户提交代码
@@ -322,7 +321,10 @@ class MultipleContest extends Component {
     // 取消消息订阅
     PubSub.unsubscribe(this.token1);
     PubSub.unsubscribe(this.updateCode);
-
+    // 取消socket
+    SOCKET_OBJ.off(`前端${this.roomName}监听对方认输`, this.socketHandleUserSurrender);
+    SOCKET_OBJ.off(`前端单挑模式${this.roomName}房间有用户提交代码通过`, this.socketHandleUserSubmitAc);
+    SOCKET_OBJ.off(`前端单挑模式${this.roomName}房间有用户提交代码未通过`, this.socketHandleUserSubmitWa);
   }
 
 }

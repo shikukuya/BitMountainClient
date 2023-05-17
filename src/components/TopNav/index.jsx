@@ -324,6 +324,7 @@ class TopNav extends Component {
     });
 
     // 更新USER.对手 的信息，让他变成一个默认的无效
+    USER_DATA.opponent.name = "xxx";
 
     this.setState({ isUserPlaying: false });
   };

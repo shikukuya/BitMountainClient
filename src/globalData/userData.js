@@ -51,7 +51,9 @@ const USER_DATA = {
   // 更新函数
   updateFromDict: function (dict) {
     for (let key in dict) {
-      USER_DATA[key] = dict[key];
+      if (dict.hasOwnProperty(key)) {
+        USER_DATA[key] = dict[key];
+      }
     }
   },
 

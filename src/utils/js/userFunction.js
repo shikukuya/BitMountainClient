@@ -40,8 +40,8 @@ console.log(hashString(getCurrentTime()));
 
 /**
  * 发送POST请求 告诉后端自己赢了还是输了
- * @param bool {Boolean}
- * @param moodName {String}
+ * @param bool {Boolean} 自己是赢了还是输了
+ * @param moodName {String} 模式名称
  * @param finishFunc {Function} 接收后端返回的res json作为唯一参数
  */
 export function userContestEnd(bool, moodName, finishFunc) {
@@ -55,27 +55,28 @@ export function userContestEnd(bool, moodName, finishFunc) {
     opponentHeadSculpture: USER_DATA.opponent.headSculpture,
     mood: moodName,
     isWin: bool,  // 输了
-    testCode: (hashString(USER_DATA.name + getCurrentTime()))
+    testCode: (hashString(USER_DATA.name + getCurrentTime())),
   };
 
+  console.log("userContestEnd函数调用了", Date.now(), sendData);
   try {
     fetch(getUrl("userContestOver"), {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(sendData),
     }).then(
-        res => {
-          if (!res.ok) {
-            throw new Error(`HTTP error! status: ${res.status}`);
-          }
-          return res.json();
-        }
+        res => res.json()
     ).then(
         res => {
-          finishFunc(res);
+          if (res["status"]) {
+            finishFunc(res);
+          } else {
+            console.warn("userContestEnd函数接收到py服务器响应", res["text"]);
+          }
+
         }
     );
   } catch (err) {
-    console.log('Fetch Error:', err.message);
+    console.log('userContestEnd函数中出现：Fetch Error:', err.message);
   }
 }
