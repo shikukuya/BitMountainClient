@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import "./index.css";
 import USER_DATA from "../../globalData/userData";
-import {fight} from "../../model/gobang";
 import PubSub from "pubsub-js";
 import {compact} from "../../model/mechanicalAutoChess";
 import {computeLevel} from "../../model/level";

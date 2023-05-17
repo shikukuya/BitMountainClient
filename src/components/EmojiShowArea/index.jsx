@@ -32,23 +32,27 @@ class EmojiShowArea extends Component {
   }
 
   componentDidMount() {
-    const {bindUserName, roomName} = this.props;
-    SOCKET_OBJ.on(`前端对局中${roomName}房间有用户发表情消息`, res => {
-      let data = (res);
-      if (USER_DATA.isPreventEmoji && data["senderName"] !== USER_DATA.name) {
-        // 是别人发来的消息，屏蔽了，不显示消息
-        return;
-      }
-      if (data["senderName"] === bindUserName) {
-        // 发来的消息是要显示在这里的
-        const newArr = [...this.state.msgArr, data["sendText"]];
-        this.setState({msgArr: newArr});
-      }
-    });
+    const {roomName} = this.props;
+    SOCKET_OBJ.on(`前端对局中${roomName}房间有用户发表情消息`, this.socketHandleEmoji);
+  }
 
+  socketHandleEmoji = res => {
+    const {bindUserName} = this.props;
+    let data = (res);
+    if (USER_DATA.isPreventEmoji && data["senderName"] !== USER_DATA.name) {
+      // 是别人发来的消息，屏蔽了，不显示消息
+      return;
+    }
+    if (data["senderName"] === bindUserName) {
+      // 发来的消息是要显示在这里的
+      const newArr = [...this.state.msgArr, data["sendText"]];
+      this.setState({msgArr: newArr});
+    }
   }
 
   componentWillUnmount() {
+    const {roomName} = this.props;
+    SOCKET_OBJ.off(`前端对局中${roomName}房间有用户发表情消息`, this.socketHandleEmoji);
   }
 }
 

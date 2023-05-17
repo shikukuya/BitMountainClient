@@ -260,30 +260,6 @@ class TypeWritingContest extends Component {
       }
     }, 500);
 
-    // 开启监听，监听是否有人打完了文章
-    SOCKET_OBJ.on(`前端${roomName}监听有人打完了文章`, res => {
-      let data = (res);
-      let finishPlayer = data["finishPlayer"];
-
-      if (finishPlayer === USER_DATA.opponent.name) {
-        // 对手赢了
-        userContestEnd(false, "打字对决", res => {
-          // 前端更新
-          this.setState({isEnd: true, isWin: false, endReason: "对手率先打完了文章"});
-          USER_DATA.updateFromDict(res["updateUserData"]);
-          PubSub.publish("导航栏修改模式", {isUserPlaying: false});
-        })
-      } else {
-        // 自己赢了
-        userContestEnd(true, "打字对决", res => {
-          // 前端更新
-          this.setState({isEnd: true, isWin: true, endReason: "恭喜您打完了这个文章"});
-          USER_DATA.updateFromDict(res["updateUserData"]);
-          PubSub.publish("导航栏修改模式", {isUserPlaying: false});
-        })
-      }
-    });
-
     // 开启定时器，更新自己的位置 以及自己的进度
     this.moveAni = setInterval(() => {
       let x = this.getCurInputEle().value.length;
@@ -302,47 +278,77 @@ class TypeWritingContest extends Component {
       })
     }, 500);
 
-    // 开启监听，监听对手位置 以及进度
-    SOCKET_OBJ.on(`前端${USER_DATA.name}更新对手位置`, res => {
-      let data = (res);
-      let {x, y} = data["opponentLoc"];
-      let ele = this.opLocRef.current;
-      ele.style.left = `${x * 20}px`;
-      ele.style.top = `${80 * y}px`;
-
-      let LineEle = this.opLineLocRef.current;
-      LineEle.style.top = `${80 * y}px`;
-      // 更新对手进度
-      this.setState({opCharCount: data["opponentCharCount"]})
-    });
-
-    // 监听认输
-    SOCKET_OBJ.on(`前端${roomName}监听对方认输`, res => {
-      let data = (res);
-      if (data.exitPlayerName === USER_DATA.opponent.name) {
-        // 对方跑了 告诉后端自己赢了
-        userContestEnd(true, "打字对决", res => {
-          PubSub.publish("导航栏修改模式", {isUserPlaying: false});
-          // 展示弹窗
-          this.setState({isEnd: true, isWin: true, endReason: "对方被吓跑了，你赢了"});
-          USER_DATA.updateFromDict(res["updateUserData"]);
-        });
-      } else if (data.exitPlayerName === USER_DATA.name) {
-        // 跑的人竟是我自己
-        // 展示弹窗
-        userContestEnd(false, "打字对决", res => {
-          PubSub.publish("导航栏修改模式", {isUserPlaying: false});
-          USER_DATA.updateFromDict(res["updateUserData"]);
-        });
-      } else {
-        console.log("不知道是谁认输了", data.exitPlayerName);
-      }
-    });
+    SOCKET_OBJ.on(`前端${roomName}监听有人打完了文章`, this.socketHandleOver);
+    SOCKET_OBJ.on(`前端${USER_DATA.name}更新对手位置`, this.socketHandleUpdateLoc);
+    SOCKET_OBJ.on(`前端${roomName}监听对方认输`, this.socketHandleUserSurrender);
 
     changeBackgroundMusic("typeWrite");
   }
 
+  socketHandleUserSurrender = res => {
+    let data = (res);
+    if (data.exitPlayerName === USER_DATA.opponent.name) {
+      // 对方跑了 告诉后端自己赢了
+      userContestEnd(true, "打字对决", res => {
+        PubSub.publish("导航栏修改模式", {isUserPlaying: false});
+        // 展示弹窗
+        this.setState({isEnd: true, isWin: true, endReason: "对方被吓跑了，你赢了"});
+        USER_DATA.updateFromDict(res["updateUserData"]);
+      });
+    } else if (data.exitPlayerName === USER_DATA.name) {
+      // 跑的人竟是我自己
+      // 展示弹窗
+      userContestEnd(false, "打字对决", res => {
+        PubSub.publish("导航栏修改模式", {isUserPlaying: false});
+        USER_DATA.updateFromDict(res["updateUserData"]);
+      });
+    } else {
+      console.log("不知道是谁认输了", data.exitPlayerName);
+    }
+  }
+
+  socketHandleUpdateLoc = res => {
+    let data = (res);
+    let {x, y} = data["opponentLoc"];
+    let ele = this.opLocRef.current;
+    ele.style.left = `${x * 20}px`;
+    ele.style.top = `${80 * y}px`;
+
+    let LineEle = this.opLineLocRef.current;
+    LineEle.style.top = `${80 * y}px`;
+    // 更新对手进度
+    this.setState({opCharCount: data["opponentCharCount"]})
+  }
+
+  socketHandleOver = res => {
+    let data = (res);
+    let finishPlayer = data["finishPlayer"];
+
+    if (finishPlayer === USER_DATA.opponent.name) {
+      // 对手赢了
+      userContestEnd(false, "打字对决", res => {
+        // 前端更新
+        this.setState({isEnd: true, isWin: false, endReason: "对手率先打完了文章"});
+        USER_DATA.updateFromDict(res["updateUserData"]);
+        PubSub.publish("导航栏修改模式", {isUserPlaying: false});
+      })
+    } else {
+      // 自己赢了
+      userContestEnd(true, "打字对决", res => {
+        // 前端更新
+        this.setState({isEnd: true, isWin: true, endReason: "恭喜您打完了这个文章"});
+        USER_DATA.updateFromDict(res["updateUserData"]);
+        PubSub.publish("导航栏修改模式", {isUserPlaying: false});
+      })
+    }
+  }
+
   componentWillUnmount() {
+    // 房间名
+    let roomName = connectStr(USER_DATA.name, USER_DATA.opponent.name);
+    SOCKET_OBJ.off(`前端${roomName}监听有人打完了文章`, this.socketHandleOver);
+    SOCKET_OBJ.off(`前端${USER_DATA.name}更新对手位置`, this.socketHandleUpdateLoc);
+    SOCKET_OBJ.off(`前端${roomName}监听对方认输`, this.socketHandleUserSurrender);
 
     clearInterval(this.checkAni);
     clearInterval(this.moveAni);

@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {computeLevel} from "../../model/level";
 import "./index.css";
 import USER_DATA from "../../globalData/userData";
-import Array2d from "../../utils/js/array2d";
 import {fight} from "../../model/gobang";
 import PubSub from "pubsub-js"
 

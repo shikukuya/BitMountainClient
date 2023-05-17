@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './index.css';
-import { BrowserRouter, NavLink, Navigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import USER_DATA from '../../globalData/userData';
 import { zip_longest } from '../../utils/js/strTools';
 import { sha3_512 } from 'js-sha3';

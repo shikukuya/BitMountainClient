@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './index.css';
 import USER_DATA from '../../globalData/userData';
 import SOCKET_OBJ from '../../globalData/socketObject';
@@ -16,29 +16,29 @@ class AddFriend extends Component {
   }
 
   render() {
-    const { resultStr } = this.state;
+    const {resultStr} = this.state;
     if (USER_DATA.isLogin) {
       return (
-        <div className="addFriend">
-          <div className="line">
-            <input
-              type="text"
-              placeholder="请输入对方ID"
-              ref={this.inputIDEle}
-            />
-          </div>
-          <div className="line">
-            <input
-              type="text"
-              placeholder="加好友的理由"
-              ref={this.inputNoteEle}
-            />
-            <span ref={this.resultEle} className="result">
+          <div className="addFriend">
+            <div className="line">
+              <input
+                  type="text"
+                  placeholder="请输入对方ID"
+                  ref={this.inputIDEle}
+              />
+            </div>
+            <div className="line">
+              <input
+                  type="text"
+                  placeholder="加好友的理由"
+                  ref={this.inputNoteEle}
+              />
+              <span ref={this.resultEle} className="result">
               {resultStr}
             </span>
+            </div>
+            <button onClick={this.btnHandle}>添加</button>
           </div>
-          <button onClick={this.btnHandle}>添加</button>
-        </div>
       );
     } else {
       return <div className="pleaseLogin">请您先登录</div>;
@@ -47,10 +47,17 @@ class AddFriend extends Component {
 
   componentDidMount() {
     if (USER_DATA.isLogin) {
-      SOCKET_OBJ.on(`前端${USER_DATA.name}接收好友请求发送结果`, (res) => {
-        this.setState({ resultStr: res.text });
-      });
+      SOCKET_OBJ.on(`前端${USER_DATA.name}接收好友请求发送结果`, this.socketHandleRes);
     }
+  }
+  componentWillUnmount() {
+    if (USER_DATA.isLogin) {
+      SOCKET_OBJ.off(`前端${USER_DATA.name}接收好友请求发送结果`, this.socketHandleRes);
+    }
+  }
+
+  socketHandleRes = (res) => {
+    this.setState({resultStr: res.text});
   }
 
   // 添加按钮
@@ -62,10 +69,10 @@ class AddFriend extends Component {
       userInputNote = '想成为你的好友';
     }
     if (this.uuidTest(userInputUUID)) {
-      this.setState({ resultStr: 'id格式正确' });
+      this.setState({resultStr: 'id格式正确'});
       // 检测一下是不是自己
       if (userInputUUID === USER_DATA.id) {
-        this.setState({ resultStr: 'id不能是自己' });
+        this.setState({resultStr: 'id不能是自己'});
         return;
       } else {
         SOCKET_OBJ.emit('后端更新添加好友请求', {
@@ -75,7 +82,7 @@ class AddFriend extends Component {
         });
       }
     } else {
-      this.setState({ resultStr: 'id格式不对' });
+      this.setState({resultStr: 'id格式不对'});
     }
   };
 

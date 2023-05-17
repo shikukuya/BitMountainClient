@@ -203,33 +203,39 @@ class TicTacToe extends Component {
         data => this.setState({rankList: data["rankList"]})
     ).catch(err => myAlert(err));
 
-    SOCKET_OBJ.on("前端监听井字棋排行榜变化", res => {
-      const data = (res);
-      this.setState({rankList: data["rankList"]});
-    });
-
-    SOCKET_OBJ.on(`前端用户${USER_DATA.name}接收提交井字棋结果`, res => {
-      const data = (res);
-      console.log("接收到了提交的结果", data["resultArr"]);
-      this.setState({
-        resultArray: data["resultArr"],
-        isAllowSubmit: true,
-      });
-    });
-
-    SOCKET_OBJ.on(`前端用户${USER_DATA.name}接收提交井字棋异常结果`, res => {
-      const data = (res);
-      myAlert(data["text"]);
-      this.setState({
-        isAllowSubmit: true,
-      });
-    });
-
+    SOCKET_OBJ.on("前端监听井字棋排行榜变化", this.socketHandleListenRank);
+    SOCKET_OBJ.on(`前端用户${USER_DATA.name}接收提交井字棋结果`, this.socketHandleSubmitResult);
+    SOCKET_OBJ.on(`前端用户${USER_DATA.name}接收提交井字棋异常结果`, this.socketHandleSubmitBug);
     changeBackgroundMusic("ticTacToe");
+  }
+
+  socketHandleListenRank = res => {
+    const data = (res);
+    this.setState({rankList: data["rankList"]});
+  }
+
+  socketHandleSubmitResult = res => {
+    const data = (res);
+    console.log("接收到了提交的结果", data["resultArr"]);
+    this.setState({
+      resultArray: data["resultArr"],
+      isAllowSubmit: true,
+    });
+  }
+
+  socketHandleSubmitBug = res => {
+    const data = (res);
+    myAlert(data["text"]);
+    this.setState({
+      isAllowSubmit: true,
+    });
   }
 
   componentWillUnmount() {
     changeBackgroundMusic("main");
+    SOCKET_OBJ.off("前端监听井字棋排行榜变化", this.socketHandleListenRank);
+    SOCKET_OBJ.off(`前端用户${USER_DATA.name}接收提交井字棋结果`, this.socketHandleSubmitResult);
+    SOCKET_OBJ.off(`前端用户${USER_DATA.name}接收提交井字棋异常结果`, this.socketHandleSubmitBug);
   }
 }
 

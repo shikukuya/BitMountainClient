@@ -44,35 +44,41 @@ class SubmitAnimation extends Component {
       return null;
     }
   }
+
   componentWillUnmount() {
     // 取消消息订阅
     PubSub.unsubscribe(this.token1);
+    SOCKET_OBJ.off(`前端单挑模式${this.roomName}房间有用户更新测试点`, this.socketHandleUpdateAcPoint);
   }
+
   componentDidMount() {
     this.token1 = PubSub.subscribe("单挑模式提交结果面板更改状态", (_, data) => {
       this.setState(data);
     });
 
-    SOCKET_OBJ.on(`前端单挑模式${this.roomName}房间有用户更新测试点`, res => {
-      const data = (res);
-
-      if (data["submitUser"] !== USER_DATA.name) {
-        return;
-      }
-      console.log("接收到了测试点通过与否的消息", data["result"], data["index"]);
-
-      const newArr = [...this.state.charArr];
-      newArr[data["index"]] = data["result"];
-      this.setState({charArr: newArr, isShow: true});
-
-      if (data["result"] !== "✔" || data["index"] === 4) {
-        // 出错了
-        setTimeout(() => {
-          this.setState({isShow: false});
-        }, 1000);
-      }
-    })
+    SOCKET_OBJ.on(`前端单挑模式${this.roomName}房间有用户更新测试点`, this.socketHandleUpdateAcPoint);
   }
+
+  socketHandleUpdateAcPoint = res => {
+    const data = (res);
+
+    if (data["submitUser"] !== USER_DATA.name) {
+      return;
+    }
+    console.log("接收到了测试点通过与否的消息", data["result"], data["index"]);
+
+    const newArr = [...this.state.charArr];
+    newArr[data["index"]] = data["result"];
+    this.setState({charArr: newArr, isShow: true});
+
+    if (data["result"] !== "✔" || data["index"] === 4) {
+      // 出错了
+      setTimeout(() => {
+        this.setState({isShow: false});
+      }, 1000);
+    }
+  }
+
 }
 
 export default SubmitAnimation;

@@ -102,9 +102,13 @@ class Gobang extends Component {
     );
   }
 
+  handleSocketListenGobangRank = res => {
+    const data = (res);
+    this.setState({userList: data["array"]});
+  }
+
   componentDidMount() {
     USER_DATA.gobangCurrentCode = this.state.userCode;
-
     fetch(getUrl("getGobangUserList"), {
       method: 'GET',
     }).then(
@@ -115,10 +119,7 @@ class Gobang extends Component {
         }
     );
 
-    SOCKET_OBJ.on("前端监听五子棋榜上变化", res => {
-      const data = (res);
-      this.setState({userList: data["array"]});
-    });
+    SOCKET_OBJ.on("前端监听五子棋榜上变化", this.handleSocketListenGobangRank);
 
     // pubsub监听
     this.token1 = PubSub.subscribe("五子棋界面更新挑战信息", (_, data) => {
@@ -131,6 +132,7 @@ class Gobang extends Component {
     // 取消消息订阅
     PubSub.unsubscribe(this.token1);
     changeBackgroundMusic("main");
+    SOCKET_OBJ.off("前端监听五子棋榜上变化", this.handleSocketListenGobangRank);
   }
 
   handleOnChange = (value, event) => {

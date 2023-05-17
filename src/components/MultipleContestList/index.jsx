@@ -58,12 +58,18 @@ class MultipleContestList extends Component {
 
   componentDidMount() {
     // 监听对手的看题位置
-    SOCKET_OBJ.on(`前端对局中${this.roomName}房间有用户更新看题位置`, res => {
-      let data = (res);
-      if (data["userName"] === USER_DATA.opponent.name) {
-        this.setState({opCurQuestion: data["newIndex"]});
-      }
-    });
+    SOCKET_OBJ.on(`前端对局中${this.roomName}房间有用户更新看题位置`, this.socketHandleUpdateLook);
+  }
+
+  socketHandleUpdateLook = res => {
+    let data = (res);
+    if (data["userName"] === USER_DATA.opponent.name) {
+      this.setState({opCurQuestion: data["newIndex"]});
+    }
+  }
+
+  componentWillUnmount() {
+    SOCKET_OBJ.off(`前端对局中${this.roomName}房间有用户更新看题位置`, this.socketHandleUpdateLook);
   }
 
 }

@@ -121,10 +121,7 @@ class Home extends Component {
         .catch((err) => console.log(err));
 
     // 再开启实时监听
-    SOCKET_OBJ.on('前端更新在线人数', (res) => {
-      let data = res;
-      this.setState({onlineNum: data.onlineNum, maxDiff: data.maxDiff});
-    });
+    SOCKET_OBJ.on('前端更新在线人数', this.socketHandleUpdateOnlineNumber);
     // 不停的检查是否已经登录
     this.checkLogin = setInterval(() => {
       if (USER_DATA.isLogin) {
@@ -139,9 +136,7 @@ class Home extends Component {
       this.setState(data);
     });
 
-    SOCKET_OBJ.on(`前端用户${USER_DATA.name}接收插入匹配池的消息`, data => {
-      myAlert(data["text"]);
-    })
+    SOCKET_OBJ.on(`前端用户${USER_DATA.name}接收插入匹配池的消息`, this.socketHandleListenPoolData);
   }
 
   componentWillUnmount() {
@@ -152,6 +147,22 @@ class Home extends Component {
       // 如果这个定时器还没有被清除掉
       clearInterval(this.checkLogin);
     }
+    // 关闭socket监听
+    if (USER_DATA.isLogin) {
+      SOCKET_OBJ.off(`前端用户${USER_DATA.name}匹配到对手`, this.socketHandleListenMatch);
+    }
+
+    SOCKET_OBJ.off('前端更新在线人数', this.socketHandleUpdateOnlineNumber);
+    SOCKET_OBJ.off(`前端用户${USER_DATA.name}接收插入匹配池的消息`, this.socketHandleListenPoolData);
+  }
+
+  socketHandleUpdateOnlineNumber = res => {
+    let data = res;
+    this.setState({onlineNum: data.onlineNum, maxDiff: data.maxDiff});
+  }
+
+  socketHandleListenPoolData = data => {
+    myAlert(data["text"]);
   }
 
   /**
@@ -159,58 +170,58 @@ class Home extends Component {
    * 这个函数需要在登录之后，执行一次
    */
   listenMatch = () => {
-    SOCKET_OBJ.on(`前端用户${USER_DATA.name}匹配到对手`, (res) => {
-      let data = res;
-
-      let opponentUserName = data['opponent'];
-      let opponentScore = data['opponentScore'];
-      let opponentHeadSculpture = data['opponentHeadSculpture'];
-
-      if (opponentUserName === USER_DATA.name) {
-        myAlert('出现了奇怪bug，自己匹配到了自己，请联系并督促开发者修复');
-        return;
-      }
-
-      USER_DATA.opponent.name = opponentUserName;
-      USER_DATA.opponent.score = opponentScore;
-      USER_DATA.opponent.headSculpture = opponentHeadSculpture;
-
-      // 当前抽到的题目的列表
-      USER_DATA.questionObjList = data['randomQuestionList'];
-
-      // 如果是打字模式，抽到的标题
-      USER_DATA.typewriteTitle = data['typewriteTitle'];
-
-      // 通知导航栏更改状态
-      PubSub.publish('导航栏修改模式', {
-        isUserPlaying: true,
-        modeName: data.mood,
-      });
-      const moodName = data.mood;
-
-      // 开始页面跳转
-      this.setState({isMatching: false});
-      if (moodName === '普通模式') {
-        this.setState({gotoLink: <Navigate to="/normalContest"/>});
-      }
-      if (moodName === '极限模式') {
-        this.setState({gotoLink: <Navigate to="/hardcoreContest"/>});
-      }
-      if (moodName === '多题模式') {
-        this.setState({gotoLink: <Navigate to="/multipleContest"/>});
-      }
-      if (moodName === '打字对决') {
-        this.setState({gotoLink: <Navigate to="/typewritingContest"/>});
-      }
-      if (moodName === '多题极限模式') {
-        this.setState({gotoLink: <Navigate to="/hardMoreContest"/>});
-      }
-
-      // 播放一个音效
-      startSound();
-    });
+    SOCKET_OBJ.on(`前端用户${USER_DATA.name}匹配到对手`, this.socketHandleListenMatch);
   };
+  socketHandleListenMatch = (res) => {
+    let data = res;
 
+    let opponentUserName = data['opponent'];
+    let opponentScore = data['opponentScore'];
+    let opponentHeadSculpture = data['opponentHeadSculpture'];
+
+    if (opponentUserName === USER_DATA.name) {
+      myAlert('出现了奇怪bug，自己匹配到了自己，请联系并督促开发者修复');
+      return;
+    }
+
+    USER_DATA.opponent.name = opponentUserName;
+    USER_DATA.opponent.score = opponentScore;
+    USER_DATA.opponent.headSculpture = opponentHeadSculpture;
+
+    // 当前抽到的题目的列表
+    USER_DATA.questionObjList = data['randomQuestionList'];
+
+    // 如果是打字模式，抽到的标题
+    USER_DATA.typewriteTitle = data['typewriteTitle'];
+
+    // 通知导航栏更改状态
+    PubSub.publish('导航栏修改模式', {
+      isUserPlaying: true,
+      modeName: data.mood,
+    });
+    const moodName = data.mood;
+
+    // 开始页面跳转
+    this.setState({isMatching: false});
+    if (moodName === '普通模式') {
+      this.setState({gotoLink: <Navigate to="/normalContest"/>});
+    }
+    if (moodName === '极限模式') {
+      this.setState({gotoLink: <Navigate to="/hardcoreContest"/>});
+    }
+    if (moodName === '多题模式') {
+      this.setState({gotoLink: <Navigate to="/multipleContest"/>});
+    }
+    if (moodName === '打字对决') {
+      this.setState({gotoLink: <Navigate to="/typewritingContest"/>});
+    }
+    if (moodName === '多题极限模式') {
+      this.setState({gotoLink: <Navigate to="/hardMoreContest"/>});
+    }
+
+    // 播放一个音效
+    startSound();
+  }
   /**
    * 取消匹配按钮逻辑
    */

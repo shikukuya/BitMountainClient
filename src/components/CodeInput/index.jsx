@@ -192,12 +192,7 @@ class CodeInput extends Component {
     })
 
     // 时刻监听对手的编辑位置
-    SOCKET_OBJ.on(`前端对局中${roomName}房间有用户更新代编辑位置`, res => {
-      const data = res;
-      if (data["userName"] === USER_DATA.opponent.name) {
-        this.setState({opLoc: data["loc"]});
-      }
-    });
+    SOCKET_OBJ.on(`前端对局中${roomName}房间有用户更新代编辑位置`, this.socketHandleUpdateLoc);
     // 时刻公布自己的位置，这里还是要写在定时器中，如果写在函数中，收到的是上一次的位置
     this.ani1 = setInterval(() => {
       SOCKET_OBJ.emit("对局中的用户更新自己的编辑位置", {
@@ -208,11 +203,19 @@ class CodeInput extends Component {
     }, 500);
   }
 
+  socketHandleUpdateLoc = res => {
+    const data = res;
+    if (data["userName"] === USER_DATA.opponent.name) {
+      this.setState({opLoc: data["loc"]});
+    }
+  }
+
   componentWillUnmount() {
+    const {roomName} = this.props;
     // 移除事件
     document.removeEventListener("keydown", preventFunction);
     clearInterval(this.ani1);
-
+    SOCKET_OBJ.off(`前端对局中${roomName}房间有用户更新代编辑位置`, this.socketHandleUpdateLoc);
   }
 }
 

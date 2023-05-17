@@ -82,15 +82,17 @@ class Admin extends Component {
     );
   }
 
+  socketHandleTest = data => {
+    console.log(data);
+    this.setState({socketReceiveText: data["sendText"]});
+  }
+
   componentDidMount() {
     console.log(SERVER_CONFIG.address, "这就是服务器地址");
 
     this.testHttp();
     this.testSocket();
-    SOCKET_OBJ.on("前端接受socket测试响应", data => {
-      console.log(data);
-      this.setState({socketReceiveText: data["sendText"]});
-    });
+    SOCKET_OBJ.on("前端接受socket测试响应", this.socketHandleTest);
 
     fetch(getUrl("getOnlineUserNum"), {
       method: 'GET',
@@ -122,11 +124,6 @@ class Admin extends Component {
     )
   }
 
-  changeAddressToLocal = () => {
-    // 把服务器地址改为本地
-    myAlert("还没做好");
-    // serverAddress = 'http://127.0.0.1:10009/';
-  }
   getMatchPoolHandle = () => {
     // 点击查看匹配池的按钮
 
@@ -171,6 +168,7 @@ class Admin extends Component {
   }
 
   componentWillUnmount() {
+    SOCKET_OBJ.off("前端接受socket测试响应", this.socketHandleTest);
   }
 }
 

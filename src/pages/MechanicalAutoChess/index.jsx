@@ -182,15 +182,17 @@ class MechanicalAutoChess extends Component {
           this.setState({userList: data});
         });
 
-    SOCKET_OBJ.on('前端监听机械自走棋榜上变化', (res) => {
-      const data = res;
-      this.setState({userList: data['array']});
-    });
+    SOCKET_OBJ.on('前端监听机械自走棋榜上变化', this.socketHandleListenRank);
 
     changeBackgroundMusic('bigStone');
   }
 
+  socketHandleListenRank = res => {
+    this.setState({userList: res['array']});
+  }
+
   componentWillUnmount() {
+    SOCKET_OBJ.off('前端监听机械自走棋榜上变化', this.socketHandleListenRank);
     changeBackgroundMusic('main');
   }
 

@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './index.css';
-import { computeLevel } from '../../model/level';
+import {computeLevel} from '../../model/level';
 import SOCKET_OBJ from '../../globalData/socketObject';
 import USER_DATA from '../../globalData/userData';
 
@@ -15,57 +15,57 @@ class FriendListItem extends Component {
   }
 
   render() {
-    const { name, score, id, headSculpture } = this.props;
+    const {name, score, id, headSculpture} = this.props;
 
     return (
-      <div className="friendItem" key={id} ref={this.selfEle}>
-        <img
-          src={require(`../../headImgs/${headSculpture}.png`)}
-          alt="no"
-          className="headImg"
-        />
-        <span className="score">
+        <div className="friendItem" key={id} ref={this.selfEle}>
+          <img
+              src={require(`../../headImgs/${headSculpture}.png`)}
+              alt="no"
+              className="headImg"
+          />
+          <span className="score">
           <span>{score}</span>分
         </span>
-        <img
-          src={require(`../../levelIcon/level${computeLevel(score)}.png`)}
-          alt=""
-          className="levelImg"
-        />
-        <span className="name">{name}</span>
-        <span>注册时间：</span>
-        <span>2019-12-24 12:20:15</span>
-        <button className="delBtn" onClick={this.delHandle}>
-          删除
-        </button>
-        <button className="matchBtn" onClick={this.contestHandle}>
-          友谊赛
-        </button>
-        {/*<button className="detailsBtn" onClick={this.showDataHandle}>信息</button>*/}
-        {/*友谊战设置面板*/}
-        {this.getFriendlyMatchSettings()}
-      </div>
+          <img
+              src={require(`../../levelIcon/level${computeLevel(score)}.png`)}
+              alt=""
+              className="levelImg"
+          />
+          <span className="name">{name}</span>
+          <span>注册时间：</span>
+          <span>2019-12-24 12:20:15</span>
+          <button className="delBtn" onClick={this.delHandle}>
+            删除
+          </button>
+          <button className="matchBtn" onClick={this.contestHandle}>
+            友谊赛
+          </button>
+          {/*<button className="detailsBtn" onClick={this.showDataHandle}>信息</button>*/}
+          {/*友谊战设置面板*/}
+          {this.getFriendlyMatchSettings()}
+        </div>
     );
   }
 
   getFriendlyMatchSettings = () => {
     if (this.state.showFriendlyMatch) {
       return (
-        <div className="friendlyMatchSettings">
-          <button className="closeBtn" onClick={this.closeMatchSettings}>
-            X
-          </button>
-          <select onChange={this.changeMood}>
-            <option value="普通模式">普通模式</option>
-            <option value="极限模式">极限模式</option>
-            <option value="多题模式">多题模式</option>
-            <option value="多题极限模式">多题极限模式</option>
-            <option value="打字对决">打字对决</option>
-          </select>
-          <button className="sendBtn" onClick={this.handleSendMatch}>
-            发送
-          </button>
-        </div>
+          <div className="friendlyMatchSettings">
+            <button className="closeBtn" onClick={this.closeMatchSettings}>
+              X
+            </button>
+            <select onChange={this.changeMood}>
+              <option value="普通模式">普通模式</option>
+              <option value="极限模式">极限模式</option>
+              <option value="多题模式">多题模式</option>
+              <option value="多题极限模式">多题极限模式</option>
+              <option value="打字对决">打字对决</option>
+            </select>
+            <button className="sendBtn" onClick={this.handleSendMatch}>
+              发送
+            </button>
+          </div>
       );
     } else {
       return null;
@@ -78,7 +78,7 @@ class FriendListItem extends Component {
   };
 
   delHandle = () => {
-    const { name } = this.props;
+    const {name} = this.props;
 
     // eslint-disable-next-line no-restricted-globals
     if (confirm('是否删除')) {
@@ -93,17 +93,18 @@ class FriendListItem extends Component {
   };
 
   contestHandle = () => {
-    this.setState({ showFriendlyMatch: true });
+    this.setState({showFriendlyMatch: true});
   };
   closeMatchSettings = () => {
     // 关闭友谊战设置面板
-    this.setState({ showFriendlyMatch: false });
+    this.setState({showFriendlyMatch: false});
   };
   // 发送友谊战消息
   handleSendMatch = () => {
-    const { currentSelectMood } = this.state;
+    const {currentSelectMood} = this.state;
 
-    const { name, score, id, headSculpture } = this.props;
+    // const { name, score, id, headSculpture } = this.props;
+    const {name} = this.props;
     // 发送友谊战申请
     SOCKET_OBJ.emit('后端处理用户发起友谊战', {
       senderName: USER_DATA.name,
@@ -112,11 +113,11 @@ class FriendListItem extends Component {
       senderData: USER_DATA,
     });
     // 关闭友谊战设置面板
-    this.setState({ showFriendlyMatch: false });
+    this.setState({showFriendlyMatch: false});
   };
-  showDataHandle = () => {};
 
-  componentDidMount() {}
+  componentDidMount() {
+  }
 }
 
 export default FriendListItem;

@@ -13,12 +13,6 @@ SOCKET_OBJ.on('connect', () => {
   console.log('SOCKET_OBJ 连接服务器成功');
 });
 
-// socket.io 固有事件：丢失连接时触发时间处理器
-// SOCKET_OBJ.on('disconnect', (timeout) => {
-//   console.log('链接丢失');
-//   SOCKET_OBJ.close(); // 关闭连接
-// });
-
 SOCKET_OBJ.on('disconnect', (timeout) => {
   console.log('链接丢失');
   SOCKET_OBJ.close(); // 关闭连接

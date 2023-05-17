@@ -66,27 +66,32 @@ class FriendList extends Component {
     );
 
     // 有人这时候把自己给删除了
-    SOCKET_OBJ.on(`前端${USER_DATA.name}处理被好友删除`, res => {
-      let data = (res);
-      let doUser = data["doUser"];
-      let newArr = [];
-      for (let item of this.state.friendArr) {
-        if (item.name !== doUser) {
-          newArr.push(item);
-        }
-      }
-      this.setState({friendArr: newArr});
-    })
+    SOCKET_OBJ.on(`前端${USER_DATA.name}处理被好友删除`, this.socketHandleDeleteFriend);
+    SOCKET_OBJ.on(`前端${USER_DATA.name}新增好友`, this.socketHandleAddFriend);
+  }
 
-    SOCKET_OBJ.on(`前端${USER_DATA.name}新增好友`, (res) => {
-      let data = (res);
-      let newArr = [...this.state.friendArr];
-      newArr.push(data);
-      this.setState({friendArr: newArr});
-    });
+  socketHandleDeleteFriend = res => {
+    let data = (res);
+    let doUser = data["doUser"];
+    let newArr = [];
+    for (let item of this.state.friendArr) {
+      if (item.name !== doUser) {
+        newArr.push(item);
+      }
+    }
+    this.setState({friendArr: newArr});
+  }
+
+  socketHandleAddFriend = (res) => {
+    let data = (res);
+    let newArr = [...this.state.friendArr];
+    newArr.push(data);
+    this.setState({friendArr: newArr});
   }
 
   componentWillUnmount() {
+    SOCKET_OBJ.off(`前端${USER_DATA.name}处理被好友删除`, this.socketHandleDeleteFriend);
+    SOCKET_OBJ.off(`前端${USER_DATA.name}新增好友`, this.socketHandleAddFriend);
   }
 }
 
