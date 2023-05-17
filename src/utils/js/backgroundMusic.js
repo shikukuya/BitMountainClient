@@ -4,51 +4,52 @@
  */
 
 
-/**
- * 背景音乐列表
- */
-let bgmDic = {
-  login: new Audio(require(`../music/比特山登录前界面.mp3`)),
-  main: new Audio(require(`../music/比特山主界面.mp3`)),
-  ticTacToe: new Audio(require(`../music/比特山井字棋对决.mp3`)),
-  gobang: new Audio(require(`../music/比特山五子棋对决.mp3`)),
-  bigStone: new Audio(require(`../music/巨石行棋.mp3`)),
-  typeWrite: new Audio(require(`../music/比特山打字对决.mp3`)),
+import PubSub from "pubsub-js";
+
+let bgmSrcDic = {
+  login: "http://littlefean.gitee.io/bit-mountain-music/music/login.mp3",
+  main: "http://littlefean.gitee.io/bit-mountain-music/music/mainTheme.mp3",
+  ticTacToe: "http://littlefean.gitee.io/bit-mountain-music/music/ticTacToc.mp3",
+  gobang: "http://littlefean.gitee.io/bit-mountain-music/music/gobang.mp3",
+  bigStone: "http://littlefean.gitee.io/bit-mountain-music/music/mechanicalAutoChess.mp3",
+  typeWrite: "http://littlefean.gitee.io/bit-mountain-music/music/typeWritting.mp3",
 }
 // 当前正在播放的是哪个背景音乐
 let currentBgm = "login";
+let currentVolume = 1;
 
-{
-  // 初始化
-  // 所有音乐无限循环，音量为0
-  for (let key in bgmDic) {
-    if (bgmDic.hasOwnProperty(key)) {
-      bgmDic[key].loop = true;
-      bgmDic[key].volume = 0;
-    }
-  }
-  // 当前播放的音乐音量为1
-  bgmDic[currentBgm].volume = 1;
-}
 
+/**
+ * 开始播放背景音乐
+ */
 export function playBackgroundMusic() {
-  for (let key in bgmDic) {
-    if (bgmDic.hasOwnProperty(key)) {
-      bgmDic[key].play();
-    }
-  }
+  currentVolume = 1;
+  PubSub.publish("背景音乐状态改变", {
+    "volume": currentVolume,
+    "src": bgmSrcDic[currentBgm],
+  });
 }
 
+/**
+ * 停止播放背景音乐
+ */
 export function pauseBackgroundMusic() {
-  for (let key in bgmDic) {
-    if (bgmDic.hasOwnProperty(key)) {
-      bgmDic[key].pause();
-    }
-  }
+  currentVolume = 0;
+  PubSub.publish("背景音乐状态改变", {
+    "volume": currentVolume,
+    "src": bgmSrcDic[currentBgm],
+  });
 }
 
+/**
+ * 切换背景音乐
+ * @param str
+ */
 export function changeBackgroundMusic(str) {
-  bgmDic[currentBgm].volume = 0;
   currentBgm = str;
-  bgmDic[currentBgm].volume = 1;
+  PubSub.publish("背景音乐状态改变", {
+    "volume": currentVolume,
+    "src": bgmSrcDic[currentBgm],
+  });
+
 }

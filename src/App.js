@@ -23,10 +23,12 @@ import HonorPath from "./pages/HonorPath";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import MechanicalAutoChess from "./pages/MechanicalAutoChess";
 import Admin from "./pages/Admin";
+import PubSub from "pubsub-js";
 
 export default class App extends Component {
 
   render() {
+    const hint = "您的浏览器不支持HTML5音频标签，请升级到更新的浏览器。";
     return (
         <div>
           <TopNav/>
@@ -54,28 +56,34 @@ export default class App extends Component {
 
             <Route path="/" element={<Navigate to="/home"/>}/>
           </Routes>
-
+          <div className="music">
+            <audio src={this.state.currentMusicSrc}
+                   ref={this.musicRef}
+                   autoPlay loop preload={"auto"}>{hint}</audio>
+          </div>
         </div>
     )
   }
 
-  gotoHome = () => {
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentMusicSrc: "http://littlefean.gitee.io/bit-mountain-music/music/login.mp3",
+    }
+    this.musicRef = React.createRef();
   }
 
   componentDidMount() {
-    const konamiCode = [
-      38, // up
-      38, // up
-      40, // down
-      40, // down
-      37, // left
-      39, // right
-      37, // left
-      39, // right
-      66, // b
-      65  // a
-    ];
+
+    this.token = PubSub.subscribe("背景音乐状态改变", (_, data) => {
+      this.setState({currentMusicSrc: data["src"]});
+      this.musicRef.current.volume = data["volume"];
+      this.musicRef.current.play();
+    });
+
+
+    // 上上下下左右左右 ba
+    const konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
 
     let konamiCodeIndex = 0;
 
@@ -93,4 +101,10 @@ export default class App extends Component {
     });
 
   }
+
+  componentWillUnmount() {
+    // 取消消息订阅
+    PubSub.unsubscribe(this.token);
+  }
+
 }
