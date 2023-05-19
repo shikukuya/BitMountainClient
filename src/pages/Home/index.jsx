@@ -99,8 +99,8 @@ class Home extends Component {
           {gotoLink}
           <div className="serverData">
             <p>当前连接人数：{onlineNum}</p>
-            {/*<p>当前登录人数：{onlineNum}</p>*/}
             <p>匹配最大分数容差：{maxDiff}</p>
+            {/*<button onClick={this.testBtn}>test</button>*/}
           </div>
           {this.getInnerElement()}
           <div className="noticeLine">{noticeText}</div>
@@ -112,7 +112,15 @@ class Home extends Component {
     );
   }
 
+  // testBtn = () => {
+  //   console.log(123);
+  //   // SOCKET_OBJ.emit("后端测试监听2", {"id": "767f1e66-4cbd-57b4-9273-453fff6e0be1"});
+  // }
+
   componentDidMount() {
+    // SOCKET_OBJ.on("前端监听消息", res => {
+    //   console.log(res);
+    // })
     fetch(getUrl('getOnlineUserNum'))
         .then((res) => res.json())
         .then((res) => {

@@ -15,6 +15,7 @@ class FriendlyMatchAlert extends Component {
         name: "xxx",
         score: 120,
         headSculpture: 1,
+        id: "?"
       },
     }
   }
@@ -60,16 +61,20 @@ class FriendlyMatchAlert extends Component {
   handleAffirm = () => {
     this.setState({isShow: false});
     SOCKET_OBJ.emit("用户接受友谊战请求", {
-      senderName: this.state.friendData.name,
-      acceptName: USER_DATA.name,
+      senderId: this.state.friendData.id,
+      acceptId: USER_DATA.id,
       moodName: this.state.moodName,
     })
   }
 
   handleRefuse = () => {
     SOCKET_OBJ.emit("用户拒绝友谊战请求", {
-      refuserName: USER_DATA.name,
-      refuseUserName: this.state.friendData.name,
+      // 拒绝者
+      // refuserName: USER_DATA.name,
+      refuserId: USER_DATA.id,
+      // 拒绝了谁
+      // refuseUserName: this.state.friendData.name,
+      refuseUserId: this.state.friendData.id,
     })
     this.setState({isShow: false});
   }

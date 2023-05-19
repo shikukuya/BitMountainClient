@@ -40,6 +40,8 @@ class LoginPanel extends Component {
 
   closeHandle = () => {
     this.props.closeFunc();
+    this.emailMoodHintEle.current.innerText = "";
+    this.passwordHintEle.current.innerHTML = "";
   };
 
   handleEmailMood = () => {
@@ -232,6 +234,8 @@ class LoginPanel extends Component {
           }
 
           this.props.closeFunc(); // 关闭面板
+          this.emailMoodHintEle.current.innerText = "";
+          this.passwordHintEle.current.innerHTML = "";
           // fixme 跳转到home界面
         } else {
           // 登录失败了
@@ -297,9 +301,13 @@ class LoginPanel extends Component {
           const userName = res.userName;
           USER_DATA.isLogin = true;
           USER_DATA.name = userName;
-          // todo
+
+          this.props.closeFunc(); // 关闭面板
+          this.emailMoodHintEle.current.innerText = "";
+          this.passwordHintEle.current.innerHTML = "";
         } else {
           // 登录失败，打印原因
+          this.emailMoodHintEle.current.innerText = res["text"];
         }
       });
   };

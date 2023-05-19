@@ -216,17 +216,17 @@ class TopNav extends Component {
     let checkInterval = setInterval(() => {
       if (USER_DATA.isLogin) {
         // 登录后收到消息
-        SOCKET_OBJ.on(`前端用户${USER_DATA.name}接收友谊战申请`, this.socketHandleFriendlyContestReq);
-        SOCKET_OBJ.on(`前端用户${USER_DATA.name}友谊战申请被拒绝`, this.socketHandleFriendlyContestRefuse);
-        SOCKET_OBJ.on(`前端用户${USER_DATA.name}友谊战申请被接受`, this.socketHandleFriendlyContestAccept);
-        SOCKET_OBJ.on(`前端用户${USER_DATA.name}进入友谊战`, this.socketHandleFriendlyContestStart);
+        SOCKET_OBJ.on(`前端用户${USER_DATA.id}接收友谊战申请`, this.socketHandleFriendlyContestReq);
+        SOCKET_OBJ.on(`前端用户${USER_DATA.id}友谊战申请被拒绝`, this.socketHandleFriendlyContestRefuse);
+        SOCKET_OBJ.on(`前端用户${USER_DATA.id}友谊战申请被接受`, this.socketHandleFriendlyContestAccept);
+        SOCKET_OBJ.on(`前端用户${USER_DATA.id}进入友谊战`, this.socketHandleFriendlyContestStart);
         clearInterval(checkInterval);
       }
       this.render();
     }, 500);
   }
-  socketHandleFriendlyContestReq = (res) => {
-    let data = res;
+
+  socketHandleFriendlyContestReq = data => {
     myAlert('收到了友谊战申请消息');
     PubSub.publish('友谊战弹窗组件改变状态', {
       isShow: true,
@@ -235,13 +235,12 @@ class TopNav extends Component {
     });
   }
   socketHandleFriendlyContestRefuse = (res) => {
-    myAlert(`${res['refuserName']}拒绝了您的友谊战申请`);
+    myAlert(`${res['refuserId']}拒绝了您的友谊战申请`);
   }
   socketHandleFriendlyContestAccept = (res) => {
-    myAlert(`${res['acceptName']}接受了您的友谊战申请`);
+    myAlert(`${res['senderId']}接受了您的友谊战申请`);
   }
-  socketHandleFriendlyContestStart = (res) => {
-    let data = res;
+  socketHandleFriendlyContestStart = data => {
     USER_DATA.opponent.name = data['opponent'];
     USER_DATA.opponent.score = data['opponentScore'];
     USER_DATA.opponent.headSculpture = data['opponentHeadSculpture'];
@@ -273,10 +272,10 @@ class TopNav extends Component {
   componentWillUnmount() {
     PubSub.unsubscribe(this.pubSub1);
 
-    SOCKET_OBJ.off(`前端用户${USER_DATA.name}接收友谊战申请`, this.socketHandleFriendlyContestReq);
-    SOCKET_OBJ.off(`前端用户${USER_DATA.name}友谊战申请被拒绝`, this.socketHandleFriendlyContestRefuse);
-    SOCKET_OBJ.off(`前端用户${USER_DATA.name}友谊战申请被接受`, this.socketHandleFriendlyContestAccept);
-    SOCKET_OBJ.off(`前端用户${USER_DATA.name}进入友谊战`, this.socketHandleFriendlyContestStart);
+    SOCKET_OBJ.off(`前端用户${USER_DATA.id}接收友谊战申请`, this.socketHandleFriendlyContestReq);
+    SOCKET_OBJ.off(`前端用户${USER_DATA.id}友谊战申请被拒绝`, this.socketHandleFriendlyContestRefuse);
+    SOCKET_OBJ.off(`前端用户${USER_DATA.id}友谊战申请被接受`, this.socketHandleFriendlyContestAccept);
+    SOCKET_OBJ.off(`前端用户${USER_DATA.id}进入友谊战`, this.socketHandleFriendlyContestStart);
   }
 
   handleMusicPlay = () => {

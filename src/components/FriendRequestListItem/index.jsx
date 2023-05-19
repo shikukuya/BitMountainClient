@@ -11,8 +11,8 @@ class FriendRequestListItem extends Component {
     }
 
     render() {
-
-        const {name, score, id, note, headSculpture} = this.props;
+        // 其实全是数据库中userDetails里的
+        const {userName, score, id, note, headSculpture} = this.props;
         return (
             <div className="friendRequestItem" key={id} ref={this.selfEle}>
                 <div className="left">
@@ -20,13 +20,11 @@ class FriendRequestListItem extends Component {
                 </div>
                 <div className="mid">
                     <div className="basicData">
-                        <div className="name">{name}</div>
+                        <div className="name">{userName}</div>
                         <img src={require(`../../levelIcon/level${computeLevel(score)}.png`)} alt="" className="level"/>
                         <div className="score">{score}</div>
                     </div>
-                    <div className="note">
-                        {note}
-                    </div>
+                    <div className="note">{note}</div>
 
                 </div>
                 <div className="right">
@@ -40,11 +38,11 @@ class FriendRequestListItem extends Component {
 
     // 发送接受这个好友、拒绝这个好友的后端消息
     emitData = (bool) => {
-        const {name} = this.props;
+        const {id} = this.props;
         SOCKET_OBJ.emit("后端更新好友请求处理", {
             // a 同意 b
-            aUser: USER_DATA.name,
-            bUser: name,
+            aUser: USER_DATA.id,
+            bUser: id,
             isAgree: bool,
         })
         this.selfEle.current.style.display = "none";

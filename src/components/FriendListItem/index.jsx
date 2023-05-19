@@ -15,7 +15,7 @@ class FriendListItem extends Component {
   }
 
   render() {
-    const {name, score, id, headSculpture} = this.props;
+    const {userName, score, id, headSculpture} = this.props;
 
     return (
         <div className="friendItem" key={id} ref={this.selfEle}>
@@ -32,7 +32,7 @@ class FriendListItem extends Component {
               alt=""
               className="levelImg"
           />
-          <span className="name">{name}</span>
+          <span className="name">{userName}</span>
           <span>注册时间：</span>
           <span>2019-12-24 12:20:15</span>
           <button className="delBtn" onClick={this.delHandle}>
@@ -78,13 +78,13 @@ class FriendListItem extends Component {
   };
 
   delHandle = () => {
-    const {name} = this.props;
+    const {id} = this.props;
 
     // eslint-disable-next-line no-restricted-globals
     if (confirm('是否删除')) {
       SOCKET_OBJ.emit('后端处理删除好友', {
-        senderUser: USER_DATA.name,
-        receiverUser: name,
+        senderUser: USER_DATA.id,
+        receiverUser: id,
       });
 
       // 前端删除这个东西  直接暂时display:None 得了
@@ -104,11 +104,11 @@ class FriendListItem extends Component {
     const {currentSelectMood} = this.state;
 
     // const { name, score, id, headSculpture } = this.props;
-    const {name} = this.props;
+    const {id} = this.props;
     // 发送友谊战申请
     SOCKET_OBJ.emit('后端处理用户发起友谊战', {
-      senderName: USER_DATA.name,
-      receiverName: name,
+      senderId: USER_DATA.id,
+      receiverId: id,
       moodName: currentSelectMood,
       senderData: USER_DATA,
     });

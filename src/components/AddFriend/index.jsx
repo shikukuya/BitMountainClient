@@ -47,12 +47,12 @@ class AddFriend extends Component {
 
   componentDidMount() {
     if (USER_DATA.isLogin) {
-      SOCKET_OBJ.on(`前端${USER_DATA.name}接收好友请求发送结果`, this.socketHandleRes);
+      SOCKET_OBJ.on(`前端${USER_DATA.id}接收好友请求发送结果`, this.socketHandleRes);
     }
   }
   componentWillUnmount() {
     if (USER_DATA.isLogin) {
-      SOCKET_OBJ.off(`前端${USER_DATA.name}接收好友请求发送结果`, this.socketHandleRes);
+      SOCKET_OBJ.off(`前端${USER_DATA.id}接收好友请求发送结果`, this.socketHandleRes);
     }
   }
 

@@ -1,30 +1,27 @@
 import { io } from 'socket.io-client';
 import myAlert from "../utils/js/alertMassage";
 
-let socketUrl = `ws://127.0.0.1:65533`;
-let socketUrlDebug = `ws://124.221.150.160:65533`;
+let socketUrlLocal = `ws://127.0.0.1:65533`;
+let socketUrlRemote = `ws://124.221.150.160:65533`;
 
-// let SOCKET_OBJ = io.connect(socketUrl, {transports: ['websocket']});
-let SOCKET_OBJ = io.connect(socketUrl, {
-  transports: ['websocket'],
-});
+let SOCKET_OBJ = io.connect(socketUrlLocal, {transports: ['websocket']});
 
 SOCKET_OBJ.on('connect', () => {
-  console.log('SOCKET_OBJ 连接服务器成功');
+  console.log('SOCKET_OBJ 本地连接成功');
 });
 
 SOCKET_OBJ.on('disconnect', (timeout) => {
-  console.log('链接丢失');
+  console.log('链接丢失', timeout);
   SOCKET_OBJ.close(); // 关闭连接
   myAlert("服务器断开连接，1秒后重连");
   setTimeout(() => SOCKET_OBJ.connect(), 1000);
 });
 
 SOCKET_OBJ.on('connect_error', (err) => {
-  console.warn('SOCKET_OBJ 连接失败：', err);
-  console.log('SOCKET_OBJ 启用本地调试模式');
-  // 优先连接本地的，连接不上就连接
-  SOCKET_OBJ.io.uri = socketUrlDebug;
+  console.log('SOCKET_OBJ 本地连接失败：', err);
+  console.log('SOCKET_OBJ 启用远程模式');
+  // 优先连接本地的，连接不上就连接远程的
+  SOCKET_OBJ.io.uri = socketUrlRemote;
 });
 
 SOCKET_OBJ.on('connect_timeout', () => {

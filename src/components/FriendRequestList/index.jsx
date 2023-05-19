@@ -16,6 +16,7 @@ class FriendRequestList extends Component {
         <div>
           <CopyUUID/>
           <AddFriend/>
+          {/*name, score, id, note, headSculpture*/}
           {this.state.friendReqArr.map((cur) => {
             return <FriendRequestListItem {...cur} />;
           })}
@@ -25,67 +26,64 @@ class FriendRequestList extends Component {
 
   componentDidMount() {
     if (USER_DATA.isLogin) {
-      fetch(getUrl('getFriendReqByUserName'), {
+      fetch(getUrl('getFriendReqByUserId'), {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({userName: USER_DATA.name}),
+        body: JSON.stringify({id: USER_DATA.id}),
       })
           .then((response) => response.json())
           .then((res) => {
             if (res.status) {
-              let arr = [];
-              let dic = res.data;
-              for (let key in dic) {
-                if (dic.hasOwnProperty(key)) {
-                  let friendObj = dic[key];
-                  friendObj.name = key;
-                  arr.push(friendObj);
-                }
-              }
-              this.setState({friendReqArr: arr});
+              this.setState({friendReqArr: res["data"]});
+              /**
+               * arr 中的每一项中必须有
+               * {name, score, id, note, headSculpture}
+               */
             } else {
               console.warn(res.text);
             }
           });
 
-      SOCKET_OBJ.on(`前端${USER_DATA.name}接收好友请求`, this.socketHandleGetFriend);
+      SOCKET_OBJ.on(`前端${USER_DATA.id}接收好友请求`, this.socketHandleGetFriend);
     }
   }
 
-  socketHandleGetFriend = res => {
-    let data = res;
-
+  /**
+   * 前端接收到好友请求
+   * 包涵内容：
+   * fromUserId: "xxx"
+   * note: "xxx"
+   * @param data
+   */
+  socketHandleGetFriend = data => {
     let arr = this.state.friendReqArr;
 
-    let fromUser = data['fromUser'];
-    let note = data.note;
+    let fromUserId = data['fromUserId'];
+    let note = data["note"];
 
-    fetch(getUrl('getDetailByUserName'), {
+    fetch(getUrl('getDetailByUserId'), {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({userName: fromUser}),
+      body: JSON.stringify({id: fromUserId}),
     })
         .then((res) => res.json())
-        .then((res2) => {
-          if (res2.status) {
+        .then(res2 => {
+          if (res2["status"]) {
             console.log('来加好友的人是数据库里的人，来源正确', res2);
-            arr.push({
-              name: fromUser,
-              score: res2.data.score,
-              id: res2.data.id,
-              note: note,
-              headSculpture: res2.data.headSculpture,
-            });
+            // name 改为 userName
+            let newFriendReq = res2["data"];
+            newFriendReq["note"] = note;
+            arr.push(newFriendReq);
             this.setState({friendReqArr: arr});
           } else {
-            console.log('来加好友的人不是数据库里的', res2);
+            console.warn('来加好友的人不是数据库里的', res2);
           }
         });
   }
 
   componentWillUnmount() {
     if (USER_DATA.isLogin) {
-      SOCKET_OBJ.off(`前端${USER_DATA.name}接收好友请求`, this.socketHandleGetFriend);
+      SOCKET_OBJ.off(`前端${USER_DATA.id}接收好友请求`, this.socketHandleGetFriend);
     }
   }
 }
