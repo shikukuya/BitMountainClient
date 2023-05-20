@@ -45,7 +45,7 @@ class MultipleContestList extends Component {
       this.setState({myCurQuestion: index});
       SOCKET_OBJ.emit("对局中的用户更新自己在看哪个题", {
         roomName: this.roomName,
-        userName: USER_DATA.name,
+        userId: USER_DATA.id,
         newIndex: index,
       });
       // 告诉Question组件展示对应的题目
@@ -61,9 +61,8 @@ class MultipleContestList extends Component {
     SOCKET_OBJ.on(`前端对局中${this.roomName}房间有用户更新看题位置`, this.socketHandleUpdateLook);
   }
 
-  socketHandleUpdateLook = res => {
-    let data = (res);
-    if (data["userName"] === USER_DATA.opponent.name) {
+  socketHandleUpdateLook = data => {
+    if (data["userId"] === USER_DATA.opponent.id) {
       this.setState({opCurQuestion: data["newIndex"]});
     }
   }

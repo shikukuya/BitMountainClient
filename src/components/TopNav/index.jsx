@@ -314,15 +314,13 @@ class TopNav extends Component {
   handleExitContest = () => {
     // 先退出的用户直接导致自己认输，对方获胜
 
-    let contestName = connectStr(USER_DATA.name, USER_DATA.opponent.name);
-
     SOCKET_OBJ.emit('后端处理玩家认输比赛', {
-      contestName: contestName,
-      exitPlayerName: USER_DATA.name,
+      contestName: connectStr(USER_DATA.id, USER_DATA.opponent.id),
+      exitPlayerId: USER_DATA.id,
     });
 
     // 更新USER.对手 的信息，让他变成一个默认的无效
-    USER_DATA.opponent.name = "xxx";
+    USER_DATA.opponent = null;
 
     this.setState({isUserPlaying: false});
   };

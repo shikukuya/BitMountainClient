@@ -139,7 +139,7 @@ class CodeInput extends Component {
     // 时刻公布自己的代码量，
     SOCKET_OBJ.emit("对局中的用户更新自己的代码量", {
       roomName: this.props.roomName,
-      userName: USER_DATA.name,
+      userId: USER_DATA.id,
       codeSize: calculateCodeSize(value)
     });
 
@@ -158,7 +158,6 @@ class CodeInput extends Component {
   changeLanguageHandle = (ev) => {
     const languageStr = ev.target.value;
     const beforeLanguageStr = this.state.language;
-    console.log(beforeLanguageStr, "===>", languageStr)
     // 检测用户是否更改了代码模板
     // 检测依据是用户还没修改超过20个字符
     const dis = strDistance(
@@ -178,13 +177,11 @@ class CodeInput extends Component {
     } else {
       this.setState({userCode: templates[languageStr]});
     }
-
-    console.log("用户选择了更换语言", languageStr)
   }
 
   componentDidMount() {
     const {roomName} = this.props;
-
+    // 阻止一些按键
     document.addEventListener("keydown", preventFunction);
     // 先更新一下自己的位置
     this.setState({
@@ -197,7 +194,7 @@ class CodeInput extends Component {
     this.ani1 = setInterval(() => {
       SOCKET_OBJ.emit("对局中的用户更新自己的编辑位置", {
         roomName: this.props.roomName,
-        userName: USER_DATA.name,
+        userId: USER_DATA.id,
         loc: this.state.myLoc
       });
     }, 500);
@@ -205,7 +202,7 @@ class CodeInput extends Component {
 
   socketHandleUpdateLoc = res => {
     const data = res;
-    if (data["userName"] === USER_DATA.opponent.name) {
+    if (data["userId"] === USER_DATA.opponent.id) {
       this.setState({opLoc: data["loc"]});
     }
   }

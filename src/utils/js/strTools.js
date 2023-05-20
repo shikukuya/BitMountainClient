@@ -16,7 +16,7 @@ export function connectStr(aStr, bStr) {
 }
 
 /**
- * 拼接
+ * 拼接字符串数组
  * @param arr
  */
 export function sortAndConcatenateStrings(arr) {

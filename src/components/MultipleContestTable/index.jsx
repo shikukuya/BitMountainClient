@@ -9,17 +9,28 @@ class MultipleContestTable extends Component {
     super(props);
     /**
      * props说明
-     * team1: ["aName", "bName", "cName", ]
-     * team2: ["bName", "ccName",...]
-     * initHp: 5
+     * team1UserObjList=[
+                    {userName: USER_DATA.name, userId: USER_DATA.id}
+                  ]
+       team2UserObjList=[
+                      {userName: USER_DATA.opponent.name, userId: USER_DATA.opponent.id}
+                    ]
+       initHp={this.props.hpInit}
      */
-    const {team1, team2} = this.props;
+    const {team1UserObjList, team2UserObjList} = this.props;
     /// 房间名字
-    this.roomName = sortAndConcatenateStrings([...team1, ...team2]);
+    let arr = [];
+    for (let obj of team1UserObjList) {
+      arr.push(obj["userId"]);
+    }
+    for (let obj of team2UserObjList) {
+      arr.push(obj["userId"]);
+    }
+    this.roomName = sortAndConcatenateStrings(arr);
   }
 
   render() {
-    const {team1, team2} = this.props;
+    const {team1UserObjList, team2UserObjList} = this.props;
     const {initHp} = this.props;
 
     return (
@@ -30,22 +41,28 @@ class MultipleContestTable extends Component {
             <div className="box">代码总量</div>
           </div>
           {
-            team1.map((nameStr, i) => {
+            team1UserObjList.map((userObj, i) => {
               return (
                   <MultipleContestTableLine
                       symbolColor="green"
                       roomName={this.roomName}
-                      initHp={initHp} name={nameStr} key={i}/>
+                      initHp={initHp}
+                      userName={userObj["userName"]}
+                      userId={userObj["userId"]}
+                      key={i}/>
               )
             })
           }
           {
-            team2.map((nameStr, i) => {
+            team2UserObjList.map((userObj, i) => {
               return (
                   <MultipleContestTableLine
                       symbolColor="orangered"
                       roomName={this.roomName}
-                      initHp={initHp} name={nameStr} key={i}/>
+                      initHp={initHp}
+                      userName={userObj["userName"]}
+                      userId={userObj["userId"]}
+                      key={i}/>
               )
             })
           }

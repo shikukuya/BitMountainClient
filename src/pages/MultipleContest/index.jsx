@@ -22,16 +22,11 @@ class MultipleContest extends Component {
     const {hpInit, moodName} = this.props;
 
     this.moodName = moodName;  // 只有两种可能 "普通模式"  "极限模式"
-    this.roomName = connectStr(USER_DATA.name, USER_DATA.opponent.name);
-    this.team1NameArr = [USER_DATA.name];
-    this.team2NameArr = [USER_DATA.opponent.name];
+    this.roomName = connectStr(USER_DATA.id, USER_DATA.opponent.id);
 
     this.state = {
       // 题目列表
       questionList: USER_DATA.questionObjList,
-
-      // 我和对方当前正在看的题
-      myCurQuestion: 0,
 
       // 显示对战表格中的数据
       myHp: hpInit,
@@ -85,8 +80,12 @@ class MultipleContest extends Component {
 
             <div className="bottomArea">
               <MultipleContestTable
-                  team1={this.team1NameArr}
-                  team2={this.team2NameArr}
+                  team1UserObjList={[
+                    {userName: USER_DATA.name, userId: USER_DATA.id}
+                  ]}
+                  team2UserObjList={[
+                    {userName: USER_DATA.opponent.name, userId: USER_DATA.opponent.id}
+                  ]}
                   initHp={this.props.hpInit}
               />
               <div className="userPanel">
@@ -102,9 +101,8 @@ class MultipleContest extends Component {
     );
   }
 
-  socketHandleUserSurrender = res => {
-    let data = (res);
-    if (data.exitPlayerName === USER_DATA.opponent.name) {
+  socketHandleUserSurrender = data => {
+    if (data["exitPlayerId"] === USER_DATA.opponent.id) {
       // 对方跑了 告诉后端自己赢了
       userContestEnd(true, this.moodName, res => {
         PubSub.publish("导航栏修改模式", {isUserPlaying: false});
@@ -113,7 +111,7 @@ class MultipleContest extends Component {
         this.setState({isEnd: true, isWin: true, endReason: "对方逃跑了"})
       });
       winSound();
-    } else if (data.exitPlayerName === USER_DATA.name) {
+    } else if (data["exitPlayerId"] === USER_DATA.id) {
       // 跑的人竟是我自己
       // 展示弹窗
       userContestEnd(false, this.moodName, res => {
@@ -122,7 +120,7 @@ class MultipleContest extends Component {
       });
       louseSound();
     } else {
-      console.log("不知道是谁认输了", data.exitPlayerName);
+      console.log("不知道是谁认输了", data["exitPlayerId"]);
     }
   }
   socketHandleUserAc = res => {
@@ -211,27 +209,37 @@ class MultipleContest extends Component {
   }
   socketHandleUserWa = res => {
     /**
-     * submitUser
-     * errType
-     * errData
-     * language
+     * res {
+            "submitUserId": data["submitUserId"],  # 此变量完全没用到，只借助服务器传输
+
+            "flag": flag,
+            "acCount": acCount,
+
+            "language": language,
+
+            "questionId": questionID,
+            "questionIndex": data["questionIndex"],
+
+            "errData": errData,
+            "errType": flag,
+        }
      * @type {Object}
      */
     let data = (res);
 
     PubSub.publish(`多题图标${data["questionIndex"]}增加提交语言图标`, {
       languageName: data["language"],
-      isMy: data["submitUser"] === USER_DATA.name,
+      isMy: data["submitUserId"] === USER_DATA.id,
     });
 
     PubSub.publish(`多题图标${data["questionIndex"]}更新状态`, {
       stage: 1,
-      isMy: data["submitUser"] === USER_DATA.name,
+      isMy: data["submitUserId"] === USER_DATA.id,
     });
 
-    PubSub.publish(`多题表格行${data["submitUser"]}监听掉血`, {});
+    PubSub.publish(`多题表格行${data["submitUserId"]}监听掉血`, {});
 
-    if (data["submitUser"] === USER_DATA.name) {
+    if (data["submitUserId"] === USER_DATA.id) {
       // 提交错的人是我自己
 
       let newHp = this.state.myHp - 1;
@@ -256,7 +264,7 @@ class MultipleContest extends Component {
         });
         louseSound();
       }
-    } else {
+    } else if (data["submitUserId"] === USER_DATA.opponent.id) {
       // 对方没通过
       let newHp = this.state.opHp - 1;
       this.setState({
@@ -301,7 +309,7 @@ class MultipleContest extends Component {
     if (submitDisable) return;
 
     SOCKET_OBJ.emit(`单挑模式监听用户提交代码`, {
-      submitUserName: USER_DATA.name,
+      submitUserId: USER_DATA.id,
       submitCode: userCode,
       language: userLanguage,
       matchName: this.roomName,

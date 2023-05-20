@@ -285,9 +285,14 @@ class TypeWritingContest extends Component {
     changeBackgroundMusic("typeWrite");
   }
 
-  socketHandleUserSurrender = res => {
-    let data = (res);
-    if (data.exitPlayerName === USER_DATA.opponent.name) {
+  /**
+   * data : {
+   *    "exitPlayerId": data["exitPlayerId"]
+   * }
+   * @param data
+   */
+  socketHandleUserSurrender = data => {
+    if (data["exitPlayerId"] === USER_DATA.opponent.id) {
       // 对方跑了 告诉后端自己赢了
       userContestEnd(true, "打字对决", res => {
         PubSub.publish("导航栏修改模式", {isUserPlaying: false});
@@ -295,7 +300,7 @@ class TypeWritingContest extends Component {
         this.setState({isEnd: true, isWin: true, endReason: "对方被吓跑了，你赢了"});
         USER_DATA.updateFromDict(res["updateUserData"]);
       });
-    } else if (data.exitPlayerName === USER_DATA.name) {
+    } else if (data["exitPlayerId"] === USER_DATA.id) {
       // 跑的人竟是我自己
       // 展示弹窗
       userContestEnd(false, "打字对决", res => {
@@ -303,7 +308,7 @@ class TypeWritingContest extends Component {
         USER_DATA.updateFromDict(res["updateUserData"]);
       });
     } else {
-      console.log("不知道是谁认输了", data.exitPlayerName);
+      console.log("不知道是谁认输了", data["exitPlayerId"] );
     }
   }
 

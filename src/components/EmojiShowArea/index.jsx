@@ -5,6 +5,10 @@ import USER_DATA from "../../globalData/userData";
 
 class EmojiShowArea extends Component {
   constructor(props) {
+    /**
+     * bindUserId={userId}
+     * roomName={roomName}
+     */
     super(props);
 
     this.state = {
@@ -37,13 +41,13 @@ class EmojiShowArea extends Component {
   }
 
   socketHandleEmoji = res => {
-    const {bindUserName} = this.props;
+    const {bindUserId} = this.props;
     let data = (res);
-    if (USER_DATA.isPreventEmoji && data["senderName"] !== USER_DATA.name) {
+    if (USER_DATA.isPreventEmoji && data["senderId"] !== USER_DATA.id) {
       // 是别人发来的消息，屏蔽了，不显示消息
       return;
     }
-    if (data["senderName"] === bindUserName) {
+    if (data["senderId"] === bindUserId) {
       // 发来的消息是要显示在这里的
       const newArr = [...this.state.msgArr, data["sendText"]];
       this.setState({msgArr: newArr});

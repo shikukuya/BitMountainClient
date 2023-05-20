@@ -11,6 +11,7 @@ class ContestTableLine extends Component {
 
     const {initHp, name} = this.props;
     this.name = name;
+
     this.state = {
       name: name,
       hp: initHp,
@@ -23,14 +24,14 @@ class ContestTableLine extends Component {
   }
 
   render() {
-    const {name, roomName, symbolColor} = this.props;
+    const {name, roomName, symbolColor, userId} = this.props;
     const {hp, submitArr, codeChar, ac} = this.state;
 
     return (
         <div className="contestTableLine">
           <div className="box" style={{color: symbolColor}}>
             {name}
-            <EmojiShowArea bindUserName={name} roomName={roomName}/>
+            <EmojiShowArea bindUserId={userId} roomName={roomName}/>
           </div>
           <div className={hp <= 1 ? "box shakeAni" : "box"}>
             {"❤".repeat(hp)}
@@ -45,19 +46,18 @@ class ContestTableLine extends Component {
   }
 
   componentDidMount() {
-    const {roomName} = this.props;
+    const {roomName, userId} = this.props;
 
     this.token1 = PubSub.subscribe("表格行监听用户提交代码错误", (_, data) => {
       /**
-       * submitUser
+       * submitUser 这个是字符串
        * errType
        * errData
        * language
        * acCount
        * @type {Object}
        */
-      if (data["submitUser"] === this.name) {
-        console.log("表格行监听到了代码提交错误");
+      if (data["submitUserId"] === userId) {
         if (this.state.hp === 0) return;
         let newArr = [...this.state.submitArr, data["language"]]
         this.setState({
@@ -70,12 +70,13 @@ class ContestTableLine extends Component {
 
     this.token2 = PubSub.subscribe("表格行监听用户提交代码通过", (_, data) => {
       /**
+       * submitUserId
        "submitUser": userName,
        "language": language,
        "acCount": testNumber,
        * @type {Object}
        */
-      if (data["submitUser"] === this.name) {
+      if (data["submitUserId"] === userId) {
         let newArr = [...this.state.submitArr, data["language"]]
         this.setState({
           submitArr: newArr,  // 添加语言logo
@@ -95,9 +96,9 @@ class ContestTableLine extends Component {
     SOCKET_OBJ.off(`前端对局中${roomName}房间有用户更新代码量`, this.socketHandleUpdateCodeSize);
   }
 
-  socketHandleUpdateCodeSize = res => {
-    const data = res;
-    if (data["userName"] === this.name) {
+  socketHandleUpdateCodeSize = data => {
+    const {userId} = this.props;
+    if (data["userId"] === userId) {
       // 是这个组件了，更新
       this.setState({codeChar: data["codeSize"]});
     }

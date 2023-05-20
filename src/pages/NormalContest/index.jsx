@@ -21,11 +21,7 @@ class NormalContest extends Component {
     super(props);
     const {hpInit, moodName} = this.props;
     this.moodName = moodName;  // 只有两种可能 "普通模式"  "极限模式"
-    console.log("当前模式为", this.moodName, moodName);
-    this.roomName = connectStr(USER_DATA.name, USER_DATA.opponent.name);
-
-    this.team1NameArr = [USER_DATA.name];
-    this.team2NameArr = [USER_DATA.opponent.name];
+    this.roomName = connectStr(USER_DATA.id, USER_DATA.opponent.id);
 
     this.state = {
       question: USER_DATA.questionObjList[0],
@@ -75,8 +71,12 @@ class NormalContest extends Component {
             </div>
             <div className="bottomArea">
               <ContestTable
-                  team1={this.team1NameArr}
-                  team2={this.team2NameArr}
+                  team1UserObjList={[
+                    {userName: USER_DATA.name, userId: USER_DATA.id}
+                  ]}
+                  team2UserObjList={[
+                    {userName: USER_DATA.opponent.name, userId: USER_DATA.opponent.id}
+                  ]}
                   initHp={this.props.hpInit}/>
 
               <div className="userPanel">
@@ -92,12 +92,25 @@ class NormalContest extends Component {
     );
   }
 
-  socketHandleUserSubmitAc = (res) => {
-    let data = (res);
+  // 提交代码通过了
+  /**
+   * 收到 socket 的 data：{
+        "submitUserId": data["submitUserId"],  # 此变量完全没用到，只借助服务器传输
+        "flag": flag,
+        "acCount": acCount,
+        "language": language,
+        "questionId": questionID,
+        "questionIndex": data["questionIndex"],
+        "errData": errData,
+        "errType": flag,
+    }
+   * @param data
+   */
+  socketHandleUserSubmitAc = data => {
 
     PubSub.publish("表格行监听用户提交代码通过", data);
 
-    if (data["submitUser"] === USER_DATA.name) {
+    if (data["submitUserId"] === USER_DATA.id) {
       // 通过的人竟是我自己
       this.setState({
         isWin: true, isEnd: true,
@@ -123,8 +136,8 @@ class NormalContest extends Component {
       louseSound();
     }
   }
-
-  socketHandleUserSubmitWa = (res) => {
+  // 提交代码wa了
+  socketHandleUserSubmitWa = data => {
     /**
      * submitUser
      * errType
@@ -132,13 +145,12 @@ class NormalContest extends Component {
      * language
      * @type {Object}
      */
-    let data = (res);
 
     // 告诉表格行
     // 消息发布组件的一个函数中
     PubSub.publish("表格行监听用户提交代码错误", data);
 
-    if (data["submitUser"] === USER_DATA.name) {
+    if (data["submitUserId"] === USER_DATA.id) {
 
       // 我没通过
       let newHp = this.state.myHp - 1;
@@ -161,7 +173,7 @@ class NormalContest extends Component {
         });
         louseSound();
       }
-    } else {
+    } else if (data["submitUserId"] === USER_DATA.opponent.id) {
       // 对方没通过
       let newHp = this.state.opHp - 1;
       this.setState({
@@ -180,9 +192,8 @@ class NormalContest extends Component {
     }
   }
 
-  socketHandleUserSurrender = (res) => {
-    let data = (res);
-    if (data.exitPlayerName === USER_DATA.opponent.name) {
+  socketHandleUserSurrender = data => {
+    if (data["exitPlayerId"] === USER_DATA.opponent.id) {
       // 对方跑了 告诉后端自己赢了
 
       userContestEnd(true, this.moodName, res => {
@@ -192,7 +203,7 @@ class NormalContest extends Component {
         this.setState({isEnd: true, isWin: true, endReason: "对方逃跑了"});
       });
       winSound();
-    } else if (data.exitPlayerName === USER_DATA.name) {
+    } else if (data["exitPlayerId"] === USER_DATA.id) {
       // 跑的人竟是我自己
       // 展示弹窗
       userContestEnd(false, this.moodName, res => {
@@ -202,12 +213,19 @@ class NormalContest extends Component {
       });
       louseSound();
     } else {
-      console.log("不知道是谁认输了", data.exitPlayerName);
+      console.log("不知道是谁认输了", data["exitPlayerId"]);
     }
   }
 
   componentDidMount() {
     // 用户输入代码，会影响table组件和codeInput组件
+    /**
+     * data 格式
+     * {
+     *   "userCode": value,
+     *   "userLanguage": languageStr,
+     * }
+     */
     this.updateCode = PubSub.subscribe("更新用户输入代码", (_, data) => {
       this.setState(data);
     });
@@ -228,9 +246,11 @@ class NormalContest extends Component {
     if (submitDisable) return;
 
     SOCKET_OBJ.emit(`单挑模式监听用户提交代码`, {
-      submitUserName: USER_DATA.name,
+      submitUserId: USER_DATA.id,
+
       submitCode: userCode,
       language: userLanguage,
+
       matchName: this.roomName,
       moodName: this.moodName,
       questionID: question.id,

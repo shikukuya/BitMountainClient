@@ -67,8 +67,8 @@ class SendEmojiBtn extends Component {
     const txt = ev.target.innerText;
     // 向后端发送消息
     SOCKET_OBJ.emit("后端接收对局中发送的表情消息", {
-      "roomName": connectStr(USER_DATA.name, USER_DATA.opponent.name),
-      "senderName": USER_DATA.name,
+      "roomName": connectStr(USER_DATA.id, USER_DATA.opponent.id),
+      "senderId": USER_DATA.id,
       "sendText": txt,
     })
   }

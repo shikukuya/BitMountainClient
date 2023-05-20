@@ -144,7 +144,7 @@ class Home extends Component {
       this.setState(data);
     });
 
-    SOCKET_OBJ.on(`前端用户${USER_DATA.name}接收插入匹配池的消息`, this.socketHandleListenPoolData);
+    SOCKET_OBJ.on(`前端用户${USER_DATA.id}接收插入匹配池的消息`, this.socketHandleListenPoolData);
   }
 
   componentWillUnmount() {
@@ -157,11 +157,11 @@ class Home extends Component {
     }
     // 关闭socket监听
     if (USER_DATA.isLogin) {
-      SOCKET_OBJ.off(`前端用户${USER_DATA.name}匹配到对手`, this.socketHandleListenMatch);
+      SOCKET_OBJ.off(`前端用户${USER_DATA.id}匹配到对手`, this.socketHandleListenMatch);
     }
 
     SOCKET_OBJ.off('前端更新在线人数', this.socketHandleUpdateOnlineNumber);
-    SOCKET_OBJ.off(`前端用户${USER_DATA.name}接收插入匹配池的消息`, this.socketHandleListenPoolData);
+    SOCKET_OBJ.off(`前端用户${USER_DATA.id}接收插入匹配池的消息`, this.socketHandleListenPoolData);
   }
 
   socketHandleUpdateOnlineNumber = res => {
@@ -178,23 +178,26 @@ class Home extends Component {
    * 这个函数需要在登录之后，执行一次
    */
   listenMatch = () => {
-    SOCKET_OBJ.on(`前端用户${USER_DATA.name}匹配到对手`, this.socketHandleListenMatch);
+    SOCKET_OBJ.on(`前端用户${USER_DATA.id}匹配到对手`, this.socketHandleListenMatch);
   };
-  socketHandleListenMatch = (res) => {
-    let data = res;
 
-    let opponentUserName = data['opponent'];
-    let opponentScore = data['opponentScore'];
-    let opponentHeadSculpture = data['opponentHeadSculpture'];
-
-    if (opponentUserName === USER_DATA.name) {
-      myAlert('出现了奇怪bug，自己匹配到了自己，请联系并督促开发者修复');
+  /**
+   * socket传来消息：用户匹配到对手
+   * data 传来格式：{
+   *    id: xxx,
+   *    mood: xxx,
+   *    opponentDetails: {...},
+   *    两个题目信息
+   * }
+   * @param data
+   */
+  socketHandleListenMatch = data => {
+    if (data['id'] === USER_DATA.id) {
+      myAlert('惊现奇怪bug，你竟匹配到了你自己，请联系并督促开发者修复');
       return;
     }
-
-    USER_DATA.opponent.name = opponentUserName;
-    USER_DATA.opponent.score = opponentScore;
-    USER_DATA.opponent.headSculpture = opponentHeadSculpture;
+    // 更新对手信息
+    USER_DATA.opponent = data["opponentDetails"];
 
     // 当前抽到的题目的列表
     USER_DATA.questionObjList = data['randomQuestionList'];
@@ -202,12 +205,13 @@ class Home extends Component {
     // 如果是打字模式，抽到的标题
     USER_DATA.typewriteTitle = data['typewriteTitle'];
 
+    const moodName = data["mood"];
+
     // 通知导航栏更改状态
     PubSub.publish('导航栏修改模式', {
       isUserPlaying: true,
-      modeName: data.mood,
+      modeName: moodName,
     });
-    const moodName = data.mood;
 
     // 开始页面跳转
     this.setState({isMatching: false});
@@ -238,7 +242,7 @@ class Home extends Component {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        userName: USER_DATA.name,
+        userId: USER_DATA.id,
         moodName: this.state.choiceMood,
       }),
     })
@@ -260,13 +264,14 @@ class Home extends Component {
    * @param moodName
    * @return {function(): void}
    */
-  getHandleFunctionByName = (moodName) => {
+  getHandleFunctionByName = moodName => {
     return () => {
       if (USER_DATA.isLogin) {
         this.setState({isMatching: true, choiceMood: moodName});
         // 告诉后端自己开始匹配了
         SOCKET_OBJ.emit('后端处理玩家匹配', {
-          userName: USER_DATA.name,
+          // userName: USER_DATA.name,
+          id: USER_DATA.id,
           mood: moodName,
           score: USER_DATA.score,
         });
