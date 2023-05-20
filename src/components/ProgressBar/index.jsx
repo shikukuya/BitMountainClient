@@ -2,10 +2,6 @@ import React, {Component} from 'react';
 import "./index.css";
 
 class ProgressBar extends Component {
-    constructor(props) {
-        super(props);
-
-    }
 
     render() {
         // rate 是一个0~1之间的小数

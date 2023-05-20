@@ -144,7 +144,7 @@ class TicTacToeBoard extends Component {
   componentDidMount() {
     this.token1 = PubSub.subscribe("井字棋棋盘接收更改内容消息", (_, data) => {
       // 先初始化棋盘，把进度条返回到0
-      this.state.currentIndex = 0;
+      this.setState({currentIndex: 0});
       this.barEle.current.value = "0";
       this.setState({historyList: data["historyList"]})
     });

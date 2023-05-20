@@ -6,7 +6,7 @@ import templates from "./js/codeTemplate";
 import PubSub from "pubsub-js"
 
 // vsCode编辑界面
-import Editor, {DiffEditor, useMonaco, loader} from "@monaco-editor/react";
+import Editor from "@monaco-editor/react";
 
 import SOCKET_OBJ from "../../globalData/socketObject";
 import {calculateCodeSize, compressCode, getNumberOfLines, strDistance} from "../../utils/js/strTools";
@@ -39,7 +39,7 @@ class CodeInput extends Component {
       isHideLocation: false,
     }
     this.selfDiv = React.createRef();
-    this.languageEle = React.createRef();
+    // this.languageEle = React.createRef();
   }
 
   render() {
@@ -131,7 +131,7 @@ class CodeInput extends Component {
     this.setState({isHideLocation: !this.state.isHideLocation});
   }
 
-  handleOnChangeVs = (value, event) => {
+  handleOnChangeVs = (value, _) => {
     this.setState({userCode: value});
     PubSub.publish("更新用户输入代码", {
       "userCode": value,

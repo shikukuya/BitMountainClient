@@ -190,6 +190,8 @@ function dealUserAttack(wordMatrix, userLocObj, direction) {
     case 'right':
       targetCol = col + 2;
       break;
+    default:
+      break;
   }
 
   let flag = false; // 是否炸死了另一个玩家

@@ -89,6 +89,7 @@ class Admin extends Component {
 
   componentDidMount() {
     console.log(SERVER_CONFIG.address, "这就是服务器地址");
+    myAlert("欢迎来到监控室");
 
     this.testHttp();
     this.testSocket();

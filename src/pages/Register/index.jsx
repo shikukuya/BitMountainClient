@@ -4,7 +4,6 @@ import getArray from "../../utils/js/range";
 import {isPoliticalSensitive, zip_longest} from "../../utils/js/strTools";
 import {sha3_512} from 'js-sha3';
 import getUrl from "../../utils/js/getUrl";
-import myAlert from "../../utils/js/alertMassage";
 import {randint} from "../../utils/js/random";
 import Background from "../../components/Background";
 

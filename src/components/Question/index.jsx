@@ -3,10 +3,6 @@ import React, {Component} from 'react';
 import "./index.css"
 
 class Question extends Component {
-  constructor(props) {
-    super(props);
-    // aria-hidden="true" 的标签进行隐藏
-  }
 
   render() {
     const {

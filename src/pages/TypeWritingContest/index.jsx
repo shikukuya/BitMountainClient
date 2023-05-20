@@ -385,7 +385,7 @@ class TypeWritingContest extends Component {
     }
     // 更新inputRef 数组
     this.inputEleRefArr = [];
-    for (let _ of arr) {
+    for (let i = 0; i < arr.length; i++) {
       this.inputEleRefArr.push(React.createRef());
     }
 

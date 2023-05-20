@@ -262,6 +262,8 @@ class TopNav extends Component {
       case '打字对决':
         this.setState({gotoLink: <Navigate to="/typewritingContest"/>});
         break;
+      default:
+        break;
     }
     // 再改回来，防止无限递归？
     setTimeout(() => {

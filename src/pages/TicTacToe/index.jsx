@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import "./index.css";
-import Editor, {DiffEditor, useMonaco, loader} from "@monaco-editor/react";
+import Editor from "@monaco-editor/react";
 import RankItem from "../../components/RankItem";
 import SOCKET_OBJ from "../../globalData/socketObject";
 import USER_DATA from "../../globalData/userData";

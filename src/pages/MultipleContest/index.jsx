@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {connectStr, numberToAlpha} from "../../utils/js/strTools";
+import {connectStr} from "../../utils/js/strTools";
 import USER_DATA from "../../globalData/userData";
 import "./index.css";
 import Question from "../../components/Question";

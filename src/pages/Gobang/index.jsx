@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import "./index.css";
-import Editor, {DiffEditor, useMonaco, loader} from "@monaco-editor/react";
+import Editor from "@monaco-editor/react";
 import GobangBoard from "../../components/GobangBoard";
 import GobangPlayerItem from "../../components/GobangPlayerItem";
 import SOCKET_OBJ from "../../globalData/socketObject";

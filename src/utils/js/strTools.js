@@ -26,21 +26,6 @@ export function sortAndConcatenateStrings(arr) {
   return sortedArr.join('');
 }
 
-/**
- * 用特殊的方式拼接字符串
- * 前提是ab都不是空字符串
- * @param a
- * @param b
- */
-export function zipStr(a, b) {
-  let res = "";
-  let len = Math.min(a.length, b.length);
-  for (let i = 0; i < len; i++) {
-    res += a[i];
-    res += b[i];
-  }
-  return res;
-}
 
 export function zip_longest(str1, str2) {
   let maxLength = Math.max(str1.length, str2.length);
@@ -200,17 +185,17 @@ export function isStringIncludeKeywords(string, keywordList) {
   return false;
 }
 
-function encryptStrList(strArray) {
-  const result = [];
-  for (let i = 0; i < strArray.length; i++) {
-    let encrypted = '';
-    for (let j = 0; j < strArray[i].length; j++) {
-      encrypted += String.fromCharCode(strArray[i].charCodeAt(j) + 1);
-    }
-    result.push(encrypted);
-  }
-  return result;
-}
+// function encryptStrList(strArray) {
+//   const result = [];
+//   for (let i = 0; i < strArray.length; i++) {
+//     let encrypted = '';
+//     for (let j = 0; j < strArray[i].length; j++) {
+//       encrypted += String.fromCharCode(strArray[i].charCodeAt(j) + 1);
+//     }
+//     result.push(encrypted);
+//   }
+//   return result;
+// }
 
 function decryptStrList(strArray) {
   const result = [];

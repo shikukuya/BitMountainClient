@@ -140,6 +140,8 @@ class AutoChessBoard extends Component {
           case "right":
             newObj.x += 2;
             break;
+          default:
+            break;
         }
         return <div style={{
           left: `${newObj.x * 24}px`,

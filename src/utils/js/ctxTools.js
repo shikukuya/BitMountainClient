@@ -40,22 +40,22 @@ export function drawLine(ctx, x1, y1, x2, y2, lineWidth = 1, color = "black", is
     ctx.stroke();
 }
 
-/**
- * 画矩形边框
- * @param ctx 上下文对象
- * @param x 左上角顶点
- * @param y 左上角顶点
- * @param width 宽度
- * @param height 高度
- * @param color
- * @param lineWidth
- */
-function drawRectStroke(ctx, x, y, width, height, color, lineWidth) {
-    ctx.strokeStyle = color;
-    ctx.lineWidth = standardize(lineWidth);
-    ctx.lineJoin = "round";
-    ctx.strokeRect(standardize(x), standardize(y), standardize(width), standardize(height));
-}
+// /**
+//  * 画矩形边框
+//  * @param ctx 上下文对象
+//  * @param x 左上角顶点
+//  * @param y 左上角顶点
+//  * @param width 宽度
+//  * @param height 高度
+//  * @param color
+//  * @param lineWidth
+//  */
+// function drawRectStroke(ctx, x, y, width, height, color, lineWidth) {
+//     ctx.strokeStyle = color;
+//     ctx.lineWidth = standardize(lineWidth);
+//     ctx.lineJoin = "round";
+//     ctx.strokeRect(standardize(x), standardize(y), standardize(width), standardize(height));
+// }
 
 /**
  * 画矩形填充

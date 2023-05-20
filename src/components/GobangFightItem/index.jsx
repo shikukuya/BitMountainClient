@@ -4,7 +4,8 @@ import PubSub from "pubsub-js";
 
 class GobangFightItem extends Component {
   render() {
-    const {history, result, winnerLoc} = this.props;
+    // winnerLoc  result,
+    const {history, result,} = this.props;
     return (
         <div className="gobangFightItem">
           手数：{history.length}
@@ -29,7 +30,7 @@ class GobangFightItem extends Component {
   }
   handleLook = () => {
     // 消息发布组件的一个函数中
-    const {history, result, winnerLoc, title} = this.props;
+    const {history, winnerLoc, title} = this.props;
     PubSub.publish("五子棋棋盘更改状态", {
       history: history,
       winnerLoc: winnerLoc,

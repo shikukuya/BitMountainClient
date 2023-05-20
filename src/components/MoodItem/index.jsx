@@ -4,9 +4,9 @@ import "./index.css";
 import USER_DATA from "../../globalData/userData";
 
 class ModeItem extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   render() {
     const {clickFunc, modeName} = this.props;

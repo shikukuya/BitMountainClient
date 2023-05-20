@@ -119,8 +119,10 @@ class Noise2D {
   getBuff(x, y) {
     let s = xi => 3 * xi ** 2 - 2 * xi ** 3; // 平滑函数
     let [p1, p2, p3, p4] = this.getNoisePosition(x, y);
-    let [xMin, yMax] = p1;
-    let [xMax, yMin] = p4;
+    let xMin = p1[0];
+    let yMin = p4[1];
+    // let [xMin, yMax] = p1;
+    // let [xMax, yMin] = p4;
     let qRight = s((x - xMin) / this.diff);
     let qLeft = 1 - qRight;
     let qTop = s((y - yMin) / this.diff);

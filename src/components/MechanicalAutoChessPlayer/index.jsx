@@ -7,7 +7,8 @@ import {computeLevel} from "../../model/level";
 
 class MechanicalAutoChessPlayer extends Component {
   render() {
-    const {name, score, head, codeSize, codeName} = this.props;
+    //head,
+    const {name, score, codeSize, codeName} = this.props;
     return (
         <div className="chessPlayerItem">
           <div className="line">

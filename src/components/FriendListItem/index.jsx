@@ -74,7 +74,7 @@ class FriendListItem extends Component {
 
   changeMood = (ev) => {
     console.log(ev.target.value);
-    this.state.currentSelectMood = ev.target.value;
+    this.setState({currentSelectMood: ev.target.value});
   };
 
   delHandle = () => {
