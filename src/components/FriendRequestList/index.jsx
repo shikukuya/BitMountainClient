@@ -5,6 +5,7 @@ import SOCKET_OBJ from '../../globalData/socketObject';
 import getUrl from '../../utils/js/getUrl';
 import CopyUUID from '../CopyUUID';
 import AddFriend from '../AddFriend';
+import myAlert from "../../utils/js/alertMassage";
 
 class FriendRequestList extends Component {
   state = {
@@ -40,7 +41,7 @@ class FriendRequestList extends Component {
                * {name, score, id, note, headSculpture}
                */
             } else {
-              console.warn(res.text);
+              myAlert(`${res.text}`);
             }
           });
 
@@ -49,10 +50,12 @@ class FriendRequestList extends Component {
   }
 
   /**
-   * 前端接收到好友请求
-   * 包涵内容：
-   * fromUserId: "xxx"
-   * note: "xxx"
+   * 前端接收到好友请求,socket响应内容
+   * socket传来的消息：
+   *  {
+   *    fromUserId: "xxx"
+   *    note: "xxx"
+   *  }
    * @param data
    */
   socketHandleGetFriend = data => {

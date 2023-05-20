@@ -4,6 +4,7 @@ import HistoryItem from "../../components/HistoryItem";
 import Background from "../../components/Background";
 import USER_DATA from "../../globalData/userData";
 import getUrl from "../../utils/js/getUrl";
+import myAlert from "../../utils/js/alertMassage";
 class MatchHistory extends Component {
     state = {
         historyList: [],
@@ -26,17 +27,25 @@ class MatchHistory extends Component {
     }
 
     componentDidMount() {
-        fetch(getUrl("getMatchHistoryByUserName"), {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({userName: USER_DATA.name}),
-        }).then(
-            res => res.json()
-        ).then(
-            res => {
-                this.setState({historyList: res["arrayAll"]});
-            }
-        );
+        if (USER_DATA.isLogin) {
+            fetch(getUrl("getMatchHistoryByUserId"), {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({id: USER_DATA.id}),
+            }).then(
+                res => res.json()
+            ).then(
+                res => {
+                    if (res["status"]) {
+                        this.setState({historyList: res["arrayAll"]});
+                    } else {
+                        myAlert(`${res["text"]}`);
+                    }
+                }
+            );
+        } else {
+            myAlert("请您先登录！");
+        }
     }
 }
 

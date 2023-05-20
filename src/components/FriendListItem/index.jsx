@@ -87,8 +87,9 @@ class FriendListItem extends Component {
         receiverUser: id,
       });
 
-      // 前端删除这个东西  直接暂时display:None 得了
-      this.selfEle.current.style.height = '0';
+      // // 前端删除这个东西  直接暂时display:None 得了
+      // this.selfEle.current.style.height = '0';
+      // 改成了走socket后端，成功删除，自动剔除state中的数据。
     }
   };
 

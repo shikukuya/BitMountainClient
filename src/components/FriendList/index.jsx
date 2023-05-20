@@ -54,35 +54,8 @@ class FriendList extends Component {
         }
     )
 
-
-    // 先验条件已经保证是登录了的
-    // fetch(getUrl("getFriendsByUserName"), {
-    //   method: 'POST',
-    //   headers: {'Content-Type': 'application/json'},
-    //   body: JSON.stringify({"userName": USER_DATA.name}),
-    // }).then(
-    //     res => res.json()
-    // ).then(
-    //     data => {
-    //       if (data.status) {
-    //         let arr = [];
-    //         let dic = data.data;
-    //         for (let key in dic) {
-    //           if (dic.hasOwnProperty(key)) {
-    //             let friendObj = dic[key];
-    //             friendObj.userName = key;
-    //             arr.push(friendObj)
-    //           }
-    //         }
-    //         this.setState({friendArr: arr});
-    //       } else {
-    //         console.warn(data.text);
-    //       }
-    //     }
-    // );
-
     // 有人这时候把自己给删除了
-    SOCKET_OBJ.on(`前端${USER_DATA.name}处理被好友删除`, this.socketHandleDeleteFriend);
+    SOCKET_OBJ.on(`前端${USER_DATA.id}处理被好友删除`, this.socketHandleDeleteFriend);
     SOCKET_OBJ.on(`前端${USER_DATA.id}新增好友`, this.socketHandleAddFriend);
   }
 
@@ -97,15 +70,21 @@ class FriendList extends Component {
     this.setState({friendArr: newArr});
   }
 
-  socketHandleAddFriend = (res) => {
-    let data = (res);
+  /**
+   * socket接收消息，新增好友
+   * {
+   *   userDetails: aUser['userDetails']
+   * }
+   * @param data
+   */
+  socketHandleAddFriend = data => {
     let newArr = [...this.state.friendArr];
-    newArr.push(data);
+    newArr.push(data["userDetails"]);
     this.setState({friendArr: newArr});
   }
 
   componentWillUnmount() {
-    SOCKET_OBJ.off(`前端${USER_DATA.name}处理被好友删除`, this.socketHandleDeleteFriend);
+    SOCKET_OBJ.off(`前端${USER_DATA.id}处理被好友删除`, this.socketHandleDeleteFriend);
     SOCKET_OBJ.off(`前端${USER_DATA.id}新增好友`, this.socketHandleAddFriend);
   }
 }

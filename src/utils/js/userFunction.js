@@ -5,6 +5,7 @@
 
 import USER_DATA from "../../globalData/userData";
 import getUrl from "./getUrl";
+import myAlert from "./alertMassage";
 
 /**
  *
@@ -72,6 +73,7 @@ export function userContestEnd(bool, moodName, finishFunc) {
             finishFunc(res);
           } else {
             console.warn("userContestEnd函数接收到py服务器响应", res["text"]);
+            myAlert(res["text"]);
           }
 
         }
