@@ -2,9 +2,6 @@ import React, {Component} from 'react';
 import "./index.css"
 
 class AbilityCircle extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     const {w, h, x, y, title, ability} = this.props;

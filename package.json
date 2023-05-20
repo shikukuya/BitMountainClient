@@ -48,6 +48,7 @@
   },
   "devDependencies": {
     "@monaco-editor/react": "^4.4.6",
-    "react-codemirror": "^1.0.0"
+    "react-codemirror": "^1.0.0",
+    "safe-eval": "^0.4.1"
   }
 }

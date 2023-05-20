@@ -18,7 +18,6 @@ export function fight(code1, code2) {
   };
   let step = 0;
   while (true) {
-
     let tempArr = getTempLocList(board.arr);
     if (tempArr.length === 0) {
       res.result = "平局";
@@ -38,7 +37,6 @@ export function fight(code1, code2) {
     res.history.push(loc);
     // 查看输赢
     let winArr = checkWinner(board.arr);
-
     if (winArr.length !== 0) {
       if (step % 2 === 0) {
         res.result = "黑胜"

@@ -196,7 +196,7 @@ class MechanicalAutoChess extends Component {
     changeBackgroundMusic('main');
   }
 
-  handleOnChange = (value, event) => {
+  handleOnChange = (value, _) => {
     this.setState({userCode: value});
     // 缓存本地
     localStorage.setItem(sha3_256(`${USER_DATA.name}机械自走棋代码`), value);
