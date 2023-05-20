@@ -14,6 +14,7 @@ import {userContestEnd} from "../../utils/js/userFunction";
 import GoHomeAlert from "../../components/GoHomeAlert";
 import GameStartAnimation from "../../components/GameStartAnimation";
 import {louseSound, winSound} from "../../utils/js/playSound";
+import myAlert from "../../utils/js/alertMassage";
 
 
 class MultipleContest extends Component {
@@ -125,12 +126,29 @@ class MultipleContest extends Component {
       console.log("不知道是谁认输了", data["exitPlayerId"]);
     }
   }
-  socketHandleUserAc = res => {
-    let data = (res);
+
+  /**
+   * res {
+          "submitUserId": data["submitUserId"],  # 此变量完全没用到，只借助服务器传输
+
+          "flag": flag,
+          "acCount": acCount,
+
+          "language": language,
+
+          "questionId": questionID,
+          "questionIndex": data["questionIndex"],
+
+          "errData": errData,
+          "errType": flag,
+      }
+   * @param data
+   */
+  socketHandleUserAc = data => {
     const questionIndex = data["questionIndex"];
     PubSub.publish("表格行监听用户提交代码通过", data);
 
-    if (data["submitUser"] === USER_DATA.name) {
+    if (data["submitUserId"] === USER_DATA.id) {
       // 通过的人竟是我自己
       let newAcArr = [...this.state.myAcList];
       newAcArr[questionIndex] = true;
@@ -172,7 +190,7 @@ class MultipleContest extends Component {
       } else {
         console.log("你还没赢")
       }
-    } else {
+    } else if (data["submitUserId"] === USER_DATA.opponent.id) {
       let newAcArr = [...this.state.opAcList];
       newAcArr[questionIndex] = true;
       this.setState({opAcList: newAcArr});
@@ -207,6 +225,9 @@ class MultipleContest extends Component {
         });
         louseSound();
       }
+    } else {
+      // 不知道是谁交的
+      myAlert(`ERROR：未知用户通过了${data["submitUserId"]}`);
     }
   }
   socketHandleUserWa = res => {
@@ -282,6 +303,9 @@ class MultipleContest extends Component {
         });
         winSound();
       }
+    } else {
+      // 不知道是谁交的
+      myAlert(`ERROR：未知用户通过了${data["submitUserId"]}`);
     }
   }
 
