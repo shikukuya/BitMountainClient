@@ -17,7 +17,7 @@ class ContestTable extends Component {
                     {userName: USER_DATA.name, userId: USER_DATA.id}
                   ]
         team2List=[
-                    {userName: USER_DATA.opponent.name, userId: USER_DATA.opponent.id}
+                    {userName: USER_DATA.opponent.userName, userId: USER_DATA.opponent.id}
                   ]
      * initHp: 5
      */
@@ -51,8 +51,8 @@ class ContestTable extends Component {
                       symbolColor="green"
                       roomName={this.roomName}
                       initHp={initHp}
-                      name={userObj["name"]}
-                      userId={userObj["id"]}
+                      name={userObj["userName"]}
+                      userId={userObj["userId"]}
                       key={i}/>
               )
             })
@@ -64,8 +64,8 @@ class ContestTable extends Component {
                       symbolColor="orangered"
                       roomName={this.roomName}
                       initHp={initHp}
-                      name={userObj["name"]}
-                      userId={userObj["id"]}
+                      name={userObj["userName"]}
+                      userId={userObj["userId"]}
                       key={i}/>
               )
             })

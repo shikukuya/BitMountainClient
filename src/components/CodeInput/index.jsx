@@ -141,7 +141,7 @@ class CodeInput extends Component {
       roomName: this.props.roomName,
       userId: USER_DATA.id,
       codeSize: calculateCodeSize(value)
-    });
+    });//房间有用户更新代码量
 
     this.setState({myLoc: {x: 0, y: getNumberOfLines(value) - 1}});
   }

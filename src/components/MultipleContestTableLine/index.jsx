@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import EmojiShowArea from "../EmojiShowArea";
 import "./index.css";
 import PubSub from "pubsub-js"
+import SOCKET_OBJ from "../../globalData/socketObject";
 
 class MultipleContestTableLine extends Component {
 
@@ -44,7 +45,7 @@ class MultipleContestTableLine extends Component {
 
   // 接收消息的组件类中
   componentDidMount() {
-    const {userId} = this.props;
+    const {userId, roomName} = this.props;
     /**
      * data {
      *   state
@@ -58,12 +59,22 @@ class MultipleContestTableLine extends Component {
       }
       this.setState({hp: n});
     });
+    SOCKET_OBJ.on(`前端对局中${roomName}房间有用户更新代码量`, this.socketHandleUpdateCodeSize);
+  }
 
+  socketHandleUpdateCodeSize = data => {
+    const {userId} = this.props;
+    if (data["userId"] === userId) {
+      // 是这个组件了，更新
+      this.setState({codeChar: data["codeSize"]});
+    }
   }
 
   componentWillUnmount() {
+    const {roomName} = this.props;
     // 取消消息订阅
     PubSub.unsubscribe(this.token1);
+    SOCKET_OBJ.off(`前端对局中${roomName}房间有用户更新代码量`, this.socketHandleUpdateCodeSize);
   }
 
 

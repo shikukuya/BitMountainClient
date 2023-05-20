@@ -12,6 +12,9 @@ import MyAlert from '../MyAlert';
 import {pauseBackgroundMusic, playBackgroundMusic,} from '../../utils/js/backgroundMusic';
 import FriendlyMatchAlert from '../FriendlyMatchAlert';
 import myAlert from '../../utils/js/alertMassage';
+import getUrl from "../../utils/js/getUrl";
+import {userContestEnd} from "../../utils/js/userFunction";
+import {louseSound} from "../../utils/js/playSound";
 
 class TopNav extends Component {
   constructor(props) {
@@ -100,12 +103,10 @@ class TopNav extends Component {
                   src={require(`../../headImgs/${USER_DATA.opponent.headSculpture}.png`)}
                   alt="no"
               />
-              <span className="userName">{USER_DATA.opponent.name}</span>
+              <span className="userName">{USER_DATA.opponent.userName}</span>
               <img
                   className="userLevel"
-                  src={require(`../../levelIcon/level${computeLevel(
-                      USER_DATA.opponent.score
-                  )}.png`)}
+                  src={require(`../../levelIcon/level${computeLevel(USER_DATA.opponent.score)}.png`)}
                   alt=""
               />
               <span className="score">{USER_DATA.opponent.score}</span>
@@ -158,8 +159,7 @@ class TopNav extends Component {
             <NavLink
                 className="clickItem exitContest"
                 to="/home"
-                onClick={this.handleExitContest}
-            >
+                onClick={this.handleExitContest}>
               退出对局
             </NavLink>
           </div>
@@ -241,7 +241,7 @@ class TopNav extends Component {
     myAlert(`${res['senderId']}接受了您的友谊战申请`);
   }
   socketHandleFriendlyContestStart = data => {
-    USER_DATA.opponent.name = data['opponent'];
+    USER_DATA.opponent.userName = data['opponent'];
     USER_DATA.opponent.score = data['opponentScore'];
     USER_DATA.opponent.headSculpture = data['opponentHeadSculpture'];
     USER_DATA.typewriteTitle = data['typewriteTitle'];
@@ -314,15 +314,25 @@ class TopNav extends Component {
   handleExitContest = () => {
     // 先退出的用户直接导致自己认输，对方获胜
 
+    // 通过socket 告诉对方自己已经逃跑了
     SOCKET_OBJ.emit('后端处理玩家认输比赛', {
       contestName: connectStr(USER_DATA.id, USER_DATA.opponent.id),
       exitPlayerId: USER_DATA.id,
     });
 
-    // 更新USER.对手 的信息，让他变成一个默认的无效
-    USER_DATA.opponent = null;
 
-    this.setState({isUserPlaying: false});
+    // 跑的人竟是我自己
+    // 展示弹窗
+    console.log("我自己认输了")
+    userContestEnd(false, this.state.modeName, res => {
+      PubSub.publish("导航栏修改模式", {isUserPlaying: false});
+      USER_DATA.updateFromDict(res["updateUserData"]);
+      // 展示弹窗
+      // 更新USER.对手 的信息，让他变成一个默认的无效
+      USER_DATA.opponent = null;
+      louseSound();
+    });
+
   };
   /**
    * 关闭登录界面

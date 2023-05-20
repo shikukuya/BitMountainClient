@@ -27,7 +27,7 @@ class GameStartAnimation extends Component {
           </div>
           <div className="userCard rightUser">
             <img className="headImg" src={require(`../../headImgs/${USER_DATA.opponent.headSculpture}.png`)} alt=""/>
-            <h2>{USER_DATA.opponent.name}</h2>
+            <h2>{USER_DATA.opponent.userName}</h2>
             <p>
               <img src={require(`../../levelIcon/level${computeLevel(USER_DATA.opponent.score)}.png`)} alt=""/>
               {USER_DATA.opponent.score}

@@ -39,6 +39,8 @@ class MultipleContest extends Component {
       myCodeChar: 0,
       opCodeChar: 0,
 
+      myCurQuestion: 0,  // 这个不能删
+
       // 当前用户的代码，代码随着输入框的改变而改变
       userCode: '',
       // 当前用户选择的语言
@@ -84,7 +86,7 @@ class MultipleContest extends Component {
                     {userName: USER_DATA.name, userId: USER_DATA.id}
                   ]}
                   team2UserObjList={[
-                    {userName: USER_DATA.opponent.name, userId: USER_DATA.opponent.id}
+                    {userName: USER_DATA.opponent.userName, userId: USER_DATA.opponent.id}
                   ]}
                   initHp={this.props.hpInit}
               />

@@ -13,7 +13,7 @@ class MultipleContestTable extends Component {
                     {userName: USER_DATA.name, userId: USER_DATA.id}
                   ]
        team2UserObjList=[
-                      {userName: USER_DATA.opponent.name, userId: USER_DATA.opponent.id}
+                      {userName: USER_DATA.opponent.userName, userId: USER_DATA.opponent.id}
                     ]
        initHp={this.props.hpInit}
      */

@@ -40,7 +40,7 @@ const USER_DATA = {
 
   // 1v1 匹配中匹配到的对手的信息
   opponent: {
-    name: '',
+    userName: '',
     headSculpture: 0,
     score: 100,
     id: ""

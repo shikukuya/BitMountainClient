@@ -184,7 +184,7 @@ class Home extends Component {
   /**
    * socket传来消息：用户匹配到对手
    * data 传来格式：{
-   *    id: xxx,
+   *    id: xxx,  // 这个就是自己的id
    *    mood: xxx,
    *    opponentDetails: {...},
    *    两个题目信息
@@ -192,10 +192,11 @@ class Home extends Component {
    * @param data
    */
   socketHandleListenMatch = data => {
-    if (data['id'] === USER_DATA.id) {
+    if (data["opponentDetails"]['id'] === USER_DATA.id) {
       myAlert('惊现奇怪bug，你竟匹配到了你自己，请联系并督促开发者修复');
       return;
     }
+    console.log("匹配到的对手信息", data);
     // 更新对手信息
     USER_DATA.opponent = data["opponentDetails"];
 

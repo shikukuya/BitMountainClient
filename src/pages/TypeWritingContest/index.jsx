@@ -150,7 +150,7 @@ class TypeWritingContest extends Component {
 
   componentDidMount() {
     // 房间名
-    let roomName = connectStr(USER_DATA.name, USER_DATA.opponent.name);
+    let roomName = connectStr(USER_DATA.id, USER_DATA.opponent.id);
 
     // 获取文章内容
     fetch(getUrl("getArticleContentByTitle"), {
@@ -252,7 +252,7 @@ class TypeWritingContest extends Component {
         // 告诉后端自己打完了
         SOCKET_OBJ.emit(`后端处理玩家打完文章`, {
           finishPlayer: USER_DATA.name,
-          anotherPlayer: USER_DATA.opponent.name,
+          anotherPlayer: USER_DATA.opponent.userName,
           contestName: roomName,
         });
         myAlert("您已经打完了文章");
@@ -269,7 +269,7 @@ class TypeWritingContest extends Component {
       // 顺便转手发给服务器
       SOCKET_OBJ.emit("后端监听打字对决位置进度改变", {
         selfName: USER_DATA.name,
-        opponentName: USER_DATA.opponent.name,
+        opponentName: USER_DATA.opponent.userName,
         selfCharCount: this.state.myCharCount,
         location: {
           x: x,
@@ -329,7 +329,7 @@ class TypeWritingContest extends Component {
     let data = (res);
     let finishPlayer = data["finishPlayer"];
 
-    if (finishPlayer === USER_DATA.opponent.name) {
+    if (finishPlayer === USER_DATA.opponent.userName) {
       // 对手赢了
       userContestEnd(false, "打字对决", res => {
         // 前端更新
@@ -350,7 +350,7 @@ class TypeWritingContest extends Component {
 
   componentWillUnmount() {
     // 房间名
-    let roomName = connectStr(USER_DATA.name, USER_DATA.opponent.name);
+    let roomName = connectStr(USER_DATA.id, USER_DATA.opponent.id);
     SOCKET_OBJ.off(`前端${roomName}监听有人打完了文章`, this.socketHandleOver);
     SOCKET_OBJ.off(`前端${USER_DATA.name}更新对手位置`, this.socketHandleUpdateLoc);
     SOCKET_OBJ.off(`前端${roomName}监听对方认输`, this.socketHandleUserSurrender);

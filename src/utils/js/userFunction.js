@@ -47,9 +47,10 @@ console.log(hashString(getCurrentTime()));
  */
 export function userContestEnd(bool, moodName, finishFunc) {
   let sendData = {
+    userId: USER_DATA.id,
     // 双方的姓名
     userName: USER_DATA.name,
-    opponentName: USER_DATA.opponent.name,
+    opponentName: USER_DATA.opponent.userName,
     // 双方当前的分数
     userCurrentScore: USER_DATA.score,
     opponentCurrentScore: USER_DATA.opponent.score,

@@ -75,7 +75,7 @@ class NormalContest extends Component {
                     {userName: USER_DATA.name, userId: USER_DATA.id}
                   ]}
                   team2UserObjList={[
-                    {userName: USER_DATA.opponent.name, userId: USER_DATA.opponent.id}
+                    {userName: USER_DATA.opponent.userName, userId: USER_DATA.opponent.id}
                   ]}
                   initHp={this.props.hpInit}/>
 
@@ -206,6 +206,7 @@ class NormalContest extends Component {
     } else if (data["exitPlayerId"] === USER_DATA.id) {
       // 跑的人竟是我自己
       // 展示弹窗
+      console.log("我自己认输了")
       userContestEnd(false, this.moodName, res => {
         PubSub.publish("导航栏修改模式", {isUserPlaying: false});
         USER_DATA.updateFromDict(res["updateUserData"]);
