@@ -5,12 +5,12 @@ import moment from "moment";
 
 class HistoryItem extends Component {
   render() {
-    const {opponent, mood, isWin, scoreChange, time, opponentHeadSculpture} = this.props;
+    const {opponentName, mood, isWin, scoreChange, time, opponentHeadSculpture} = this.props;
     return (
         <div className="historyItem">
           <img src={require(`../../headImgs/${opponentHeadSculpture}.png`)}
                alt="" className="headImg"/>
-          <span className="userName">{opponent}</span>
+          <span className="userName">{opponentName}</span>
           <span>{mood}</span>
           <span className={isWin ? "result win" : "result lose"}>
             {isWin ? "胜" : "败"}

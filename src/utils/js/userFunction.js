@@ -37,8 +37,6 @@ function getCurrentTime() {
   return `${dateString}-${timeString}`;
 }
 
-console.log(hashString(getCurrentTime()));
-
 /**
  * 发送POST请求 告诉后端自己赢了还是输了
  * @param bool {Boolean} 自己是赢了还是输了
@@ -54,13 +52,12 @@ export function userContestEnd(bool, moodName, finishFunc) {
     // 双方当前的分数
     userCurrentScore: USER_DATA.score,
     opponentCurrentScore: USER_DATA.opponent.score,
+    // 对方的头像，用于存入数据库
     opponentHeadSculpture: USER_DATA.opponent.headSculpture,
     mood: moodName,
     isWin: bool,  // 输了
-    testCode: (hashString(USER_DATA.name + getCurrentTime())),
+    testCode: hashString(USER_DATA.name + getCurrentTime()),
   };
-
-  console.log("userContestEnd函数调用了", Date.now(), sendData);
   try {
     fetch(getUrl("userContestOver"), {
       method: 'POST',
