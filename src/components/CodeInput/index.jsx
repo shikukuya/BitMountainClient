@@ -181,6 +181,11 @@ class CodeInput extends Component {
 
   componentDidMount() {
     const {roomName} = this.props;
+    // 先更改NormalContest界面的代码
+    PubSub.publish("更新用户输入代码", {
+      "userCode": this.state.userCode,
+    });
+
     // 阻止一些按键
     document.addEventListener("keydown", preventFunction);
     // 先更新一下自己的位置

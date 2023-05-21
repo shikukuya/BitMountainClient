@@ -241,11 +241,16 @@ class TopNav extends Component {
     myAlert(`${res['senderId']}接受了您的友谊战申请`);
   }
   socketHandleFriendlyContestStart = data => {
-    USER_DATA.opponent.userName = data['opponent'];
-    USER_DATA.opponent.score = data['opponentScore'];
-    USER_DATA.opponent.headSculpture = data['opponentHeadSculpture'];
+    USER_DATA.opponent = data['opponent'];
     USER_DATA.typewriteTitle = data['typewriteTitle'];
     USER_DATA.questionObjList = data['randomQuestionList'];
+
+    // 通知导航栏更改状态
+    PubSub.publish('导航栏修改模式', {
+      isUserPlaying: true,
+      modeName: data['mood'],
+    });
+
     switch (data['mood']) {
       case '普通模式':
         this.setState({gotoLink: <Navigate to="/normalContest"/>});
