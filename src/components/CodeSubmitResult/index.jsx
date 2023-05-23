@@ -4,6 +4,11 @@ import PubSub from "pubsub-js"
 
 /**
  * 代码提交结果框，可以展开和收起
+ *
+ * 远程更新state可以 “代码结果框更新状态” {state}
+ *
+ * 此组件通过绝对定位实现自身进入进出。
+ * 需要给包裹这个组件的父组件设置样式：相对定位、溢出隐藏
  */
 class CodeSubmitResult extends Component {
   constructor(props) {

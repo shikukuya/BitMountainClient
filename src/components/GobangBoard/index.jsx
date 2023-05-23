@@ -10,7 +10,7 @@ class GobangBoard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      matrix: new Array2d(19, 19),
+      matrix: new Array2d(15, 15),
       matchName: "对局名称",
       curIndex: 0,
       boardList: [],  // 每一个数组就是一个棋盘
@@ -25,10 +25,10 @@ class GobangBoard extends Component {
           <div className="temp">
             <div className="board">
               {
-                getArray(19).map(y => {
+                getArray(15).map(y => {
                   return <div className="boardLine" key={y}>
                     {
-                      getArray(19).map(x => {
+                      getArray(15).map(x => {
                         return <div className="box" key={x}>
                           {this.getPieceElement(x, y)}
                         </div>
@@ -84,19 +84,19 @@ class GobangBoard extends Component {
 
   rendBoard = () => {
     const w = 26;
-    this.canvasW = 19 * w * window.devicePixelRatio;
-    this.canvasH = 19 * w * window.devicePixelRatio;
+    this.canvasW = 15 * w * window.devicePixelRatio;
+    this.canvasH = 15 * w * window.devicePixelRatio;
     this.canvas1.width = this.canvasW;
     this.canvas1.height = this.canvasH;
     // 画棋盘
     let ctx = this.canvas1.getContext("2d");
     ctx.clearRect(0, 0, this.canvasW, this.canvasH);
     drawRectFill(ctx, 0, 0, this.canvasW, this.canvasH, `rgb(164, 140, 90)`);
-    for (let x = 0; x < 19; x++) {
-      drawLine(ctx, x * w + w / 2, w / 2, x * w + w / 2, 19 * w - w / 2);
+    for (let x = 0; x < 15; x++) {
+      drawLine(ctx, x * w + w / 2, w / 2, x * w + w / 2, 15 * w - w / 2);
     }
-    for (let y = 0; y < 19; y++) {
-      drawLine(ctx, w / 2, y * w + w / 2, 19 * w - w / 2, y * w + w / 2);
+    for (let y = 0; y < 15; y++) {
+      drawLine(ctx, w / 2, y * w + w / 2, 15 * w - w / 2, y * w + w / 2);
     }
   }
 
@@ -131,7 +131,7 @@ class GobangBoard extends Component {
 
   updateStateByHistory = (history) => {
     let newBoardList = [];
-    let board = new Array2d(19, 19);
+    let board = new Array2d(15, 15);
     let putValue, step = 0;
     for (let locObj of history) {
       if (step % 2 === 0) {

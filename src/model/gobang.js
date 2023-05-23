@@ -10,7 +10,7 @@ import {choice} from "../utils/js/random";
 export function fight(code1, code2) {
   let f1 = eval(code1);
   let f2 = eval(code2);
-  const board = new Array2d(19, 19);
+  const board = new Array2d(15, 15);
   let res = {
     history: [],  // {x:1,y: 1}
     result: "",
@@ -66,7 +66,7 @@ function execUserCode(board, codeFunc, execNumber, opNumber) {
   if (Array.isArray(res)) {
     if (res.length === 2) {
       let [x, y] = res;
-      if (0 <= x && x < 19 && 0 <= y && y < 19) {
+      if (0 <= x && x < 15 && 0 <= y && y < 15) {
         if (matrix[y][x] === 0) {
           flag = true;
         }
@@ -84,8 +84,8 @@ function execUserCode(board, codeFunc, execNumber, opNumber) {
 
 function getTempLocList(board) {
   let res = [];
-  for (let y = 0; y < 19; y++) {
-    for (let x = 0; x < 19; x++) {
+  for (let y = 0; y < 15; y++) {
+    for (let x = 0; x < 15; x++) {
       if (board[y][x] === 0) {
         res.push({x: x, y: y});
       }

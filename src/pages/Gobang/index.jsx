@@ -11,6 +11,7 @@ import PubSub from "pubsub-js";
 import {calculateCodeSize, isPoliticalSensitive} from "../../utils/js/strTools";
 import {changeBackgroundMusic} from "../../utils/js/backgroundMusic";
 import myAlert from "../../utils/js/alertMassage";
+import CodeInputCasualMode from "../../components/CodeInputCasualMode";
 
 const EgCode = `// @ts-check
 /**
@@ -78,25 +79,26 @@ class Gobang extends Component {
               }
             </div>
           </div>
-          <div className="right">
-            <Editor
-                height="80vh"
-                value={EgCode}
-                defaultLanguage="javascript"
-                defaultValue="// some comment"
-                onChange={this.handleOnChange}
-                theme="vs-dark"
-            />
-            <input type="text"
-                   ref={this.codeNameEle}
-                   maxLength={5}
-                   className="codeNameInput"
-                   placeholder="给这份代码起个霸气的名字"/>
-            <button
-                className="submitBtn"
-                onClick={this.handleSubmit}>提交代码到榜上
-            </button>
 
+          <div className="right">
+            <CodeInputCasualMode gameName={"gobang"}/>
+            {/*<Editor*/}
+            {/*    height="80vh"*/}
+            {/*    value={EgCode}*/}
+            {/*    defaultLanguage="javascript"*/}
+            {/*    defaultValue="// some comment"*/}
+            {/*    onChange={this.handleOnChange}*/}
+            {/*    theme="vs-dark"*/}
+            {/*/>*/}
+            {/*<input type="text"*/}
+            {/*       ref={this.codeNameEle}*/}
+            {/*       maxLength={5}*/}
+            {/*       className="codeNameInput"*/}
+            {/*       placeholder="给这份代码起个霸气的名字"/>*/}
+            {/*<button*/}
+            {/*    className="submitBtn"*/}
+            {/*    onClick={this.handleSubmit}>提交代码到榜上*/}
+            {/*</button>*/}
           </div>
         </div>
     );

@@ -33,7 +33,6 @@ class CodeInput extends Component {
       },
       userCode: templates["cpp"],
       mTop: 0,// 往下滑滑过了顶部的距离
-      inputValue: "",  // 用户输入的代码
       fontSize: 14,
       lineHeight: 20,
       isHideLocation: false,

@@ -1,5 +1,5 @@
 .gobangPage {
-  height: 90vh;
+  height: calc(100vh - 60px);
 }
 .gobangPage .left,
 .gobangPage .right {

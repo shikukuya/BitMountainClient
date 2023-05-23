@@ -1,0 +1,106 @@
+html {
+  overflow: hidden;
+  zoom: reset;
+}
+
+html.wheel-disabled {
+  /* 禁用鼠标滚轮 */
+  pointer-events: none !important;
+}
+
+html.ctrl-disabled {
+  /* 禁用 Ctrl + 鼠标滚轮 */
+  zoom: reset !important;
+}
+
+// ============= 以上代码防止滚轮滚动出错
+
+
+.codeInputCasualMode {
+  height: 100%;
+  width: 100%;
+
+  position: relative;
+  overflow: hidden;
+
+  .area1 {
+    height: 30px;
+  }
+
+  .area2 {
+    height: calc(100% - 30px - 100px);
+  }
+
+  .area3 {
+    height: 100px;
+
+  }
+
+  //==========
+
+  .area1 {
+    display: flex;
+    align-items: center;
+
+    span {
+      font-size: 15px;
+      line-height: 30px;
+      color: floralwhite;
+      font-family: "Microsoft YaHei UI", serif;
+    }
+
+    select {
+      background-color: #383a3c;
+      color: floralwhite;
+      border: none;
+      outline: none;
+      margin-right: 5px;
+      margin-left: 5px;
+      font-size: 15px;
+      height: 30px;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      option {
+      }
+    }
+
+    input[type="checkbox"] {
+      line-height: 30px;
+      width: 16px;
+      height: 16px;
+      margin-right: 2px;
+      transition: all 0.2s;
+
+      &:hover {
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
+      }
+
+    }
+  }
+
+  .area2 {
+
+
+  }
+
+  .area3 {
+    .codeBtn {
+      height: 30px;
+      border-radius: 10px;
+      margin: 5px;
+      padding: 0 10px;
+      background-color: #1e1e1e;
+      color: greenyellow;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+}
