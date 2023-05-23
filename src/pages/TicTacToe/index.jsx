@@ -50,8 +50,6 @@ class TicTacToe extends Component {
        */
       allDetailsWithOpponents: [],  // 提交代码之后的和其他排行榜上对手打的结果
       isFirstCheckError: false,
-      firstCheckErrorType: "",
-      firstCheckErrorDetails: "",
 
       errorTypeText: "",
       errorDetailText: "",
@@ -228,17 +226,25 @@ class TicTacToe extends Component {
       myAlert("代码字符数量不能超过1万6");
       return;
     }
-    this.setState({isAllowSubmit: false});
+    // 清空之前提交的错误信息
+    this.setState({
+      allDetailsWithOpponents: [],
+      isFirstCheckError: false,
+      errorTypeText: "",
+      errorDetailText: "",
+      isAllowSubmit: false,  // 并允许打开按钮
+    });
 
     // 经过了nodejs直接传到了python的'/api/apiTicTacToeSubmitCode'
     let sendUserDetails = USER_DATA;
     sendUserDetails.userName = USER_DATA.name;  // 命名不规范，捞出bug
+    myAlert("代码发送给后端");
     SOCKET_OBJ.emit("后端处理用户提交井字棋代码", {
       userDetails: sendUserDetails,
       code: this.state.userCode,
       codeSize: calculateCodeSize(this.state.userCode),
     });
-    myAlert("已发送代码");
+
   }
 
   componentDidMount() {

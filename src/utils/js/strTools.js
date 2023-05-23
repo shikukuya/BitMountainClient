@@ -85,7 +85,7 @@ export function calculateCodeSize(code) {
   }
 
   // 计算代码大小
-  const totalCharCount = Object.values(charCount).reduce((a, b) => a + b);
+  const totalCharCount = Object.keys(charCount).length === 0 ? 0 : Object.values(charCount).reduce((a, b) => a + b);
   const totalKeywordCount = Object.keys(charCount).filter(
       keyword => keyword.match(/^[a-zA-Z]+$/) && keyword.toLowerCase() === keyword
   ).length;
