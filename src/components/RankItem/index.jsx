@@ -4,7 +4,7 @@ import {computeLevel} from "../../model/level";
 
 class RankItem extends Component {
   render() {
-    const {head, userName, rank, score} = this.props;
+    const {head, userName, rank, score, codeSize} = this.props;
     return (
         <div className="rankItemEle">
           <div className="mostLeft">
@@ -14,11 +14,17 @@ class RankItem extends Component {
             <img src={require(`../../headImgs/${head}.png`)} alt="x"/>
           </div>
           <div className="right">
-            <p>
-              {userName}
-              <img src={require(`../../levelIcon/level${computeLevel(score)}.png`)} alt="x"/>
-              <span>{score}</span>
-            </p>
+            <div className="userArea">
+              <div className="userName">{userName}</div>
+              <div className="userScore">
+                <img src={require(`../../levelIcon/level${computeLevel(score)}.png`)} alt="x"/>
+                <span>{score}</span>
+              </div>
+
+            </div>
+            <div className="codeArea">
+              <span>代码量：{codeSize}</span>
+            </div>
           </div>
         </div>
     );

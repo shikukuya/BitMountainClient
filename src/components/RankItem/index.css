@@ -5,6 +5,11 @@
   margin-right: 20px;
   border-radius: 10px;
   background-color: #1e1e1e;
+  transition: all 0.5s;
+}
+.rankItemEle:hover {
+  background: #000;
+  box-shadow: 0 0 20px white;
 }
 .rankItemEle .mostLeft,
 .rankItemEle .left,
@@ -37,9 +42,32 @@
   vertical-align: middle;
   padding: 0;
 }
-.rankItemEle .right img {
-  width: 30px;
+.rankItemEle .right .userArea,
+.rankItemEle .right .codeArea {
+  float: left;
+  width: 50%;
+  height: 100%;
+}
+.rankItemEle .right .userArea .userName,
+.rankItemEle .right .userArea .userScore {
+  height: 50%;
+  width: 100%;
+  line-height: 30px;
+}
+.rankItemEle .right .userArea .userName {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.rankItemEle .right .userArea .userScore {
+  font-size: 15px;
+}
+.rankItemEle .right .userArea .userScore img {
+  width: 25px;
   vertical-align: middle;
   line-height: 60px;
+}
+.rankItemEle .right .codeArea {
+  font-size: 13px;
 }
 /*# sourceMappingURL=index.css.map */

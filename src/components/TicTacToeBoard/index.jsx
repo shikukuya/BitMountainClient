@@ -15,14 +15,16 @@ class TicTacToeBoard extends Component {
     super(props);
     this.state = {
       // [ [xy], [xy] ]
-      historyList: this.props.historyList,
+      // [ {x:?,y:?}{}{}]
+      historyList: [],
+      title: "当前未选择对局",
       maxStep: 1,
       currentIndex: 0,  // 相对于boardList的下标
     }
     this.barEle = React.createRef();
   }
 
-  generateBoardListByHistory = (historyList) => {
+  generateBoardListByHistory = historyList => {
     let boardList = [
       [
         ["", "", ""],
@@ -36,7 +38,7 @@ class TicTacToeBoard extends Component {
       ["", "", ""]
     ]
     let step = 0;
-    for (let [x, y] of historyList) {
+    for (let {x, y} of historyList) {
       let curChar = "O"
       if (step % 2 === 0) {
         curChar = "X"
@@ -49,13 +51,12 @@ class TicTacToeBoard extends Component {
   }
 
   render() {
-    const {name} = this.props;
-    const {currentIndex, historyList} = this.state;
+    const {currentIndex, historyList, title} = this.state;
     this.boardList = this.generateBoardListByHistory(historyList);
 
     return (
         <div className="ticTacToeBoard">
-          <p className="title">当前对局:{name}</p>
+          <p className="title">当前对局:{title}</p>
           <div className="board">
             {
               getArray(3).map(y => {
@@ -142,11 +143,14 @@ class TicTacToeBoard extends Component {
   }
 
   componentDidMount() {
+    /**
+     * data: {  historyList: [{x:?,y:?},{x:?,y:?}...]  }
+     */
     this.token1 = PubSub.subscribe("井字棋棋盘接收更改内容消息", (_, data) => {
       // 先初始化棋盘，把进度条返回到0
       this.setState({currentIndex: 0});
       this.barEle.current.value = "0";
-      this.setState({historyList: data["historyList"]})
+      this.setState(data)
     });
   }
 

@@ -8,6 +8,13 @@
   border-radius: 10px;
   background-color: #1e1e1e;
 
+  transition: all 0.5s;
+
+  &:hover {
+    background: #000;
+    box-shadow: 0 0 20px white;
+  }
+
   .mostLeft, .left, .right {
     height: @H;
     float: left;
@@ -44,11 +51,42 @@
     vertical-align: middle;
     padding: 0;
 
-    img {
-      width: 30px;
+    .userArea, .codeArea {
+      float: left;
+      width: 50%;
+      height: 100%;
       //outline: solid 1px;
-      vertical-align: middle;
-      line-height: @H;
     }
+
+    .userArea {
+      .userName, .userScore {
+        height: 50%;
+        width: 100%;
+        line-height: 30px;
+      }
+
+      .userName {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .userScore {
+        img {
+          width: 25px;
+          //outline: solid 1px;
+          vertical-align: middle;
+          line-height: @H;
+        }
+
+        font-size: 15px;
+      }
+    }
+
+    .codeArea {
+      font-size: 13px;
+    }
+
+
   }
 }
