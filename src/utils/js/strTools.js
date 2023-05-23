@@ -283,3 +283,6 @@ export function getNumberOfLines(codeString) {
   const lines = codeString.split('\n');
   return lines.length;
 }
+
+
+

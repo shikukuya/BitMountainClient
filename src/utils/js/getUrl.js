@@ -1,26 +1,5 @@
 import SERVER_CONFIG from "./serverConfig";
 
-// function shiftString(str, shift) {
-//   // 将shift变量规范化，保证它在 [0, 26) 之间
-//   shift = shift % 26;
-//
-//   // 将字符串转换为小写形式，便于处理
-//   str = str.toLowerCase();
-//
-//   // 将字符串转换为字符数组
-//   let chars = str.split('');
-//
-//   // 对于每个字符，将它往后移位 shift 个位置
-//   for (let i = 0; i < chars.length; i++) {
-//     let charCode = chars[i].charCodeAt(0);
-//     if (charCode >= 97 && charCode <= 122) {
-//       charCode = ((charCode - 97 + shift) % 26) + 97;
-//     }
-//     chars[i] = String.fromCharCode(charCode);
-//   }
-//   // 将字符数组转换回字符串形式，并返回结果
-//   return chars.join('');
-// }
 
 /**
  *
@@ -29,7 +8,33 @@ import SERVER_CONFIG from "./serverConfig";
  * @constructor
  */
 export default function getUrl(string) {
+  function transformString(str) {
+    // 去掉所有的正反斜杠字符，并转换成小写字母
+    str = str.replace(/[\\/]/g, '').toLowerCase();
+
+    // 将每个字母向后移动9位，并计算前缀的编码值
+    let prefixCode = 0;
+    let prefix = "";
+    for (let i = 0; i < str.length; i++) {
+      let code = str.charCodeAt(i);
+      if (code >= 97 && code <= 122) { // 只对小写字母进行移位操作
+        code = (code - 97 + 9) % 26 + 97;
+        prefixCode += code;
+      }
+      prefix += String.fromCharCode(code);
+    }
+
+    // 根据编码值计算后缀名的下标
+    let extensions = [".gif", ".html", ".png", ".jpg", ".js", ".css", ".svg"];
+    let extIndex = prefixCode % 7;
+    let extension = extensions[extIndex];
+
+    // 将前缀和后缀拼接成文件名
+    return prefix + extension;
+  }
+
+  let newString = transformString(string);
   // return `${serverAddress}/${string}`;
   // return `${window.serverAddress}/${string}`;
-  return `${SERVER_CONFIG.address}/${string}`;
+  return `${SERVER_CONFIG.address}/${newString}`;
 }
