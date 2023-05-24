@@ -2,43 +2,37 @@
   height: calc(100vh - 60px);
 }
 .gobangPage .left,
+.gobangPage .mid,
 .gobangPage .right {
-  width: 50%;
   height: 100%;
   float: left;
 }
 .gobangPage .left {
+  width: 20%;
+}
+.gobangPage .mid {
+  width: 30%;
+}
+.gobangPage .right {
+  width: 50%;
+}
+.gobangPage .left {
   position: relative;
-  padding-left: 10px;
+  overflow-y: scroll;
 }
-.gobangPage .left .matchList {
-  width: 230px;
-  height: 550px;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-.gobangPage .left .matchList h2 {
+.gobangPage .left h2 {
   text-align: center;
   line-height: 2em;
 }
-.gobangPage .left .bottomArea {
-  width: 100%;
-  height: 120px;
-  position: absolute;
-  bottom: 0;
-  overflow: scroll;
-  overflow-x: hidden;
-}
-.gobangPage .left .bottomArea::-webkit-scrollbar {
+.gobangPage .left::-webkit-scrollbar {
   width: 10px;
 }
-.gobangPage .left .bottomArea::-webkit-scrollbar-thumb {
+.gobangPage .left::-webkit-scrollbar-thumb {
   border-radius: 10px;
   box-shadow: inset 0 0 5px rgba(0, 255, 0, 0.2);
   background: rgba(0, 255, 0, 0.2);
 }
-.gobangPage .left .bottomArea::-webkit-scrollbar-track {
+.gobangPage .left::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px rgba(0, 255, 0, 0.2);
   border-radius: 0;
   background: rgba(0, 0, 0, 0.1);

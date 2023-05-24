@@ -2,62 +2,110 @@ import React, {Component} from 'react';
 import {computeLevel} from "../../model/level";
 import "./index.css";
 import USER_DATA from "../../globalData/userData";
-import {fight} from "../../model/gobang";
 import PubSub from "pubsub-js"
+import myAlert from "../../utils/js/alertMassage";
 
 class GobangPlayerItem extends Component {
-  render() {
-    const {name, score, headSculpture, codeName, codeSize} = this.props;
+  constructor(props) {
+    super(props);
+    this.state = {
+      // 是否允许点击
+      isAllowClick: true,
+    };
+  }
 
+  render() {
+    const {
+      userDetails,
+      codeName, codeSize, rank,
+      winCount, loseCount
+    } = this.props;
+    const {isAllowClick} = this.state;
     return (
         <div className="personItem">
-          <div className="line">
-            <img src={require(`../../headImgs/${headSculpture}.png`)}
+          <div className="rankNumber">{rank}</div>
+          <div className="headImgArea">
+            <img src={require(`../../headImgs/${userDetails.headSculpture}.png`)}
                  className="headImg"
                  alt=""/>
-            <span className="userName">{name}</span>
           </div>
-          <div className="line">
-            <span className="codeName">{codeName}</span>
+          <div className="userDataArea">
+            <div className="line">
+              <span className="userName">{userDetails.userName}</span>
+            </div>
+            <div className="line">
+              <img src={require(`../../levelIcon/level${computeLevel(userDetails.score)}.png`)}
+                   className="levelImg"
+                   alt=""/>
+              <span className="score">{userDetails.score}</span>
+            </div>
+            <div className="line">
+              {isAllowClick ? <button onClick={this.handleFight}>点他单挑</button> : <span>请稍等……</span>}
+            </div>
           </div>
-          <div className="line">
-            <img src={require(`../../levelIcon/level${computeLevel(score)}.png`)}
-                 className="levelImg"
-                 alt=""/>
-            <span className="score">{score}</span>
-            <button onClick={this.handleFight}>挑战</button>
-          </div>
-          <div className="line">
-            <span className="codeSize">代码量：{codeSize}</span>
+          <div className="codeArea">
+            <div className="line">
+              <span>{codeName}</span>
+            </div>
+            <div className="line">
+              <span className="codeSize">代码量：{codeSize}</span>
+            </div>
+            <div className="line">
+              <span className="scoreText">胜：{winCount}</span>
+            </div>
+            <div className="line">
+              <span className="scoreText">败：{loseCount}</span>
+            </div>
+            <div className="line">
+              <span className="scoreText">
+                胜率：{this.calculateWinRate(winCount, loseCount)}%
+              </span>
+            </div>
+
           </div>
         </div>
     );
   }
 
-  componentDidMount() {
+  calculateWinRate = (winCount, loseCount) => {
+    if (winCount === 0 && loseCount === 0) {
+      return 100;
+    } else {
+      return Math.floor((winCount / (winCount + loseCount)) * 100);
+    }
+  }
 
+  componentDidMount() {
+    this.token1 = PubSub.subscribe("五子棋一条玩家更改状态", (_, data) => {
+      this.setState(data);
+    });
+  }
+  componentWillUnmount() {
+    // 取消消息订阅
+    PubSub.unsubscribe(this.token1);
   }
 
   /**
    * 挑战对方
    */
   handleFight = () => {
-    let otherCode = this.props.code;  // 敌方代码
-    let myCode = USER_DATA.gobangCurrentCode;  // 我方代码
-    let fightResult = {
-      firstResList: [],
-      secondResList: [],
-    };
-    // 三场先手三场后手，最后pubsub发送给右侧栏
-    for (let i = 0; i < 3; i++) {
-      fightResult.firstResList.push(fight(myCode, otherCode));
-    }
-    for (let i = 0; i < 3; i++) {
-      fightResult.secondResList.push(fight(otherCode, myCode));
+    if (!USER_DATA.isLogin) {
+      myAlert("请您先登录");
+      return;
     }
 
-    // 消息发布组件的一个函数中
-    PubSub.publish("五子棋界面更新挑战信息", {fightResult: fightResult});
+    // 自己不能挑战自己
+    if (USER_DATA.id === this.props.userDetails.id) {
+      myAlert("自己不能挑战自己");
+      return;
+    }
+    // 不能再点击了，让所有的都不能点击
+    PubSub.publish("五子棋一条玩家更改状态", {
+      isAllowClick: false,
+    });
+
+    this.props.fightFunc(this.props.userDetails.id);
+
   }
 
 }

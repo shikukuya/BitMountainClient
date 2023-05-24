@@ -1,24 +1,79 @@
 .personItem {
-  width: 100px;
-  float: left;
-  text-align: center;
-  background-color: #1e1e1e;
-  height: 100px;
-  margin: 5px;
-  padding: 5px;
-  border-radius: 10px;
+  width: 95%;
+  @ItemHeight: 85px;
+  height: @ItemHeight;
+  position: relative;
 
-  .headImg {
-    outline: solid 1px;
-    width: 25px;
-    display: inline-block;
-    vertical-align: middle;
-    border-radius: 50%;
+  text-align: center;
+  margin: 20px auto;
+  //padding: 5px;
+
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  transition: all 0.2s;
+
+  &:hover {
+    box-shadow: 0 0 20px white;
+    background-color: black;
   }
+
+  .rankNumber {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  .headImgArea, .userDataArea, .codeArea {
+    height: 100%;
+    float: left;
+    //outline: solid 1px;
+  }
+
+  .headImgArea {
+    width: 25%;
+    @L: 50px;
+    line-height: @ItemHeight;
+
+    .headImg {
+      outline: solid 1px;
+
+      width: @L;
+      height: @L;
+      display: inline-block;
+      vertical-align: middle;
+      border-radius: 50%;
+    }
+  }
+
+  .userDataArea {
+    width: 40%;
+
+  }
+
+  .codeArea {
+    width: 35%;
+    font-size: 10px;
+
+    .line {
+      text-align: left;
+      padding-left: 2px;
+
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  // =============
+
 
   .userName {
     font-size: 10px;
     margin-left: 5px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .levelImg {
@@ -27,13 +82,13 @@
     vertical-align: middle;
   }
 
-  .codeName {
-    font-size: 14px;
-  }
-
   .score {
     font-size: 10px;
     margin-right: 5px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   button {
@@ -47,9 +102,5 @@
       color: red;
       cursor: pointer;
     }
-  }
-
-  .codeSize {
-    font-size: 10px;
   }
 }

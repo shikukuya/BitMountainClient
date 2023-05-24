@@ -14,6 +14,10 @@ class GobangBoard extends Component {
       matchName: "对局名称",
       curIndex: 0,
       boardList: [],  // 每一个数组就是一个棋盘
+
+      // 鼠标交互相关
+      isShowCurLoc: false,
+      curSelectLoc: {x: -1, y: -1},
     }
     this.barEle = React.createRef();
   }
@@ -29,7 +33,9 @@ class GobangBoard extends Component {
                   return <div className="boardLine" key={y}>
                     {
                       getArray(15).map(x => {
-                        return <div className="box" key={x}>
+                        return <div className="box"
+                                    onMouseLeave={_ => this.setState({isShowCurLoc: false})}
+                                    onMouseEnter={this.showLocData(x, y)} key={x}>
                           {this.getPieceElement(x, y)}
                         </div>
                       })
@@ -50,10 +56,23 @@ class GobangBoard extends Component {
               className="bar"
               type="range"/>
           <button onClick={this.handleRight}>→</button>
+          {
+            this.state.isShowCurLoc ?
+                <div>当前鼠标所在坐标：{JSON.stringify(this.state.curSelectLoc)}</div> :
+                <div>鼠标放在棋盘上可以显示坐标</div>
+          }
         </div>
     );
   }
 
+  showLocData = (x, y) => {
+    return _ => {
+      this.setState({
+        isShowCurLoc: true,
+        curSelectLoc: {x: x, y: y}
+      });
+    }
+  }
   getPieceElement = (x, y) => {
     const {boardList, curIndex} = this.state;
     if (boardList.length === 0) {
@@ -102,6 +121,12 @@ class GobangBoard extends Component {
 
   componentDidMount() {
     this.rendBoard();
+    /**
+     * history: history,
+     winnerLoc: winnerLoc,
+     matchName: title,
+     curIndex: 0,
+     */
     this.token1 = PubSub.subscribe("五子棋棋盘更改状态", (_, data) => {
       this.setState(data);
       // 更改boardList

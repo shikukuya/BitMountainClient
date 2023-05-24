@@ -1,5 +1,6 @@
 .gobangBoard {
-  width: 390px;
+  background-color: #1e1e1e;
+  width: 100%;
   text-align: center;
 }
 .gobangBoard h1 {
@@ -10,6 +11,7 @@
   position: relative;
   height: 390px;
   width: 390px;
+  margin: 0 auto;
 }
 .gobangBoard .board {
   width: 390px;

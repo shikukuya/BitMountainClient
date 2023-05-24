@@ -2,9 +2,11 @@ import React, {Component} from 'react';
 import "./index.css";
 import Editor from "@monaco-editor/react";
 import PubSub from "pubsub-js";
-import {calculateCodeSize} from "../../utils/js/strTools";
+import {calculateCodeSize, isPoliticalSensitive} from "../../utils/js/strTools";
 import CodeSubmitResult from "../CodeSubmitResult";
 import casualModeTemplateObj from "./casualModeTemplate";
+import USER_DATA from "../../globalData/userData";
+import myAlert from "../../utils/js/alertMassage";
 
 
 /**
@@ -15,6 +17,7 @@ class CodeInputCasualMode extends Component {
   /**
    * 组件参数
    * gameName 可能是 "ticTacToe" "gobang" "mechanicalAutoChess" 三者中的任意一个
+   * codeSubmitFunc 为一个函数，参数为 code, codeName 两个字符串
    * @param props
    */
   constructor(props) {
@@ -27,11 +30,14 @@ class CodeInputCasualMode extends Component {
       userCode: this.initUserCode,
       userFont: `Consolas, 'Microsoft YaHei UI', 'Courier New', monospace`,  // 用户设置的中文字体名称
       codeSize: calculateCodeSize(this.initUserCode),
+      // 是否允许提交代码
+      isAllowSubmit: true,
     };
+    this.codeNameEle = React.createRef();
   }
 
   render() {
-    const {theme, userCode, codeSize, userFont, fontSize} = this.state;
+    const {theme, userCode, codeSize, userFont, fontSize, isAllowSubmit} = this.state;
     return (
         // 这个组件盒子外面需要套个框，此组件宽度100%，高度100%
         <div className="codeInputCasualMode">
@@ -79,8 +85,16 @@ class CodeInputCasualMode extends Component {
           </div>
 
           <div className="area3">
-            <button className="codeBtn">提交代码</button>
-            <input className="codeNameInput" type="text" placeholder={"代码命名"} maxLength={10}/>
+            <button className={isAllowSubmit ? "codeBtn" : "banBtn"}
+                    onClick={this.handleSubmit}>
+              {isAllowSubmit ? "提交代码" : "代码运行中..."}
+            </button>
+            <input
+                className="codeNameInput"
+                type="text"
+                placeholder={"代码命名"}
+                ref={this.codeNameEle}
+                maxLength={10}/>
             <button className="codeBtn" onClick={this.handleResetCode}>恢复模板</button>
           </div>
 
@@ -89,6 +103,67 @@ class CodeInputCasualMode extends Component {
     );
   }
 
+  componentDidMount() {
+    this.token1 = PubSub.subscribe("娱乐模式代码输入界面更改状态", (_, data) => {
+      this.setState(data);
+    });
+  }
+
+  componentWillUnmount() {
+    // 取消消息订阅
+    PubSub.unsubscribe(this.token1);
+  }
+
+  // 提交代码
+  handleSubmit = () => {
+    if (!this.state.isAllowSubmit) {
+      myAlert("代码正在运行！");
+      return;
+    }
+    this.setState({isAllowSubmit: false});
+
+    if (!USER_DATA.isLogin) {
+      PubSub.publish("代码结果框更新状态", {
+        isShow: true,
+        result: "网络错误",
+        errData: "请您先登录才能提交代码",
+      });
+      this.setState({isAllowSubmit: true});
+      return;
+    }
+    if (this.state.userCode.length > 16000) {
+      PubSub.publish("代码结果框更新状态", {
+        isShow: true,
+        result: "代码过长",
+        errData: "代码字符数量不能超过1万6",
+      });
+      this.setState({isAllowSubmit: true});
+      return;
+    }
+    if (isPoliticalSensitive(this.state.userCode)) {
+      PubSub.publish("代码结果框更新状态", {
+        isShow: true,
+        result: "敏感内容",
+        errData: "代码中不要包涵敏感内容",
+      });
+      this.setState({isAllowSubmit: true});
+      return;
+    }
+    let codeName = this.codeNameEle.current.value;
+    if (isPoliticalSensitive(codeName)) {
+      PubSub.publish("代码结果框更新状态", {
+        isShow: true,
+        result: "敏感内容",
+        errData: "代码名称中不要包涵敏感内容",
+      });
+      this.setState({isAllowSubmit: true});
+      return;
+    }
+
+    // 调用props传来的参数
+    this.props.codeSubmitFunc(this.state.userCode, codeName);
+
+  }
   // 更改主题
   handleChangeTheme = (ev) => {
     this.setState({theme: ev.target.value})

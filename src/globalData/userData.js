@@ -13,6 +13,22 @@ const USER_DATA = {
   // 上一次登录时间
   lastOnline: '2023年4月25日',
 
+  // 获取用于存储在数据库中的userDetails
+  getShort() {
+    return {
+      userName: this.name,
+      id: this.id,
+      headSculpture: this.headSculpture,
+      score: this.score,
+      email: this.email,
+      maxScore: this.maxScore,
+      winCount: this.winCount,
+      loseCount: this.loseCount,
+      matchCount: this.matchCount,
+      lastOnline: this.lastOnline,
+    }
+  },
+
   // 用户是否在玩游戏
   isPlaying: false,
 

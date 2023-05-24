@@ -1,53 +1,24 @@
 import React, {Component} from 'react';
 import "./index.css";
-import Editor from "@monaco-editor/react";
 import GobangBoard from "../../components/GobangBoard";
 import GobangPlayerItem from "../../components/GobangPlayerItem";
 import SOCKET_OBJ from "../../globalData/socketObject";
 import USER_DATA from "../../globalData/userData";
 import getUrl from "../../utils/js/getUrl";
-import GobangFightItem from "../../components/GobangFightItem";
 import PubSub from "pubsub-js";
-import {calculateCodeSize, isPoliticalSensitive} from "../../utils/js/strTools";
+import {calculateCodeSize} from "../../utils/js/strTools";
 import {changeBackgroundMusic} from "../../utils/js/backgroundMusic";
-import myAlert from "../../utils/js/alertMassage";
 import CodeInputCasualMode from "../../components/CodeInputCasualMode";
-
-const EgCode = `// @ts-check
-/**
- * @param {number[][]} board 19x19棋盘 其中0表示空地
- * @param {number} my 自己的棋子（非0数字）
- * @param {number} opponent 对方的棋子（非0数字）
- * @returns {number[]} 例如 [2,1] 表示第三行第二列
- */
-(board, my, opponent) => {
-  // 在范围 [a, b) 上随机整数
-  const randint = (a, b) => {
-     return Math.floor(Math.random() * (b - a) + a);
-   }
-  // 返回[y,x]下标表示你要落子的位置
-  // 例如返回[2, 1] 表示
-  // [0, 0, 0 ...],
-  // [0, 0, 0 ...],
-  // [0, x, 0 ...], 你将在x位置下。下标从0开始
-  // 如果你返回了错误答案或者越界了
-  // 或者该位置已经有棋子了
-  // 那么系统会帮你随机下到一个空地上
-  return [randint(0, 19), randint(0, 19)];
-}
-`;
+import myAlert from "../../utils/js/alertMassage";
+import CodeOutputCasualMode from "../../components/CodeOutputCasualMode";
 
 class Gobang extends Component {
   constructor(props) {
     super(props);
     this.codeNameEle = React.createRef();
     this.state = {
-      userCode: EgCode,
+      userCode: "EgCode",
       userList: [],  // [{},{}, ...]
-      fightResult: {
-        firstResList: [],
-        secondResList: [],
-      }
     }
   }
 
@@ -55,62 +26,104 @@ class Gobang extends Component {
     return (
         <div className="gobangPage">
           <div className="left">
+            <h2>五子棋排行榜</h2>
+            {
+              this.state.userList.map((obj, i) => {
+                console.log(obj);
+                return <GobangPlayerItem {...obj} rank={i + 1} fightFunc={this.fightPerson} key={i}/>
+              })
+            }
+          </div>
+          <div className="mid">
             <GobangBoard/>
-            <div className="matchList">
-              <h2>对局列表</h2>
-              <p>我方执黑先手</p>
-              {
-                this.state.fightResult.firstResList.map((resObj, i) => {
-                  return <GobangFightItem key={i} {...resObj} title={`先手第${i + 1}场`}/>
-                })
-              }
-              <p>我方执白后手</p>
-              {
-                this.state.fightResult.secondResList.map((resObj, i) => {
-                  return <GobangFightItem key={i} {...resObj} title={`后手第${i + 1}场`}/>
-                })
-              }
-            </div>
-            <div className="bottomArea">
-              {
-                this.state.userList.map(obj => {
-                  return <GobangPlayerItem {...obj} key={obj.name}/>
-                })
-              }
-            </div>
+            <CodeOutputCasualMode/>
           </div>
 
           <div className="right">
-            <CodeInputCasualMode gameName={"gobang"}/>
-            {/*<Editor*/}
-            {/*    height="80vh"*/}
-            {/*    value={EgCode}*/}
-            {/*    defaultLanguage="javascript"*/}
-            {/*    defaultValue="// some comment"*/}
-            {/*    onChange={this.handleOnChange}*/}
-            {/*    theme="vs-dark"*/}
-            {/*/>*/}
-            {/*<input type="text"*/}
-            {/*       ref={this.codeNameEle}*/}
-            {/*       maxLength={5}*/}
-            {/*       className="codeNameInput"*/}
-            {/*       placeholder="给这份代码起个霸气的名字"/>*/}
-            {/*<button*/}
-            {/*    className="submitBtn"*/}
-            {/*    onClick={this.handleSubmit}>提交代码到榜上*/}
-            {/*</button>*/}
+            <CodeInputCasualMode
+                gameName={"gobang"}
+                codeSubmitFunc={this.handleSubmit}/>
           </div>
         </div>
     );
   }
 
-  handleSocketListenGobangRank = res => {
-    const data = (res);
-    this.setState({userList: data["array"]});
+  // 排序方法
+  sortGobangUserList = (userList) => {
+    let arr = [...userList];
+    arr.sort((a, b) => {
+      const scoreA = a.winCount - a.loseCount;
+      const scoreB = b.winCount - b.loseCount;
+
+      if (scoreA > scoreB) {
+        return -1; // 降序排列
+      } else if (scoreA < scoreB) {
+        return 1;
+      } else {
+        if (a.winCount > b.winCount) {
+          return -1;
+        } else if (a.winCount < b.winCount) {
+          return 1;
+        } else {
+          if (a.codeSize > b.codeSize) {
+            return -1;
+          } else if (a.codeSize < b.codeSize) {
+            return 1;
+          } else {
+            return 0; // 不做处理
+          }
+        }
+      }
+    });
+    return arr;
+  }
+  /**
+   * socket发来消息，收到了五子棋排行榜上变化的消息，发来了一整个新的数组
+   * @param data
+   */
+  handleSocketListenGobangRank = data => {
+    let arr = data['array'];
+    console.log("排序后：", arr);
+    this.setState({userList: this.sortGobangUserList(arr)});
+  };
+
+  /**
+   * socket发来消息
+   * errorType，
+   * errorDetail，
+   * @param data
+   */
+  handleSocketListenGobangSubmitError = data => {
+    PubSub.publish("代码结果框更新状态", {
+      isShow: true,
+      result: data["errorType"],
+      errData: data["errorDetail"],
+    });
+    PubSub.publish("娱乐模式代码输入界面更改状态", {
+      isAllowSubmit: true,
+    });
+  }
+
+  // 提交井字棋成功了
+  handleSocketListenGobangSubmitSuccess = _ => {
+    myAlert("提交成功！");
+    PubSub.publish("娱乐模式代码输入界面更改状态", {
+      isAllowSubmit: true,
+    });
+  }
+  /**
+   * 与排行榜上的某个人进行对战
+   */
+  fightPerson = (opponentId) => {
+    SOCKET_OBJ.emit("后端监听五子棋中有用户发起了挑战", {
+      challengerId: USER_DATA.id,
+      opponentId: opponentId,
+    });
   }
 
   componentDidMount() {
     USER_DATA.gobangCurrentCode = this.state.userCode;
+
     fetch(getUrl("getGobangUserList"), {
       method: 'GET',
     }).then(
@@ -122,48 +135,81 @@ class Gobang extends Component {
     );
 
     SOCKET_OBJ.on("前端监听五子棋榜上变化", this.handleSocketListenGobangRank);
+    SOCKET_OBJ.on(`前端${USER_DATA.id}监听五子棋代码提交失败结果`, this.handleSocketListenGobangSubmitError);
+    SOCKET_OBJ.on(`前端${USER_DATA.id}监听五子棋代码提交成功`, this.handleSocketListenGobangSubmitSuccess);
+    SOCKET_OBJ.on(`前端${USER_DATA.id}监听五子棋挑战其他用户出错`, this.handleSocketListenGobangFightError);
+    SOCKET_OBJ.on(`前端${USER_DATA.id}监听五子棋挑战其他用户出结果`, this.handleSocketListenGobangFightResult);
 
-    // pubsub监听
-    this.token1 = PubSub.subscribe("五子棋界面更新挑战信息", (_, data) => {
-      this.setState(data);
-    });
     changeBackgroundMusic("gobang");
   }
 
   componentWillUnmount() {
-    // 取消消息订阅
-    PubSub.unsubscribe(this.token1);
     changeBackgroundMusic("main");
     SOCKET_OBJ.off("前端监听五子棋榜上变化", this.handleSocketListenGobangRank);
+    SOCKET_OBJ.off(`前端${USER_DATA.id}监听五子棋代码提交失败结果`, this.handleSocketListenGobangSubmitError);
+    SOCKET_OBJ.off(`前端${USER_DATA.id}监听五子棋代码提交成功`, this.handleSocketListenGobangSubmitSuccess);
+    SOCKET_OBJ.off(`前端${USER_DATA.id}监听五子棋挑战其他用户出错`, this.handleSocketListenGobangFightError);
+    SOCKET_OBJ.off(`前端${USER_DATA.id}监听五子棋挑战其他用户出结果`, this.handleSocketListenGobangFightResult);
   }
 
-  handleOnChange = (value, event) => {
-    this.setState({userCode: value});
-    USER_DATA.gobangCurrentCode = value;
+  /**
+   * 监听五子棋挑战其他用户出结果（没出错）
+   * @param data {Object} :
+   * {
+   *      "opponentName": xxx,
+   *      "resultString": res["resultString"],
+   *      "isFirst": res["isFirst"],
+   *      "history": res["history"],
+   *      "winLocList": res["winLocList"],
+   *      outputMessage: []
+   *  }
+   */
+  handleSocketListenGobangFightResult = data => {
+    let title;
+    if (data["isFirst"]) {
+      title = `${USER_DATA.name}（黑） vs ${data["opponentName"]}（白）（${data["resultString"]}）`;
+    } else {
+      title = `${USER_DATA.name}（白） vs ${data["opponentName"]}（黑）（${data["resultString"]}）`;
+    }
+    // data["outputMessage"] 打印出来
+    PubSub.publish("娱乐模式代码输出框重新设定消息", data["outputMessage"]);
+
+    PubSub.publish("五子棋棋盘更改状态", {
+      history: data["history"],
+      winnerLoc: data["winLocList"],
+      matchName: title,
+      curIndex: 0,
+    });
+
+    PubSub.publish("五子棋一条玩家更改状态", {
+      isAllowClick: true,
+    });
   }
 
-  handleSubmit = () => {
-    if (this.state.userCode.length > 16000) {
-      myAlert("代码字符数量不能超过1万6");
-      return;
-    }
-    if (isPoliticalSensitive(this.state.userCode)) {
-      myAlert("代码中不要包涵敏感内容");
-      return;
-    }
-    let codeName = this.codeNameEle.current.value;
-    if (isPoliticalSensitive(codeName)) {
-      myAlert("代码名称中有敏感内容");
-      return;
-    }
-    console.log(codeName, "准备发送");
+  // 监听五子棋挑战其他用户出错
+  handleSocketListenGobangFightError = (data) => {
+
+    PubSub.publish("代码结果框更新状态", {
+      isShow: true,
+      result: data["errorType"],
+      errData: data["errorDetails"],
+    });
+    PubSub.publish("五子棋一条玩家更改状态", {
+      isAllowClick: true,
+    });
+  }
+
+  handleSubmit = (code, codeName) => {
+
     SOCKET_OBJ.emit("后端处理用户提交五子棋代码", {
-      name: USER_DATA.name,
-      score: USER_DATA.score,
-      headSculpture: USER_DATA.headSculpture,
-      code: this.state.userCode,
+      userDetails: USER_DATA.getShort(),
+
+      code: code,
       codeName: codeName,
-      codeSize: calculateCodeSize(this.state.userCode),
+      codeSize: calculateCodeSize(code),
+
+      winCount: 0,
+      loseCount: 0,
     });
 
   }

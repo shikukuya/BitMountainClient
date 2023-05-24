@@ -5,16 +5,20 @@ import {choice} from "../utils/js/random";
  * 五子棋对决
  * @param code1 先手代码
  * @param code2 后手代码
- * @return {Object} {history 历史记录, result 结果字符串, winnerLoc 五个胜利子的位置组成数组,}
+ * @return {Object} {
+ *    history 历史记录, [{x:?,y:?},{x:?,y:?},{x:?,y:?}....]
+ *    result 黑胜、白胜、平局 三种字符串
+ *    winnerLoc 五个胜利子的位置组成数组，有可能平局，就是空数组
+ * }
  */
 export function fight(code1, code2) {
   let f1 = eval(code1);
   let f2 = eval(code2);
   const board = new Array2d(15, 15);
   let res = {
-    history: [],  // {x:1,y: 1}
-    result: "",
-    winnerLoc: [], // 赢了的五个点的位置 {x,y}
+    history: [],  // {x:1,y:1}
+    result: "",  // 黑胜、白胜、平局 三种字符串
+    winnerLoc: [], // 赢了的五个点的位置 {x,y} 有可能平局，就是空数组
   };
   let step = 0;
   while (true) {
@@ -52,11 +56,11 @@ export function fight(code1, code2) {
 }
 
 /**
- *
- * @param board 二维数组
+ * 执行用户下一步棋的方法
+ * @param board 二维数组 棋盘
  * @param codeFunc {Function} 用户代码
- * @param execNumber {Number}
- * @param opNumber {Number}
+ * @param execNumber {Number} 执行方的棋子数字
+ * @param opNumber {Number}   对手方的棋子数字
  * @return {Object} 例如 {x: 1, y:3}
  */
 function execUserCode(board, codeFunc, execNumber, opNumber) {
@@ -82,6 +86,7 @@ function execUserCode(board, codeFunc, execNumber, opNumber) {
   }
 }
 
+// 获取棋盘上所有的空位置点集合
 function getTempLocList(board) {
   let res = [];
   for (let y = 0; y < 15; y++) {
@@ -97,7 +102,8 @@ function getTempLocList(board) {
 /**
  * 检测是否有赢了
  * @param board
- * @return {[{x: *, y: *}]|*[]}
+ * @return {[{x: *, y: *}]|*[]} 这个列表中若为空表示没有人获得胜利
+ * 如果有人赢了，返回一个长度为 5 的数组
  */
 function checkWinner(board) {
   const directions = [
