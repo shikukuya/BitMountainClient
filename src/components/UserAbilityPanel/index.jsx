@@ -61,7 +61,7 @@ class UserAbilityPanel extends Component {
 
     if (this.state.isShow) {
       return (
-          <div className="userAbilityPanel">
+          <div className="components-user-ability-panel">
             <h2>详细信息</h2>
             <div className="content">
               <div className="left">

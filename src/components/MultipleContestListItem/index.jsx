@@ -19,7 +19,7 @@ class MultipleContestListItem extends Component {
   render() {
     const {myStage, opStage, mySubmitArr, opSubmitArr} = this.state;
     return (
-        <div className="multiContestItem">
+        <div className="components-multiple-contest-list-item">
           <div className="stageIcon myStage">
             {this.getStageChar(myStage)}
           </div>

@@ -1,4 +1,4 @@
-.emojiShowArea {
+.components-emoji-show-area {
   width: 110px;
   height: 40px;
   position: absolute;
@@ -6,7 +6,7 @@
   left: -10px;
   top: -32px;
 }
-.emojiShowArea .msg {
+.components-emoji-show-area .msg {
   position: absolute;
   left: 0;
   top: 0;
@@ -31,7 +31,7 @@
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
 }
-.emojiShowArea .msg .triangle {
+.components-emoji-show-area .msg .triangle {
   position: absolute;
   width: 0;
   height: 0;

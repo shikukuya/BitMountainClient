@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import "./index.css";
 import {sortAndConcatenateStrings} from "../../utils/js/strTools";
 import MultipleContestTableLine from "../MultipleContestTableLine";
 
@@ -34,8 +33,8 @@ class MultipleContestTable extends Component {
     const {initHp} = this.props;
 
     return (
-        <div className="multipleContestTable">
-          <div className="multipleContestTableLine">
+        <div className="components-multiple-contest-table">
+          <div className="components-multiple-contest-table-line">
             <div className="box">玩家名字</div>
             <div className="box">生命值</div>
             <div className="box">代码总量</div>

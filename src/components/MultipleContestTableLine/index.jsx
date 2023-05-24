@@ -29,7 +29,7 @@ class MultipleContestTableLine extends Component {
     const {hp, codeChar} = this.state;
 
     return (
-        <div className="multipleContestTableLine">
+        <div className="components-multiple-contest-table-line">
           <div className="box" style={{color: symbolColor}}>
             {userName}
             <EmojiShowArea bindUserId={userId} roomName={roomName}/>

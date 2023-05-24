@@ -1,4 +1,4 @@
-.gobangFightItem {
+.components-gobang-fight-item {
   height: 40px;
   background-color: #1e1e1e;
   margin: 10px;
@@ -7,14 +7,14 @@
   line-height: 40px;
   padding-left: 1em;
 }
-.gobangFightItem .resultText {
+.components-gobang-fight-item .resultText {
   background-color: #2b2b2b;
   color: orangered;
   padding: 5px;
   margin: 0 5px;
   border-radius: 5px;
 }
-.gobangFightItem .lookBtn {
+.components-gobang-fight-item .lookBtn {
   background-color: #444444;
   color: wheat;
   border-radius: 5px;
@@ -24,7 +24,7 @@
   margin: 0;
   transition: all 0.2s;
 }
-.gobangFightItem .lookBtn:hover {
+.components-gobang-fight-item .lookBtn:hover {
   cursor: pointer;
   transform: scale(1.1);
 }

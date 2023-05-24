@@ -9,7 +9,6 @@ import TopNav from "./components/TopNav";
 import Home from "./pages/Home";
 import Friend from "./pages/Friend";
 import MatchHistory from "./pages/MatchHistory";
-import UserPage from "./pages/UserPage";
 import Register from "./pages/Register";
 import RuleIntroduction from "./pages/RuleIntroduction";
 import ResetPage from "./pages/Reset";
@@ -37,7 +36,6 @@ export default class App extends Component {
             <Route path="/home" element={<Home/>}/>
             <Route path="/friend" element={<Friend/>}/>
             <Route path="/match-history" element={<MatchHistory/>}/>
-            <Route path="/user-page" element={<UserPage/>}/>
             <Route path="/register" element={<Register/>}/>
             <Route path="/rule" element={<RuleIntroduction/>}/>
             <Route path="/reset" element={<ResetPage/>}/>

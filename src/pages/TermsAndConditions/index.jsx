@@ -5,7 +5,7 @@ import Background from "../../components/Background";
 class TermsAndConditions extends Component {
   render() {
     return (
-        <div className="TermsAndConditionsPage">
+        <div className="page-terms-and-conditions">
           <h1>用户协议</h1>
 
           <h2>1. 介绍</h2>

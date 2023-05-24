@@ -1,11 +1,11 @@
-.goHomeAlertPanel {
+.components-go-home-alert {
   width: 100%;
   height: 100%;
   position: absolute;
   left: 0;
   top: 0;
 }
-.goHomeAlertPanel .blackGround {
+.components-go-home-alert .blackGround {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
@@ -16,7 +16,7 @@
   top: 0;
   bottom: 0;
 }
-.goHomeAlertPanel .alertPanel {
+.components-go-home-alert .alertPanel {
   outline: solid 1px;
   position: absolute;
   width: 300px;
@@ -31,16 +31,16 @@
   z-index: 500;
   box-shadow: greenyellow 0 0 20px inset;
 }
-.goHomeAlertPanel .alertPanel .reason {
+.components-go-home-alert .alertPanel .reason {
   text-align: center;
   line-height: 2em;
 }
-.goHomeAlertPanel .alertPanel .title {
+.components-go-home-alert .alertPanel .title {
   text-align: center;
   font-size: 35px;
   line-height: 3em;
 }
-.goHomeAlertPanel .alertPanel .btn {
+.components-go-home-alert .alertPanel .btn {
   background-color: darkgreen;
   color: greenyellow;
   display: block;

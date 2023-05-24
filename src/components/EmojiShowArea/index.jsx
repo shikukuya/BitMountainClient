@@ -20,7 +20,7 @@ class EmojiShowArea extends Component {
   render() {
     const {msgArr} = this.state;
     return (
-        <div className="emojiShowArea">
+        <div className="components-emoji-show-area">
           {
             msgArr.map((cur, i) => {
               return (

@@ -1,39 +1,39 @@
-.rulePage h1 {
+.page-rule-introduction h1 {
   text-align: center;
   line-height: 3em;
 }
-.rulePage main {
+.page-rule-introduction main {
   width: 60%;
   min-height: calc(100vh - 60px);
   margin: 0 auto;
   padding: 0 60px 200px;
   background-color: rgba(0, 0, 0, 0.6);
 }
-.rulePage main .moodImg {
+.page-rule-introduction main .moodImg {
   display: block;
   margin: 0 auto;
   height: 100px;
 }
-.rulePage main h1 {
+.page-rule-introduction main h1 {
   font-size: 30px;
 }
-.rulePage main .mood {
+.page-rule-introduction main .mood {
   margin: 20px 0 20px 0;
 }
-.rulePage main .mood h2 {
+.page-rule-introduction main .mood h2 {
   font-size: 25px;
   line-height: 2em;
 }
-.rulePage main .mood p {
+.page-rule-introduction main .mood p {
   line-height: 2em;
   text-indent: 2em;
 }
-.rulePage main .mood .my-list {
+.page-rule-introduction main .mood .my-list {
   list-style-type: decimal;
   padding-left: 4em;
   line-height: 2em;
 }
-.rulePage main .mood img {
+.page-rule-introduction main .mood img {
   display: block;
   margin: 0 auto;
 }

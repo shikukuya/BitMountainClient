@@ -1,4 +1,4 @@
-.userAbilityPanel {
+.components-user-ability-panel {
   position: absolute;
   width: 1000px;
   height: 500px;
@@ -10,7 +10,7 @@
   background-color: rgba(47, 81, 81, 0.95);
   box-shadow: black 0 0 30px;
 }
-.userAbilityPanel .close {
+.components-user-ability-panel .close {
   width: 30px;
   height: 30px;
   background-color: orangered;
@@ -19,51 +19,51 @@
   right: 0;
   top: 0;
 }
-.userAbilityPanel .close:hover {
+.components-user-ability-panel .close:hover {
   cursor: pointer;
 }
-.userAbilityPanel h2 {
+.components-user-ability-panel h2 {
   text-align: center;
   line-height: 2em;
   font-size: 30px;
 }
-.userAbilityPanel .content {
+.components-user-ability-panel .content {
   width: 100%;
   overflow: hidden;
   padding: 0;
 }
-.userAbilityPanel .content .left,
-.userAbilityPanel .content .right {
+.components-user-ability-panel .content .left,
+.components-user-ability-panel .content .right {
   height: 100%;
   float: left;
   margin: 0;
 }
-.userAbilityPanel .content .left {
+.components-user-ability-panel .content .left {
   width: 30%;
 }
-.userAbilityPanel .content .right {
+.components-user-ability-panel .content .right {
   width: 70%;
   height: 400px;
   position: relative;
 }
-.userAbilityPanel .content .left .line {
+.components-user-ability-panel .content .left .line {
   background-color: transparent;
 }
-.userAbilityPanel .content .left .line .headImg {
+.components-user-ability-panel .content .left .line .headImg {
   width: 50px;
   vertical-align: middle;
   display: inline-block;
   margin-right: 2em;
 }
-.userAbilityPanel .content .left .line span {
+.components-user-ability-panel .content .left .line span {
   line-height: 50px;
   vertical-align: middle;
 }
-.userAbilityPanel .content .left .line .levelImg {
+.components-user-ability-panel .content .left .line .levelImg {
   width: 30px;
   vertical-align: middle;
 }
-.userAbilityPanel .content .left .line .score {
+.components-user-ability-panel .content .left .line .score {
   margin-left: 0;
 }
 /*# sourceMappingURL=index.css.map */

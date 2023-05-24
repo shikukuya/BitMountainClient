@@ -36,8 +36,8 @@ class ContestTable extends Component {
   render() {
     const {initHp, team1UserObjList, team2UserObjList} = this.props;
     return (
-        <div className="contestTable">
-          <div className="contestTableLine">
+        <div className="components-contest-table">
+          <div className="components-contest-table-line">
             <div className="box">玩家名字</div>
             <div className="box">生命值</div>
             <div className="box">提交次数</div>

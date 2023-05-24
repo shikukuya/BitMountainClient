@@ -1,4 +1,4 @@
-.top-nav {
+.components-top-nav {
   height: 60px;
   background: rgba(60, 63, 65, 0.78);
   overflow: hidden;
@@ -8,67 +8,66 @@
   animation-duration: 5s;
   animation-iteration-count: infinite;
 }
-.top-nav .left {
+.components-top-nav .left {
   height: 60px;
   float: left;
   width: 30%;
   z-index: 100;
 }
-.top-nav .left .LOGO {
+.components-top-nav .left .LOGO {
   height: 60px;
   float: left;
   margin-left: 30px;
 }
-.top-nav .left .title {
+.components-top-nav .left .title {
   font-size: 25px;
   line-height: 60px;
   margin-left: 30px;
   color: #28ff28;
 }
-.top-nav .middle {
+.components-top-nav .middle {
   height: 60px;
   float: left;
   width: 40%;
   vertical-align: center;
   z-index: 100;
 }
-.top-nav .middle p,
-.top-nav .middle div {
+.components-top-nav .middle p,
+.components-top-nav .middle div {
   height: 60px;
   float: left;
   line-height: 60px;
 }
-.top-nav .middle .VS {
+.components-top-nav .middle .VS {
   font-size: 23px;
   font-weight: bolder;
   margin-left: 10px;
   margin-right: 10px;
   color: greenyellow;
 }
-.top-nav .middle .user {
+.components-top-nav .middle .user {
   height: 60px;
   line-height: 60px;
 }
-.top-nav .middle .user img,
-.top-nav .middle .user span {
+.components-top-nav .middle .user img,
+.components-top-nav .middle .user span {
   display: block;
   float: left;
   height: 60px;
   line-height: 60px;
 }
-.top-nav .middle .user img {
+.components-top-nav .middle .user img {
   width: 30px;
   height: 30px;
-  margin: 0;
   padding: 0;
   margin-top: 15px;
   border-radius: 50%;
   margin-left: 10px;
 }
-.top-nav .middle .user .userName {
+.components-top-nav .middle .user .userName {
   margin-left: 3px;
 }
-.top-nav .middle li {
+.components-top-nav .middle li {
   height: 60px;
   float: left;
   text-decoration: none;
@@ -77,7 +76,7 @@
   padding-left: 20px;
   padding-right: 20px;
 }
-.top-nav .middle li .clickItem {
+.components-top-nav .middle li .clickItem {
   height: 60px;
   line-height: 60px;
   text-decoration: none;
@@ -85,25 +84,25 @@
   transition: all 0.2s;
   position: relative;
 }
-.top-nav .middle li .clickItem:hover {
+.components-top-nav .middle li .clickItem:hover {
   color: greenyellow;
 }
-.top-nav .middle li .clickItem:hover .lightDote {
+.components-top-nav .middle li .clickItem:hover .lightDote {
   opacity: 1;
   transform: scale(4.5);
   border-right-color: transparent;
   border-left-color: transparent;
 }
-.top-nav .middle li .clickItem:active {
+.components-top-nav .middle li .clickItem:active {
   transform: scale(0.5);
 }
-.top-nav .middle li .clickItem:active .lightDote {
+.components-top-nav .middle li .clickItem:active .lightDote {
   opacity: 1;
   transform: scale(1) rotate(90deg);
   border-right-color: transparent;
   border-left-color: transparent;
 }
-.top-nav .middle li .clickItem .lightDote {
+.components-top-nav .middle li .clickItem .lightDote {
   width: 10px;
   height: 10px;
   margin-left: -5px;
@@ -117,12 +116,12 @@
   border-radius: 50%;
   opacity: 0;
 }
-.top-nav .right {
+.components-top-nav .right {
   width: 30%;
   height: 60px;
   float: left;
 }
-.top-nav .right .exitContest {
+.components-top-nav .right .exitContest {
   background-color: darkred;
   color: orange;
   display: inline;
@@ -133,7 +132,7 @@
   vertical-align: middle;
   transition: all 0.2s;
 }
-.top-nav .right .headImg {
+.components-top-nav .right .headImg {
   outline: solid 1px;
   width: 30px;
   height: 30px;
@@ -142,13 +141,13 @@
   margin: 5px;
   border-radius: 50%;
 }
-.top-nav .right .login,
-.top-nav .right .register,
-.top-nav .right .userName,
-.top-nav .right .score,
-.top-nav .right .userLevel,
-.top-nav .right .headImg,
-.top-nav .right .exit {
+.components-top-nav .right .login,
+.components-top-nav .right .register,
+.components-top-nav .right .userName,
+.components-top-nav .right .score,
+.components-top-nav .right .userLevel,
+.components-top-nav .right .headImg,
+.components-top-nav .right .exit {
   line-height: 60px;
   vertical-align: middle;
   color: #d4d4d4;
@@ -156,36 +155,36 @@
   margin-right: 10px;
   cursor: pointer;
 }
-.top-nav .right .userLevel {
+.components-top-nav .right .userLevel {
   width: 30px;
   height: 30px;
   margin-right: 0;
   transition: all 0.2s;
 }
-.top-nav .right .userLevel:hover {
+.components-top-nav .right .userLevel:hover {
   cursor: pointer;
   transform: scale(1.5);
 }
-.top-nav .right .score {
+.components-top-nav .right .score {
   margin-left: 0;
 }
-.top-nav .right .login {
+.components-top-nav .right .login {
   cursor: pointer;
   margin-right: 10px;
   margin-left: 10px;
 }
-.top-nav .right .register {
+.components-top-nav .right .register {
   cursor: pointer;
 }
-.top-nav .left,
-.top-nav .middle,
-.top-nav .right {
+.components-top-nav .left,
+.components-top-nav .middle,
+.components-top-nav .right {
   z-index: 50;
 }
-.top-nav .light {
+.components-top-nav .light {
   z-index: 1;
 }
-.top-nav .light {
+.components-top-nav .light {
   height: 60px;
   width: 100px;
   background-color: #272727;
@@ -195,7 +194,7 @@
   z-index: 0;
   animation-timing-function: ease-in;
 }
-.top-nav .musicBtn {
+.components-top-nav .musicBtn {
   font-size: 22px;
   position: absolute;
   height: 40px;
@@ -211,13 +210,13 @@
   transition: all 0.2s;
   right: 30px;
 }
-.top-nav .musicBtn:hover {
+.components-top-nav .musicBtn:hover {
   transform: scale(1.1);
 }
-.top-nav .musicBtn:active {
+.components-top-nav .musicBtn:active {
   transform: scale(0.9);
 }
-.top-nav .soundBtn {
+.components-top-nav .soundBtn {
   font-size: 22px;
   position: absolute;
   height: 40px;
@@ -233,10 +232,10 @@
   transition: all 0.2s;
   right: 75px;
 }
-.top-nav .soundBtn:hover {
+.components-top-nav .soundBtn:hover {
   transform: scale(1.1);
 }
-.top-nav .soundBtn:active {
+.components-top-nav .soundBtn:active {
   transform: scale(0.9);
 }
 @keyframes lightMove {

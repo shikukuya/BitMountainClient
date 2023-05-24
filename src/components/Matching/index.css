@@ -1,13 +1,13 @@
-.matchArea {
+.components-match-area {
   width: 100%;
   height: 80vh;
 }
-.matchArea h2 {
+.components-match-area h2 {
   text-align: center;
   line-height: 2em;
   font-size: 50px;
 }
-.matchArea .cancelBtn {
+.components-match-area .cancelBtn {
   display: block;
   height: 30px;
   line-height: 30px;
@@ -20,16 +20,16 @@
   border: none;
   transition: all 0.2s;
 }
-.matchArea .cancelBtn:hover {
+.components-match-area .cancelBtn:hover {
   cursor: pointer;
   transform: scale(1.1);
   text-decoration: none;
 }
-.matchArea .tips {
+.components-match-area .tips {
   text-align: center;
   line-height: 2em;
 }
-.matchArea .waiting {
+.components-match-area .waiting {
   width: 250px;
   height: 250px;
   position: absolute;
@@ -38,7 +38,7 @@
   margin-left: -125px;
   margin-top: -125px;
 }
-.matchArea .waiting .box {
+.components-match-area .waiting .box {
   width: 70%;
   height: 70%;
   margin: 0 auto;

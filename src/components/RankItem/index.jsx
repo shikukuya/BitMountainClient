@@ -6,7 +6,7 @@ class RankItem extends Component {
   render() {
     const {head, userName, rank, score, codeSize} = this.props;
     return (
-        <div className="rankItemEle">
+        <div className="components-rank-item">
           <div className="mostLeft">
             <div className="rankNumber">{rank}</div>
           </div>

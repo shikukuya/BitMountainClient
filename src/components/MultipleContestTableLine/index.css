@@ -1,16 +1,16 @@
-.multipleContestTableLine::after {
+.components-multiple-contest-table-line::after {
   content: '';
   display: block;
   height: 0;
   clear: both;
   visibility: hidden;
 }
-.multipleContestTableLine .shakeAni {
+.components-multiple-contest-table-line .shakeAni {
   animation-name: shaking;
   animation-duration: 0.5s;
   animation-iteration-count: infinite;
 }
-.multipleContestTableLine .box {
+.components-multiple-contest-table-line .box {
   height: 30px;
   line-height: 30px;
   width: 30%;
@@ -21,11 +21,11 @@
   font-family: Consolas, serif;
   background-color: #1e1e1e;
 }
-.multipleContestTableLine .box:nth-child(1) {
+.components-multiple-contest-table-line .box:nth-child(1) {
   position: relative;
   overflow: visible;
 }
-.multipleContestTableLine .box:nth-child(2) {
+.components-multiple-contest-table-line .box:nth-child(2) {
   color: red;
 }
 /*# sourceMappingURL=index.css.map */

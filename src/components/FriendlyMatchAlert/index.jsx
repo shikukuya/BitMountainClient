@@ -25,7 +25,7 @@ class FriendlyMatchAlert extends Component {
 
     if (isShow) {
       return (
-          <div className="friendlyMatchAlert">
+          <div className="components-friendly-match-alert">
             <h1>有好友向您发起友谊赛</h1>
             <img
                 className="headImg"

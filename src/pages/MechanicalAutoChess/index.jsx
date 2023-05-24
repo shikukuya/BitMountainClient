@@ -126,7 +126,7 @@ class MechanicalAutoChess extends Component {
 
   render() {
     return (
-        <div className="MechanicalAutoChessPage">
+        <div className="page-mechanical-auto-chess">
           <div className="left">
             <div className="leftTop">
               <AutoChessBoard/>

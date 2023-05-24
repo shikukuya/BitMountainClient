@@ -54,7 +54,7 @@ class NormalContest extends Component {
       submitDisable,
     } = this.state;
     return (
-        <div className="normalContestPage">
+        <div className="page-normal-contest">
           {/*对战结束的弹窗*/}
           <GoHomeAlert isWin={isWin} isShow={isEnd} reason={endReason}/>
           {/*对局开始动画组件*/}

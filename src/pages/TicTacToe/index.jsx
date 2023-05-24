@@ -152,7 +152,7 @@ class TicTacToe extends Component {
 
   render() {
     return (
-        <div className="TicTacToePage">
+        <div className="page-tic-tac-toe">
           {/*<h2>井字棋脚本</h2>*/}
           <div className="left">
             <div className="topItem">

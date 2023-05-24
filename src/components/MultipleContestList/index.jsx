@@ -24,7 +24,7 @@ class MultipleContestList extends Component {
   render() {
     const {myCurQuestion, opCurQuestion} = this.state;
     return (
-        <div className="multipleContestList">
+        <div className="components-multiple-contest-list">
           {
             getArray(5).map(i => {
               return <MultipleContestListItem

@@ -66,7 +66,7 @@ class LoginPanel extends Component {
     const {gotoLink} = this.state;
 
     return (
-        <div className="loginPanel" style={curStyle}>
+        <div className="components-login-panel" style={curStyle}>
           {gotoLink}
           <div className="blackGround"/>
           <div className="panel">

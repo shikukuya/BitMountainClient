@@ -17,7 +17,6 @@ class FriendRequestList extends Component {
         <div>
           <CopyUUID/>
           <AddFriend/>
-          {/*name, score, id, note, headSculpture*/}
           {this.state.friendReqArr.map((cur) => {
             return <FriendRequestListItem {...cur} />;
           })}

@@ -13,7 +13,7 @@ class MyAlert extends Component {
 
   render() {
     return (
-        <div className="myAlertWrap">
+        <div className="components-my-alert-warp">
           {
             this.state.massageList.map((str, i) => {
               return <div className="massage" key={i}>{str}</div>

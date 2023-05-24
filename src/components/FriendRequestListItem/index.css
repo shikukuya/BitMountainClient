@@ -1,4 +1,4 @@
-.friendRequestItem {
+.components-friendly-request-list-item {
   margin: 20px 10px 20px 10px;
   min-height: 80px;
   line-height: 80px;
@@ -7,62 +7,62 @@
   overflow: hidden;
   padding-bottom: 15px;
 }
-.friendRequestItem .left,
-.friendRequestItem .mid,
-.friendRequestItem .right {
+.components-friendly-request-list-item .left,
+.components-friendly-request-list-item .mid,
+.components-friendly-request-list-item .right {
   float: left;
   display: block;
   margin: 0;
   padding: 0;
   height: 100%;
 }
-.friendRequestItem .left {
+.components-friendly-request-list-item .left {
   width: 20%;
 }
-.friendRequestItem .mid {
+.components-friendly-request-list-item .mid {
   width: 50%;
 }
-.friendRequestItem .right {
+.components-friendly-request-list-item .right {
   width: 30%;
 }
-.friendRequestItem .left {
+.components-friendly-request-list-item .left {
   text-align: center;
 }
-.friendRequestItem .left .headImg {
+.components-friendly-request-list-item .left .headImg {
   width: 80px;
   display: inline;
   border-radius: 50%;
   padding: 10px;
 }
-.friendRequestItem .mid .basicData {
+.components-friendly-request-list-item .mid .basicData {
   height: 40px;
 }
-.friendRequestItem .mid .basicData .name,
-.friendRequestItem .mid .basicData .level,
-.friendRequestItem .mid .basicData .score {
+.components-friendly-request-list-item .mid .basicData .name,
+.components-friendly-request-list-item .mid .basicData .level,
+.components-friendly-request-list-item .mid .basicData .score {
   display: block;
   float: left;
   height: 40px;
   line-height: 40px;
   margin: 0;
 }
-.friendRequestItem .mid .basicData .name {
+.components-friendly-request-list-item .mid .basicData .name {
   margin-right: 10px;
 }
-.friendRequestItem .mid .basicData .level {
+.components-friendly-request-list-item .mid .basicData .level {
   height: 40px;
   width: 40px;
   vertical-align: middle;
 }
-.friendRequestItem .mid .basicData .score {
+.components-friendly-request-list-item .mid .basicData .score {
   margin-right: 20px;
 }
-.friendRequestItem .mid .note {
+.components-friendly-request-list-item .mid .note {
   font-size: 15px;
   line-height: 2em;
   text-indent: 2em;
 }
-.friendRequestItem .right button {
+.components-friendly-request-list-item .right button {
   display: inline;
   margin-left: 5px;
   margin-right: 5px;
@@ -73,19 +73,19 @@
   border: none;
   transition: all 0.2s;
 }
-.friendRequestItem .right button:hover {
+.components-friendly-request-list-item .right button:hover {
   transform: scale(1.1);
   cursor: pointer;
 }
-.friendRequestItem .right .confirmBtn {
+.components-friendly-request-list-item .right .confirmBtn {
   background-color: lightgreen;
   color: darkgreen;
 }
-.friendRequestItem .right .refuseBtn {
+.components-friendly-request-list-item .right .refuseBtn {
   background-color: indianred;
   color: #440000;
 }
-.friendRequestItem span {
+.components-friendly-request-list-item span {
   line-height: 80px;
 }
 /*# sourceMappingURL=index.css.map */

@@ -1,37 +1,37 @@
-.registerPage {
+.page-register {
   padding-bottom: 100px;
 }
-.registerPage button {
+.page-register button {
   border-radius: 10px;
 }
-.registerPage button:hover {
+.page-register button:hover {
   cursor: pointer;
 }
-.registerPage .banBtn:hover {
+.page-register .banBtn:hover {
   cursor: not-allowed;
 }
-.registerPage input {
+.page-register input {
   line-height: 2em;
   outline: none;
   border-radius: 10px;
 }
-.registerPage main {
+.page-register main {
   width: 60%;
   margin: 0 auto;
   padding: 20px;
   background-color: rgba(0, 0, 0, 0.5);
 }
-.registerPage h1 {
+.page-register h1 {
   text-align: center;
   font-size: 35px;
 }
-.registerPage .headImgArea {
+.page-register .headImgArea {
   margin: 20px;
 }
-.registerPage .headImgArea .selected {
+.page-register .headImgArea .selected {
   box-shadow: greenyellow 0 0 10px;
 }
-.registerPage .headImgArea img {
+.page-register .headImgArea img {
   width: 50px;
   height: 50px;
   margin: 10px;
@@ -40,35 +40,35 @@
   border-radius: 50%;
   transition: all 0.2s;
 }
-.registerPage .headImgArea img:hover {
+.page-register .headImgArea img:hover {
   cursor: pointer;
   transform: scale(1.5);
 }
-.registerPage .line {
+.page-register .line {
   height: 30px;
   margin: 20px;
 }
-.registerPage .line span {
+.page-register .line span {
   line-height: 30px;
 }
-.registerPage .line input {
+.page-register .line input {
   height: 30px;
   margin-right: 10px;
   text-indent: 1em;
   width: 250px;
 }
-.registerPage .line button {
+.page-register .line button {
   height: 30px;
   padding: 0 20px 0 20px;
 }
-.registerPage .line .confirmBtn {
+.page-register .line .confirmBtn {
   display: block;
   margin: 0 auto;
 }
-.registerPage .testImgArea {
+.page-register .testImgArea {
   margin: 20px;
 }
-.registerPage .testImgArea img {
+.page-register .testImgArea img {
   padding: 10px;
   outline: solid 1px whitesmoke;
 }

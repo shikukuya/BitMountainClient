@@ -1,46 +1,46 @@
-.multipleContestPage {
+.page-multiple-contest {
   height: calc(100vh - 60px);
 }
-.multipleContestPage .left,
-.multipleContestPage .middle,
-.multipleContestPage .right {
+.page-multiple-contest .left,
+.page-multiple-contest .middle,
+.page-multiple-contest .right {
   height: 100%;
   float: left;
 }
-.multipleContestPage .left {
+.page-multiple-contest .left {
   width: 10%;
 }
-.multipleContestPage .middle {
+.page-multiple-contest .middle {
   width: 40%;
 }
-.multipleContestPage .right {
+.page-multiple-contest .right {
   width: 50%;
 }
-.multipleContestPage .right .codeArea,
-.multipleContestPage .right .bottomArea {
+.page-multiple-contest .right .codeArea,
+.page-multiple-contest .right .bottomArea {
   width: 100%;
 }
-.multipleContestPage .right .codeArea {
+.page-multiple-contest .right .codeArea {
   height: 80%;
   position: relative;
   overflow: hidden;
 }
-.multipleContestPage .right .bottomArea {
+.page-multiple-contest .right .bottomArea {
   height: 20%;
   position: relative;
 }
-.multipleContestPage .right .bottomArea .multipleContestTable,
-.multipleContestPage .right .bottomArea .userPanel {
+.page-multiple-contest .right .bottomArea .components-multiple-contest-table,
+.page-multiple-contest .right .bottomArea .userPanel {
   height: 100%;
   float: left;
 }
-.multipleContestPage .right .bottomArea .multipleContestTable {
+.page-multiple-contest .right .bottomArea .components-multiple-contest-table {
   width: 80%;
 }
-.multipleContestPage .right .bottomArea .userPanel {
+.page-multiple-contest .right .bottomArea .userPanel {
   width: 20%;
 }
-.multipleContestPage .right .bottomArea .userPanel .submitBtn {
+.page-multiple-contest .right .bottomArea .userPanel .submitBtn {
   display: block;
   margin: 5px auto;
   padding: 2px 10px 2px 10px;
@@ -51,17 +51,17 @@
   border-radius: 10px;
   height: 30px;
 }
-.multipleContestPage .right .bottomArea .userPanel .submitBtn:hover {
+.page-multiple-contest .right .bottomArea .userPanel .submitBtn:hover {
   cursor: pointer;
 }
-.multipleContestPage .right .bottomArea .userPanel .disabled {
+.page-multiple-contest .right .bottomArea .userPanel .disabled {
   background-color: #626400;
   color: #ffdc2f;
 }
-.multipleContestPage .right .bottomArea .userPanel .disabled:hover {
+.page-multiple-contest .right .bottomArea .userPanel .disabled:hover {
   cursor: not-allowed;
 }
-.multipleContestPage .right .bottomArea .userPanel span {
+.page-multiple-contest .right .bottomArea .userPanel span {
   user-select: none;
 }
 /*# sourceMappingURL=index.css.map */

@@ -1,9 +1,9 @@
-.friendPage {
+.page-friend {
   height: 100vh;
   width: 80%;
   margin: 0 auto;
 }
-.friendPage .left {
+.page-friend .left {
   float: left;
   width: 25%;
   height: 100%;
@@ -11,7 +11,7 @@
   padding: 25px;
   background-color: #13653f;
 }
-.friendPage .left button {
+.page-friend .left button {
   border: none;
   background-color: transparent;
   color: #fff;
@@ -20,24 +20,24 @@
   font-size: 150%;
   cursor: pointer;
 }
-.friendPage .left button::before {
+.page-friend .left button::before {
   content: '>';
   margin-right: 0.5em;
 }
-.friendPage .left button.selected::before {
+.page-friend .left button.selected::before {
   content: '<';
 }
-.friendPage .left h2,
-.friendPage .left h4 {
+.page-friend .left h2,
+.page-friend .left h4 {
   text-align: center;
   line-height: 3em;
   font-size: 20px;
 }
-.friendPage .left .line {
+.page-friend .left .line {
   min-height: 30px;
   line-height: 30px;
 }
-.friendPage .left .line input {
+.page-friend .left .line input {
   line-height: 2em;
   font-size: 15px;
   margin-right: 5px;
@@ -49,28 +49,28 @@
   border: none;
   color: lightgreen;
 }
-.friendPage .left .line input::placeholder {
+.page-friend .left .line input::placeholder {
   color: forestgreen;
 }
-.friendPage .left .line span {
+.page-friend .left .line span {
   margin-right: 5px;
 }
-.friendPage .left .line img {
+.page-friend .left .line img {
   width: 40px;
   height: 40px;
   vertical-align: middle;
 }
-.friendPage .right {
+.page-friend .right {
   float: left;
   width: 70%;
   height: 100%;
   margin: 10px;
   padding: 5px;
 }
-.friendPage .right .topLine {
+.page-friend .right .topLine {
   height: 50px;
 }
-.friendPage .right .topLine .top-switch {
+.page-friend .right .topLine .top-switch {
   width: 50%;
   height: 100%;
   background-color: black;
@@ -78,30 +78,30 @@
   outline: none;
   border: none;
 }
-.friendPage .right .topLine .top-switch:hover {
+.page-friend .right .topLine .top-switch:hover {
   cursor: pointer;
 }
-.friendPage .right .topLine .active {
+.page-friend .right .topLine .active {
   box-shadow: greenyellow 0 0 20px inset;
   color: lawngreen;
 }
-.friendPage .right .downBody {
+.page-friend .right .downBody {
   background-color: #193729;
   height: 100%;
   width: 100%;
   overflow-y: auto;
   padding: 10px;
 }
-.friendPage .right .copyUUIDPanel,
-.friendPage .right .addFriend {
+.page-friend .right .copyUUIDPanel,
+.page-friend .right .addFriend {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.friendPage .right .copyUUIDPanel button,
-.friendPage .right .addFriend button,
-.friendPage .right .copyUUIDPanel input,
-.friendPage .right .addFriend input {
+.page-friend .right .copyUUIDPanel button,
+.page-friend .right .addFriend button,
+.page-friend .right .copyUUIDPanel input,
+.page-friend .right .addFriend input {
   border: none;
   background-color: transparent;
   color: #fff;

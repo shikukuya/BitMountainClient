@@ -95,7 +95,7 @@ class Home extends Component {
     const {gotoLink, onlineNum, noticeText, maxDiff} = this.state;
     console.log(onlineNum, 'props拿到的在线人数');
     return (
-        <div className="homePage">
+        <div className="page-home">
           {gotoLink}
           <div className="serverData">
             <p>当前连接人数：{onlineNum}</p>

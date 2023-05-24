@@ -1,4 +1,4 @@
-.personItem {
+.components-gobang-player-item {
   width: 95%;
   height: 85px;
   position: relative;
@@ -8,26 +8,26 @@
   border-radius: 10px;
   transition: all 0.2s;
 }
-.personItem:hover {
+.components-gobang-player-item:hover {
   box-shadow: 0 0 20px white;
   background-color: black;
 }
-.personItem .rankNumber {
+.components-gobang-player-item .rankNumber {
   position: absolute;
   left: 0;
   top: 0;
 }
-.personItem .headImgArea,
-.personItem .userDataArea,
-.personItem .codeArea {
+.components-gobang-player-item .headImgArea,
+.components-gobang-player-item .userDataArea,
+.components-gobang-player-item .codeArea {
   height: 100%;
   float: left;
 }
-.personItem .headImgArea {
+.components-gobang-player-item .headImgArea {
   width: 25%;
   line-height: 85px;
 }
-.personItem .headImgArea .headImg {
+.components-gobang-player-item .headImgArea .headImg {
   outline: solid 1px;
   width: 50px;
   height: 50px;
@@ -35,47 +35,47 @@
   vertical-align: middle;
   border-radius: 50%;
 }
-.personItem .userDataArea {
+.components-gobang-player-item .userDataArea {
   width: 40%;
 }
-.personItem .codeArea {
+.components-gobang-player-item .codeArea {
   width: 35%;
   font-size: 10px;
 }
-.personItem .codeArea .line {
+.components-gobang-player-item .codeArea .line {
   text-align: left;
   padding-left: 2px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.personItem .userName {
+.components-gobang-player-item .userName {
   font-size: 10px;
   margin-left: 5px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.personItem .levelImg {
+.components-gobang-player-item .levelImg {
   width: 20px;
   display: inline-block;
   vertical-align: middle;
 }
-.personItem .score {
+.components-gobang-player-item .score {
   font-size: 10px;
   margin-right: 5px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.personItem button {
+.components-gobang-player-item button {
   font-size: 10px;
   background-color: rgba(0, 0, 0, 0.8);
   color: greenyellow;
   border: none;
   padding: 2px;
 }
-.personItem button:hover {
+.components-gobang-player-item button:hover {
   color: red;
   cursor: pointer;
 }

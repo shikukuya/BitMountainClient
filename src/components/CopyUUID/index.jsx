@@ -19,14 +19,10 @@ class CopyUUID extends Component {
     const { uuidEle, uuidCopyEle, btn, copyHandle, btnText } = this;
     if (USER_DATA.isLogin) {
       return (
-        <div className="line copyUUIDPanel">
+        <div className="line components-copy-uuid">
           <span>你的ID：</span>
-          <button className="copyBtn" onClick={copyHandle} ref={btn}>
-            {btnText}
-          </button>
-          <div className="userId" ref={uuidEle}>
-            {uuid}
-          </div>
+          <span className="userId" ref={uuidEle}>{uuid}</span>
+          <button className="copyBtn" onClick={copyHandle} ref={btn}>{btnText}</button>
           <textarea ref={uuidCopyEle} value={uuid} readOnly="readOnly" />
         </div>
       );

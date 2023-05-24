@@ -11,7 +11,7 @@ class ProgressBar extends Component {
 
         return (
             <div
-                className="progressBar"
+                className="components-progress-bar"
                 style={{
                     width: `${w}px`,
                     height: `${h}px`

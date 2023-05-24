@@ -25,7 +25,7 @@ class SubmitAnimation extends Component {
   render() {
     if (this.state.isShow) {
       return (
-          <div className="submitAniArea">
+          <div className="components-submit-animation">
             <h2>通过测试点</h2>
             <div className="allArea">
               {

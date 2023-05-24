@@ -6,7 +6,7 @@ class AbilityCircle extends Component {
   render() {
     const {w, h, x, y, title, ability} = this.props;
     return (
-        <div className="abilityCircle" style={
+        <div className="components-ability-circle" style={
           {
             left: `${x}%`, top: `${y}%`,
             width: `${w}px`,

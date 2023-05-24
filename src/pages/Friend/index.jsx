@@ -22,7 +22,7 @@ class Friend extends Component {
   render() {
     const {showFriendList, showFriendRequest} = this.state;
     return (
-        <div className="friendPage">
+        <div className="page-friend">
           {/*详细能力弹窗*/}
           <UserAbilityPanel/>
 
@@ -35,8 +35,7 @@ class Friend extends Component {
             <UserDataPanel/> */}
             <button
                 className={showFriendList ? "selected" : ""}
-                onClick={this.handleFriendList}
-            >
+                onClick={this.handleFriendList}>
               我的好友
             </button>
             <button onClick={this.handleFriendRequest}

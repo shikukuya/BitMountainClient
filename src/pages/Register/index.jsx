@@ -47,7 +47,7 @@ class Register extends Component {
   render() {
     const {changeTestCodeTime, getEmailCodeTime} = this.state;
     return (
-        <div className="registerPage">
+        <div className="page-register">
           <main>
             <h1>注册界面</h1>
             <div className="line">

@@ -16,7 +16,7 @@ class Question extends Component {
       questionBackground,
     } = this.props;
     return (
-        <div className="questionArea">
+        <div className="components-question-area">
           <h1>{title}</h1>
           <h2>题目背景</h2>
           <p>{questionBackground}</p>

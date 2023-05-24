@@ -7,7 +7,7 @@ class GobangFightItem extends Component {
     // winnerLoc  result,
     const {history, result,} = this.props;
     return (
-        <div className="gobangFightItem">
+        <div className="components-gobang-fight-item">
           手数：{history.length}
           <span
               style={{color: this._getColor(result)}}

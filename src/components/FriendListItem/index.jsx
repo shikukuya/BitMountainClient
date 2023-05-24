@@ -18,7 +18,7 @@ class FriendListItem extends Component {
     const {userName, score, id, headSculpture} = this.props;
 
     return (
-        <div className="friendItem" key={id} ref={this.selfEle}>
+        <div className="components-friend-item" key={id} ref={this.selfEle}>
           <img
               src={require(`../../headImgs/${headSculpture}.png`)}
               alt="no"

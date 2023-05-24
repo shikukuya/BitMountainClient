@@ -1,4 +1,4 @@
-.gameStartAnimation {
+.components-game-start-animation {
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -13,14 +13,14 @@
   animation-delay: 3s;
   animation-fill-mode: forwards;
 }
-.gameStartAnimation .title1 {
+.components-game-start-animation .title1 {
   position: absolute;
   top: 60%;
   width: 100%;
   font-size: 80px;
   text-align: center;
 }
-.gameStartAnimation .userCard {
+.components-game-start-animation .userCard {
   width: 500px;
   height: 150px;
   position: absolute;
@@ -31,47 +31,47 @@
   animation-duration: 4s;
   animation-fill-mode: forwards;
 }
-.gameStartAnimation .userCard .headImg {
+.components-game-start-animation .userCard .headImg {
   height: 100%;
   outline: solid 1px;
   border-radius: 50%;
   float: left;
   transform: scale(0.8);
 }
-.gameStartAnimation .userCard h2 {
+.components-game-start-animation .userCard h2 {
   text-indent: 2em;
   font-size: 40px;
 }
-.gameStartAnimation .userCard p {
+.components-game-start-animation .userCard p {
   text-indent: 2em;
   line-height: 50px;
   vertical-align: middle;
   font-size: 25px;
 }
-.gameStartAnimation .userCard p img {
+.components-game-start-animation .userCard p img {
   width: 50px;
   vertical-align: middle;
 }
-.gameStartAnimation .leftUser {
+.components-game-start-animation .leftUser {
   left: 0;
   animation-name: leftUserCardMove;
 }
-.gameStartAnimation .rightUser {
+.components-game-start-animation .rightUser {
   right: 0;
   animation-name: rightUserCardMove;
 }
-.gameStartAnimation .stoneArr {
+.components-game-start-animation .stoneArr {
   position: absolute;
   left: 50%;
   top: 50%;
 }
-.gameStartAnimation .stoneArr .stoneWay {
+.components-game-start-animation .stoneArr .stoneWay {
   position: absolute;
   width: 1000px;
   height: 30px;
   transform-origin: left center;
 }
-.gameStartAnimation .stoneArr .stoneWay .stone {
+.components-game-start-animation .stoneArr .stoneWay .stone {
   position: absolute;
   width: 30px;
   height: 30px;
@@ -84,7 +84,7 @@
   animation-duration: 1s;
   animation-fill-mode: forwards;
 }
-.gameStartAnimation .channel {
+.components-game-start-animation .channel {
   width: 50%;
   position: absolute;
   height: 200px;
@@ -93,24 +93,24 @@
   animation-name: rotate360;
   animation-duration: 1s;
 }
-.gameStartAnimation .channel .hand {
+.components-game-start-animation .channel .hand {
   position: absolute;
   animation-duration: 2s;
   animation-fill-mode: forwards;
 }
-.gameStartAnimation .channel .leftHand {
+.components-game-start-animation .channel .leftHand {
   transform: rotate(90deg);
   animation-name: leftHandFight;
 }
-.gameStartAnimation .channel .rightHand {
+.components-game-start-animation .channel .rightHand {
   transform: rotate(-90deg);
   animation-name: rightHandFight;
 }
-.gameStartAnimation .leftChannel {
+.components-game-start-animation .leftChannel {
   left: 0;
   transform-origin: right center;
 }
-.gameStartAnimation .rightChannel {
+.components-game-start-animation .rightChannel {
   left: 50%;
   transform-origin: left center;
 }

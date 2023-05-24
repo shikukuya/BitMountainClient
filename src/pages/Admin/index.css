@@ -1,30 +1,30 @@
-.adminPage main {
+.page-admin-page main {
   width: 80%;
   margin: 0 auto;
   padding: 30px 60px 200px 60px;
   background-color: rgba(0, 0, 0, 0.2);
 }
-.adminPage main .block {
+.page-admin-page main .block {
   margin: 20px;
   padding: 10px;
   background-color: rgba(0, 0, 0, 0.2);
 }
-.adminPage main h2 {
+.page-admin-page main h2 {
   text-align: center;
   font-size: 2em;
 }
-.adminPage main p,
-.adminPage main span {
+.page-admin-page main p,
+.page-admin-page main span {
   line-height: 2em;
 }
-.adminPage main button {
+.page-admin-page main button {
   padding: 5px;
   margin-right: 5px;
 }
-.adminPage main button:hover {
+.page-admin-page main button:hover {
   cursor: pointer;
 }
-.adminPage main input {
+.page-admin-page main input {
   padding: 5px;
   margin-right: 10px;
 }

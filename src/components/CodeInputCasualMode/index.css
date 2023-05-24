@@ -1,29 +1,29 @@
-.codeInputCasualMode {
+.components-code-input-casual-mode {
   height: 100%;
   width: 100%;
   position: relative;
   overflow: hidden;
 }
-.codeInputCasualMode .area1 {
+.components-code-input-casual-mode .area1 {
   height: 30px;
 }
-.codeInputCasualMode .area2 {
+.components-code-input-casual-mode .area2 {
   height: calc(100% - 30px - 100px);
 }
-.codeInputCasualMode .area3 {
+.components-code-input-casual-mode .area3 {
   height: 100px;
 }
-.codeInputCasualMode .area1 {
+.components-code-input-casual-mode .area1 {
   display: flex;
   align-items: center;
 }
-.codeInputCasualMode .area1 span {
+.components-code-input-casual-mode .area1 span {
   font-size: 15px;
   line-height: 30px;
   color: floralwhite;
   font-family: "Microsoft YaHei UI", serif;
 }
-.codeInputCasualMode .area1 select {
+.components-code-input-casual-mode .area1 select {
   background-color: #383a3c;
   color: floralwhite;
   border: none;
@@ -33,22 +33,22 @@
   font-size: 15px;
   height: 30px;
 }
-.codeInputCasualMode .area1 select:hover {
+.components-code-input-casual-mode .area1 select:hover {
   cursor: pointer;
 }
-.codeInputCasualMode .area1 input[type="checkbox"] {
+.components-code-input-casual-mode .area1 input[type="checkbox"] {
   line-height: 30px;
   width: 16px;
   height: 16px;
   margin-right: 2px;
   transition: all 0.2s;
 }
-.codeInputCasualMode .area1 input[type="checkbox"]:hover {
+.components-code-input-casual-mode .area1 input[type="checkbox"]:hover {
   cursor: pointer;
   width: 20px;
   height: 20px;
 }
-.codeInputCasualMode .area3 .codeBtn {
+.components-code-input-casual-mode .area3 .codeBtn {
   height: 30px;
   border-radius: 10px;
   margin: 5px;
@@ -56,10 +56,10 @@
   background-color: #1e1e1e;
   color: greenyellow;
 }
-.codeInputCasualMode .area3 .codeBtn:hover {
+.components-code-input-casual-mode .area3 .codeBtn:hover {
   cursor: pointer;
 }
-.codeInputCasualMode .area3 .banBtn {
+.components-code-input-casual-mode .area3 .banBtn {
   height: 30px;
   border-radius: 10px;
   margin: 5px;
@@ -67,7 +67,7 @@
   background-color: #1e1e1e;
   color: #ff2f2f;
 }
-.codeInputCasualMode .area3 .banBtn:hover {
+.components-code-input-casual-mode .area3 .banBtn:hover {
   cursor: not-allowed;
 }
 /*# sourceMappingURL=index.css.map */

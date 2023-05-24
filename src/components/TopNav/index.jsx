@@ -12,7 +12,6 @@ import MyAlert from '../MyAlert';
 import {pauseBackgroundMusic, playBackgroundMusic,} from '../../utils/js/backgroundMusic';
 import FriendlyMatchAlert from '../FriendlyMatchAlert';
 import myAlert from '../../utils/js/alertMassage';
-import getUrl from "../../utils/js/getUrl";
 import {userContestEnd} from "../../utils/js/userFunction";
 import {louseSound} from "../../utils/js/playSound";
 
@@ -45,7 +44,7 @@ class TopNav extends Component {
 
   render() {
     return (
-        <div className="top-nav">
+        <div className="components-top-nav">
           <div className="left">
             <img
                 className="LOGO"

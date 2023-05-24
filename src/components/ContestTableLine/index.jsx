@@ -28,7 +28,7 @@ class ContestTableLine extends Component {
     const {hp, submitArr, codeChar, ac} = this.state;
 
     return (
-        <div className="contestTableLine">
+        <div className="components-contest-table-line">
           <div className="box" style={{color: symbolColor}}>
             {name}
             <EmojiShowArea bindUserId={userId} roomName={roomName}/>

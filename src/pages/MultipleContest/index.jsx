@@ -64,7 +64,7 @@ class MultipleContest extends Component {
     } = this.state;
 
     return (
-        <div className="multipleContestPage">
+        <div className="page-multiple-contest">
           {/*对战结束框*/}
           <GoHomeAlert isWin={isWin} isShow={isEnd} reason={endReason}/>
           {/*对局开始动画组件*/}

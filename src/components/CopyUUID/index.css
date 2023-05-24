@@ -1,9 +1,23 @@
-.copyUUIDPanel {
+.components-copy-uuid {
   overflow: hidden;
   position: relative;
 }
-.copyUUIDPanel textarea {
+.components-copy-uuid textarea {
   position: absolute;
   left: -900px;
+}
+.components-copy-uuid .copyBtn {
+  padding: 5px 20px;
+  background-color: #2b2b2b;
+  color: greenyellow;
+  border-radius: 10px;
+}
+.components-copy-uuid .copyBtn:hover {
+  cursor: pointer;
+}
+.components-copy-uuid .userId {
+  background-color: black;
+  padding: 5px 20px;
+  font-family: Consolas, serif;
 }
 /*# sourceMappingURL=index.css.map */

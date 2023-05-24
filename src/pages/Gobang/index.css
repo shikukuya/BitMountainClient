@@ -1,43 +1,43 @@
-.gobangPage {
+.page-gobang {
   height: calc(100vh - 60px);
 }
-.gobangPage .left,
-.gobangPage .mid,
-.gobangPage .right {
+.page-gobang .left,
+.page-gobang .mid,
+.page-gobang .right {
   height: 100%;
   float: left;
 }
-.gobangPage .left {
+.page-gobang .left {
   width: 20%;
 }
-.gobangPage .mid {
+.page-gobang .mid {
   width: 30%;
 }
-.gobangPage .right {
+.page-gobang .right {
   width: 50%;
 }
-.gobangPage .left {
+.page-gobang .left {
   position: relative;
   overflow-y: scroll;
 }
-.gobangPage .left h2 {
+.page-gobang .left h2 {
   text-align: center;
   line-height: 2em;
 }
-.gobangPage .left::-webkit-scrollbar {
+.page-gobang .left::-webkit-scrollbar {
   width: 10px;
 }
-.gobangPage .left::-webkit-scrollbar-thumb {
+.page-gobang .left::-webkit-scrollbar-thumb {
   border-radius: 10px;
   box-shadow: inset 0 0 5px rgba(0, 255, 0, 0.2);
   background: rgba(0, 255, 0, 0.2);
 }
-.gobangPage .left::-webkit-scrollbar-track {
+.page-gobang .left::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px rgba(0, 255, 0, 0.2);
   border-radius: 0;
   background: rgba(0, 0, 0, 0.1);
 }
-.gobangPage .right .codeNameInput {
+.page-gobang .right .codeNameInput {
   line-height: 2em;
   background-color: #1e1e1e;
   outline: none;
@@ -48,7 +48,7 @@
   width: 250px;
   border-radius: 10px;
 }
-.gobangPage .right .submitBtn {
+.page-gobang .right .submitBtn {
   line-height: 2em;
   outline: none;
   border: none;
@@ -59,11 +59,11 @@
   color: greenyellow;
   border-radius: 10px;
 }
-.gobangPage .right .submitBtn:hover {
+.page-gobang .right .submitBtn:hover {
   cursor: pointer;
   transform: scale(1.1);
 }
-.gobangPage .right .submitBtn:active {
+.page-gobang .right .submitBtn:active {
   transform: scale(0.9);
 }
 /*# sourceMappingURL=index.css.map */

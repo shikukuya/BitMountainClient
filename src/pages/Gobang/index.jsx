@@ -24,7 +24,7 @@ class Gobang extends Component {
 
   render() {
     return (
-        <div className="gobangPage">
+        <div className="page-gobang">
           <div className="left">
             <h2>五子棋排行榜</h2>
             {

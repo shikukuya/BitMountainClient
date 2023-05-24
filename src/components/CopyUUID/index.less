@@ -1,10 +1,26 @@
-.copyUUIDPanel {
+.components-copy-uuid {
   overflow: hidden;
   position: relative;
 
   textarea {
-    //display: none;
     position: absolute;
     left: -900px;
+  }
+
+  .copyBtn {
+    padding: 5px 20px;
+    background-color: rgb(43, 43, 43);
+    color: greenyellow;
+    border-radius: 10px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .userId {
+    background-color: black;
+    padding: 5px 20px;
+    font-family: Consolas, serif;
   }
 }

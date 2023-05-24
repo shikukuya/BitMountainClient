@@ -14,7 +14,7 @@ class FriendRequestListItem extends Component {
         // 其实全是数据库中userDetails里的
         const {userName, score, id, note, headSculpture} = this.props;
         return (
-            <div className="friendRequestItem" key={id} ref={this.selfEle}>
+            <div className="components-friendly-request-list-item" key={id} ref={this.selfEle}>
                 <div className="left">
                     <img src={require(`../../headImgs/${headSculpture}.png`)} alt="?" className="headImg"/>
                 </div>

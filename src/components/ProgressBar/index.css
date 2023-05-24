@@ -1,9 +1,9 @@
-.progressBar {
+.components-progress-bar {
   display: inline-block;
   border: solid 1px whitesmoke;
   vertical-align: middle;
 }
-.progressBar .inner {
+.components-progress-bar .inner {
   height: 100%;
   float: left;
 }

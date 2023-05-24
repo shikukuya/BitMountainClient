@@ -22,7 +22,7 @@ class GobangPlayerItem extends Component {
     } = this.props;
     const {isAllowClick} = this.state;
     return (
-        <div className="personItem">
+        <div className="components-gobang-player-item">
           <div className="rankNumber">{rank}</div>
           <div className="headImgArea">
             <img src={require(`../../headImgs/${userDetails.headSculpture}.png`)}

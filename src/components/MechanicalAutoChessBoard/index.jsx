@@ -27,7 +27,7 @@ class AutoChessBoard extends Component {
 
   render() {
     return (
-        <div className="autoChessBoard">
+        <div className="components-auto-chess-board-area">
           <h2>{this.state.title}</h2>
           {/*网格地图*/}
           <div className="matrix">

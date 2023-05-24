@@ -1,4 +1,4 @@
-.friendlyMatchAlert {
+.components-friendly-match-alert {
   outline: solid 1px greenyellow;
   position: fixed;
   left: 50%;
@@ -11,7 +11,7 @@
   background-color: black;
   text-align: center;
 }
-.friendlyMatchAlert .close {
+.components-friendly-match-alert .close {
   width: 50px;
   height: 50px;
   outline: solid 1px;
@@ -22,44 +22,44 @@
   right: 0;
   top: 0;
 }
-.friendlyMatchAlert .close:hover {
+.components-friendly-match-alert .close:hover {
   cursor: pointer;
 }
-.friendlyMatchAlert h1 {
+.components-friendly-match-alert h1 {
   text-align: center;
   font-size: 20px;
   line-height: 2.5em;
 }
-.friendlyMatchAlert p {
+.components-friendly-match-alert p {
   line-height: 2em;
 }
-.friendlyMatchAlert .line {
+.components-friendly-match-alert .line {
   height: 40px;
 }
-.friendlyMatchAlert .line .levelImg {
+.components-friendly-match-alert .line .levelImg {
   width: 30px;
   vertical-align: middle;
 }
-.friendlyMatchAlert .headImg {
+.components-friendly-match-alert .headImg {
   border-radius: 50%;
   width: 100px;
 }
-.friendlyMatchAlert .affirmBtn,
-.friendlyMatchAlert .refuseBtn {
+.components-friendly-match-alert .affirmBtn,
+.components-friendly-match-alert .refuseBtn {
   width: 80px;
   margin: 15px 5px;
   padding: 4px;
   border: none;
   color: white;
 }
-.friendlyMatchAlert .affirmBtn:hover,
-.friendlyMatchAlert .refuseBtn:hover {
+.components-friendly-match-alert .affirmBtn:hover,
+.components-friendly-match-alert .refuseBtn:hover {
   cursor: pointer;
 }
-.friendlyMatchAlert .affirmBtn {
+.components-friendly-match-alert .affirmBtn {
   background-color: forestgreen;
 }
-.friendlyMatchAlert .refuseBtn {
+.components-friendly-match-alert .refuseBtn {
   background-color: darkred;
 }
 /*# sourceMappingURL=index.css.map */

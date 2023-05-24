@@ -1,19 +1,19 @@
-.gobangBoard {
+.components-gobang-board-area {
   background-color: #1e1e1e;
   width: 100%;
   text-align: center;
 }
-.gobangBoard h1 {
+.components-gobang-board-area h1 {
   line-height: 2em;
   text-align: center;
 }
-.gobangBoard .temp {
+.components-gobang-board-area .temp {
   position: relative;
   height: 390px;
   width: 390px;
   margin: 0 auto;
 }
-.gobangBoard .board {
+.components-gobang-board-area .board {
   width: 390px;
   height: 390px;
   position: absolute;
@@ -21,21 +21,21 @@
   top: 0;
   z-index: 100;
 }
-.gobangBoard .board .boardLine {
+.components-gobang-board-area .board .boardLine {
   height: 26px;
   width: 100%;
 }
-.gobangBoard .board .boardLine .box {
+.components-gobang-board-area .board .boardLine .box {
   width: 26px;
   height: 26px;
   float: left;
   transition: all 0.2s;
   outline: transparent solid 3px;
 }
-.gobangBoard .board .boardLine .box:hover {
+.components-gobang-board-area .board .boardLine .box:hover {
   outline-color: white;
 }
-.gobangBoard .board .boardLine .box .piece {
+.components-gobang-board-area .board .boardLine .box .piece {
   width: 100%;
   height: 100%;
   border-radius: 50%;
@@ -43,26 +43,26 @@
   animation-duration: 0.2s;
   animation-fill-mode: forwards;
 }
-.gobangBoard .board .boardLine .box .blackPiece {
+.components-gobang-board-area .board .boardLine .box .blackPiece {
   background-color: black;
   box-shadow: 2px 1px 10px #5e5e5e inset;
 }
-.gobangBoard .board .boardLine .box .whitePiece {
+.components-gobang-board-area .board .boardLine .box .whitePiece {
   background-color: white;
   box-shadow: -1px -1px 10px #9c9c9c inset;
 }
-.gobangBoard .board .boardLine .box .pieceWin {
+.components-gobang-board-area .board .boardLine .box .pieceWin {
   outline: solid 2px red;
   box-shadow: 0 0 10px red inset;
 }
-.gobangBoard .boardCanvas {
+.components-gobang-board-area .boardCanvas {
   width: 390px;
   height: 390px;
   position: absolute;
   left: 0;
   top: 0;
 }
-.gobangBoard .bar {
+.components-gobang-board-area .bar {
   width: 80%;
 }
 @keyframes putGobangPiece {

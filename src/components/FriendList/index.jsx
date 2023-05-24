@@ -28,7 +28,7 @@ class FriendList extends Component {
     const {friendArr} = this.state;
     console.log("开始渲染", friendArr);
     return (
-        <div className="friendList">
+        <div className="components-friend-list">
           {
             friendArr.map(friend => {
               return <FriendListItem {...friend} key={friend['id']}/>

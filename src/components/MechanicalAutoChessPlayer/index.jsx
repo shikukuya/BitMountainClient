@@ -10,7 +10,7 @@ class MechanicalAutoChessPlayer extends Component {
     //head,
     const {name, score, codeSize, codeName} = this.props;
     return (
-        <div className="chessPlayerItem">
+        <div className="components-auto-chess-player-item">
           <div className="line">
             <img src={require(`../../headImgs/1.png`)}
                  className="headImg" alt="x"/>

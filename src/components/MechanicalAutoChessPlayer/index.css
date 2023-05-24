@@ -1,4 +1,4 @@
-.chessPlayerItem {
+.components-auto-chess-player-item {
   width: 100px;
   height: 80px;
   float: left;
@@ -7,39 +7,39 @@
   background-color: #1e1e1e;
   user-select: none;
 }
-.chessPlayerItem .line {
+.components-auto-chess-player-item .line {
   height: 20px;
   text-align: center;
   vertical-align: middle;
 }
-.chessPlayerItem .line span {
+.components-auto-chess-player-item .line span {
   vertical-align: middle;
 }
-.chessPlayerItem .codeName {
+.components-auto-chess-player-item .codeName {
   font-size: 12px;
 }
-.chessPlayerItem .headImg {
+.components-auto-chess-player-item .headImg {
   width: 20px;
   outline: solid 1px;
   border-radius: 50%;
   vertical-align: middle;
 }
-.chessPlayerItem .levelImg {
+.components-auto-chess-player-item .levelImg {
   width: 20px;
   vertical-align: middle;
 }
-.chessPlayerItem button {
+.components-auto-chess-player-item button {
   background-color: black;
   color: greenyellow;
   border: none;
   font-size: 15px;
   padding: 0 5px;
 }
-.chessPlayerItem button:hover {
+.components-auto-chess-player-item button:hover {
   color: orangered;
   cursor: pointer;
 }
-.chessPlayerItem .codeSize {
+.components-auto-chess-player-item .codeSize {
   font-size: 12px;
 }
 /*# sourceMappingURL=index.css.map */

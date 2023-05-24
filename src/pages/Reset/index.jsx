@@ -22,7 +22,7 @@ class ResetPage extends Component {
 
   render() {
     return (
-        <div className="resetPage">
+        <div className="page-reset">
           <main>
             <h1>重新设置密码</h1>
             <div className="line">

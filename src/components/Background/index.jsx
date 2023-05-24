@@ -187,7 +187,7 @@ class Background extends Component {
 
 
     return (
-        <div className="backgroundArea">
+        <div className="components-background-area">
 
           <div className={this.isRed ? "top redShadow" : "top greenShadow"}
                ref={this.topDiv}>

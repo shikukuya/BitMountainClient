@@ -11,7 +11,7 @@ class ModeItem extends Component {
   render() {
     const {clickFunc, modeName} = this.props;
     return (
-        <div className="moodItem"
+        <div className="components-mode-item"
              onMouseLeave={this.leaveHandle}
              onMouseEnter={this.enterHandle}>
           <div className="mood"

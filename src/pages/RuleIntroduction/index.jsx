@@ -6,7 +6,7 @@ import Background from "../../components/Background";
 class RuleIntroduction extends Component {
   render() {
     return (
-        <div className="rulePage">
+        <div className="page-rule-introduction">
           <main>
             <h1>天梯模式规则介绍</h1>
             <hr/>

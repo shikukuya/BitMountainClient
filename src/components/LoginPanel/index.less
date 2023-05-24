@@ -1,4 +1,4 @@
-.loginPanel {
+.components-login-panel {
   width: 100%;
   height: 100vh;
   position: fixed;
@@ -9,6 +9,13 @@
   //background-color: red;
   //background-color: #2b2b2b;
   color: #01fe01;
+
+  .shakeClass {
+    animation-name: shake;
+    animation-iteration-count: 1;
+    animation-play-state: running;
+    animation-duration: 0.5s;
+  }
 
   .kuku() {
     background-color: #bae78d;
@@ -211,12 +218,6 @@
   }
 }
 
-.shakeClass {
-  animation-name: shake;
-  animation-iteration-count: 1;
-  animation-play-state: running;
-  animation-duration: 0.5s;
-}
 
 @keyframes shake {
   0% {

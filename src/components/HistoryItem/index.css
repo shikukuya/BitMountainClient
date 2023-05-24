@@ -1,4 +1,4 @@
-.historyItem {
+.components-history-item {
   height: 60px;
   line-height: 60px;
   background-color: rgba(16, 44, 16, 0.6);
@@ -6,7 +6,7 @@
   position: relative;
   overflow: hidden;
 }
-.historyItem .headImg {
+.components-history-item .headImg {
   width: 50px;
   height: 50px;
   outline: solid 1px;
@@ -15,18 +15,18 @@
   margin-left: 20px;
   margin-right: 10px;
 }
-.historyItem .userName {
+.components-history-item .userName {
   margin-right: 2em;
 }
-.historyItem .levelImg {
+.components-history-item .levelImg {
   width: 40px;
   height: 40px;
   vertical-align: middle;
 }
-.historyItem .score {
+.components-history-item .score {
   margin-right: 15px;
 }
-.historyItem .result {
+.components-history-item .result {
   display: block;
   position: absolute;
   font-size: 30px;
@@ -38,20 +38,20 @@
   border-radius: 50%;
   transform: scale(1.5) rotate(30deg);
 }
-.historyItem .scoreChange {
+.components-history-item .scoreChange {
   display: block;
   position: absolute;
   top: 0;
   right: 120px;
   font-size: 20px;
 }
-.historyItem .win {
+.components-history-item .win {
   color: #3ecf3e;
 }
-.historyItem .lose {
+.components-history-item .lose {
   color: darkred;
 }
-.historyItem .time {
+.components-history-item .time {
   color: greenyellow;
   margin-left: 15px;
 }

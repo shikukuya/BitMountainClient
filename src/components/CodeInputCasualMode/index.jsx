@@ -40,7 +40,7 @@ class CodeInputCasualMode extends Component {
     const {theme, userCode, codeSize, userFont, fontSize, isAllowSubmit} = this.state;
     return (
         // 这个组件盒子外面需要套个框，此组件宽度100%，高度100%
-        <div className="codeInputCasualMode">
+        <div className="components-code-input-casual-mode">
           <div className="area1">
 
             <select name="theme" onChange={this.handleChangeTheme}>

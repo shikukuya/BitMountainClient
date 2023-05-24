@@ -13,7 +13,7 @@ class MatchHistory extends Component {
     render() {
         const {historyList} = this.state;
         return (
-            <div className="historyPage">
+            <div className="page-history">
                 <div className="historyList">
                     {
                         historyList.map((item, i) => {

@@ -7,7 +7,7 @@ class HistoryItem extends Component {
   render() {
     const {opponentName, mood, isWin, scoreChange, time, opponentHeadSculpture} = this.props;
     return (
-        <div className="historyItem">
+        <div className="components-history-item">
           <img src={require(`../../headImgs/${opponentHeadSculpture}.png`)}
                alt="" className="headImg"/>
           <span className="userName">{opponentName}</span>

@@ -26,7 +26,7 @@ class Matching extends Component {
 
   render() {
     return (
-        <div className="matchArea">
+        <div className="components-match-area">
           <h2>匹配中……{this.state.waitingTime}</h2>
           {
             this.state.waitingTime > 3 ? (

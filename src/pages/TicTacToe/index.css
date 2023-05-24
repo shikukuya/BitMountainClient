@@ -1,76 +1,76 @@
-.TicTacToePage {
+.page-tic-tac-toe {
   overflow: hidden;
   height: clac(40vh);
 }
-.TicTacToePage .left,
-.TicTacToePage .right,
-.TicTacToePage .mid {
+.page-tic-tac-toe .left,
+.page-tic-tac-toe .right,
+.page-tic-tac-toe .mid {
   float: left;
   height: 100%;
 }
-.TicTacToePage .left {
+.page-tic-tac-toe .left {
   width: 25%;
 }
-.TicTacToePage .mid {
+.page-tic-tac-toe .mid {
   width: 25%;
 }
-.TicTacToePage .left h2 {
+.page-tic-tac-toe .left h2 {
   text-align: center;
   line-height: 2em;
   font-size: 20px;
 }
-.TicTacToePage .mid h2 {
+.page-tic-tac-toe .mid h2 {
   text-align: center;
 }
-.TicTacToePage .mid .ticTacToeMatchList {
+.page-tic-tac-toe .mid .ticTacToeMatchList {
   overflow-y: scroll;
   height: 265px;
   padding-bottom: 100px;
 }
-.TicTacToePage .mid .ticTacToeMatchList::-webkit-scrollbar {
+.page-tic-tac-toe .mid .ticTacToeMatchList::-webkit-scrollbar {
   width: 10px;
 }
-.TicTacToePage .mid .ticTacToeMatchList::-webkit-scrollbar-thumb {
+.page-tic-tac-toe .mid .ticTacToeMatchList::-webkit-scrollbar-thumb {
   border-radius: 10px;
   box-shadow: inset 0 0 5px rgba(0, 255, 0, 0.2);
   background: rgba(0, 255, 0, 0.2);
 }
-.TicTacToePage .mid .ticTacToeMatchList::-webkit-scrollbar-track {
+.page-tic-tac-toe .mid .ticTacToeMatchList::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px rgba(0, 255, 0, 0.2);
   border-radius: 0;
   background: rgba(0, 0, 0, 0.1);
 }
-.TicTacToePage .mid .ticTacToeMatchList .green {
+.page-tic-tac-toe .mid .ticTacToeMatchList .green {
   color: #28ff28;
 }
-.TicTacToePage .mid .ticTacToeMatchList .red {
+.page-tic-tac-toe .mid .ticTacToeMatchList .red {
   color: red;
 }
-.TicTacToePage .mid .ticTacToeMatchList .ticTacToeMatchItem {
+.page-tic-tac-toe .mid .ticTacToeMatchList .ticTacToeMatchItem {
   margin-top: 10px;
   background-color: #1e1e1e;
   padding: 10px;
   position: relative;
   overflow: hidden;
 }
-.TicTacToePage .mid .ticTacToeMatchList .ticTacToeMatchItem .itemLine {
+.page-tic-tac-toe .mid .ticTacToeMatchList .ticTacToeMatchItem .itemLine {
   margin: 5px;
 }
-.TicTacToePage .mid .ticTacToeMatchList .ticTacToeMatchItem button {
+.page-tic-tac-toe .mid .ticTacToeMatchList .ticTacToeMatchItem button {
   border-radius: 10px;
   padding: 0 5px;
 }
-.TicTacToePage .mid .ticTacToeMatchList .ticTacToeMatchItem button:hover {
+.page-tic-tac-toe .mid .ticTacToeMatchList .ticTacToeMatchItem button:hover {
   cursor: pointer;
 }
-.TicTacToePage .mid .ticTacToeMatchList .ticTacToeMatchItem span {
+.page-tic-tac-toe .mid .ticTacToeMatchList .ticTacToeMatchItem span {
   margin-right: 10px;
 }
-.TicTacToePage .mid .ticTacToeMatchList .ticTacToeMatchItem .littleTitle {
+.page-tic-tac-toe .mid .ticTacToeMatchList .ticTacToeMatchItem .littleTitle {
   text-align: center;
   margin-top: 15px;
 }
-.TicTacToePage .mid .ticTacToeMatchList .ticTacToeMatchItem .finalResult {
+.page-tic-tac-toe .mid .ticTacToeMatchList .ticTacToeMatchItem .finalResult {
   position: absolute;
   font-size: 55px;
   outline: solid 1px;
@@ -84,11 +84,11 @@
   transform: rotate(30deg);
   font-family: 宋体, serif;
 }
-.TicTacToePage .right {
+.page-tic-tac-toe .right {
   width: 50%;
   padding: 5px;
 }
-.TicTacToePage .right .submitBtn {
+.page-tic-tac-toe .right .submitBtn {
   height: 30px;
   border-radius: 10px;
   margin: 5px;
@@ -96,7 +96,7 @@
   background-color: #1e1e1e;
   color: greenyellow;
 }
-.TicTacToePage .right .submitBtn:hover {
+.page-tic-tac-toe .right .submitBtn:hover {
   cursor: pointer;
 }
 /*# sourceMappingURL=index.css.map */

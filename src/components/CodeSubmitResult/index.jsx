@@ -27,7 +27,7 @@ class CodeSubmitResult extends Component {
   render() {
     const {result, errData, isShow} = this.state;
     return (
-        <div className="codeResult" style={{bottom: isShow ? "0" : "-150px"}}>
+        <div className="components-submit-code-result" style={{bottom: isShow ? "0" : "-150px"}}>
           <p>上次错误原因：<span className="err">{result}</span></p>
           <div className="close" onClick={this.closeCodeResult}>
             {isShow ? "收" : "展"}

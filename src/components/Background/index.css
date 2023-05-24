@@ -1,4 +1,4 @@
-.backgroundArea {
+.components-background-area {
   background-color: black;
   position: fixed;
   left: 0;
@@ -7,22 +7,22 @@
   width: 100%;
   z-index: -1;
 }
-.backgroundArea .greenShadow {
+.components-background-area .greenShadow {
   box-shadow: lawngreen 0 0 50px, inset lawngreen 0 0 50px -20px;
 }
-.backgroundArea .redShadow {
+.components-background-area .redShadow {
   box-shadow: #fc0000 0 0 50px, inset #fc0071 0 0 50px -20px;
 }
-.backgroundArea .top {
+.components-background-area .top {
   height: 70%;
   position: relative;
 }
-.backgroundArea .top .digitCanvas {
+.components-background-area .top .digitCanvas {
   position: absolute;
   left: 0;
   top: 0;
 }
-.backgroundArea .top .greenTriangle {
+.components-background-area .top .greenTriangle {
   position: absolute;
   width: 0;
   height: 0;
@@ -38,7 +38,7 @@
   opacity: 0.8;
   border-bottom-color: #228e22;
 }
-.backgroundArea .top .redTriangle {
+.components-background-area .top .redTriangle {
   position: absolute;
   width: 0;
   height: 0;
@@ -54,11 +54,11 @@
   opacity: 0.8;
   border-bottom-color: #c13636;
 }
-.backgroundArea .down {
+.components-background-area .down {
   height: 30%;
   perspective: 600px;
 }
-.backgroundArea .down .grid {
+.components-background-area .down .grid {
   outline: solid 1px green;
   width: 1800px;
   height: 1000px;
@@ -67,10 +67,10 @@
   transition: all 0.5s;
   transform: rotateX(70deg);
 }
-.backgroundArea .down .grid .gridLine {
+.components-background-area .down .grid .gridLine {
   height: 60px;
 }
-.backgroundArea .down .grid .gridLine .box {
+.components-background-area .down .grid .gridLine .box {
   height: 60px;
   width: 100px;
   float: left;
@@ -79,18 +79,18 @@
   animation-iteration-count: infinite;
   animation-duration: 2s;
 }
-.backgroundArea .down .grid .gridLine .greenBox {
+.components-background-area .down .grid .gridLine .greenBox {
   outline-color: greenyellow;
   animation-name: greenBoxAni;
 }
-.backgroundArea .down .grid .gridLine .greenBox:hover {
+.components-background-area .down .grid .gridLine .greenBox:hover {
   background-color: greenyellow;
 }
-.backgroundArea .down .grid .gridLine .redBox {
+.components-background-area .down .grid .gridLine .redBox {
   outline-color: #ff5151;
   animation-name: redBoxAni;
 }
-.backgroundArea .down .grid .gridLine .redBox:hover {
+.components-background-area .down .grid .gridLine .redBox:hover {
   background-color: orangered;
 }
 @keyframes redBoxAni {

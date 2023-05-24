@@ -21,7 +21,7 @@ class Admin extends Component {
 
   render() {
     return (
-        <div className="adminPage">
+        <div className="page-admin-page">
           <main>
             <h2>监控界面</h2>
 

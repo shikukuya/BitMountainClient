@@ -22,7 +22,7 @@ class SendEmojiBtn extends Component {
   render() {
     const {btnList, showPanel, isPrevent} = this.state;
     return (
-        <div className="sendEmojiArea">
+        <div className="components-send-emoji-area">
           <button className="sendBtn"
                   onClick={this.handleShowBtn}>
             发送消息

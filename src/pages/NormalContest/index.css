@@ -1,39 +1,39 @@
-.normalContestPage {
+.page-normal-contest {
   height: calc(100vh - 60px);
   width: 98%;
   margin: 0 auto;
 }
-.normalContestPage .left,
-.normalContestPage .right {
+.page-normal-contest .left,
+.page-normal-contest .right {
   width: 50%;
   height: 100%;
   float: left;
 }
-.normalContestPage .right .codeArea,
-.normalContestPage .right .bottomArea {
+.page-normal-contest .right .codeArea,
+.page-normal-contest .right .bottomArea {
   width: 100%;
 }
-.normalContestPage .right .codeArea {
+.page-normal-contest .right .codeArea {
   height: 80%;
   position: relative;
   overflow: hidden;
 }
-.normalContestPage .right .bottomArea {
+.page-normal-contest .right .bottomArea {
   height: 20%;
   position: relative;
 }
-.normalContestPage .right .bottomArea .contestTable,
-.normalContestPage .right .bottomArea .userPanel {
+.page-normal-contest .right .bottomArea .components-contest-table,
+.page-normal-contest .right .bottomArea .userPanel {
   height: 100%;
   float: left;
 }
-.normalContestPage .right .bottomArea .contestTable {
+.page-normal-contest .right .bottomArea .components-contest-table {
   width: 80%;
 }
-.normalContestPage .right .bottomArea .userPanel {
+.page-normal-contest .right .bottomArea .userPanel {
   width: 20%;
 }
-.normalContestPage .right .bottomArea .userPanel .submitBtn {
+.page-normal-contest .right .bottomArea .userPanel .submitBtn {
   display: block;
   margin: 5px auto;
   padding: 2px 10px 2px 10px;
@@ -45,17 +45,17 @@
   line-height: 30px;
   border-radius: 10px;
 }
-.normalContestPage .right .bottomArea .userPanel .submitBtn:hover {
+.page-normal-contest .right .bottomArea .userPanel .submitBtn:hover {
   cursor: pointer;
 }
-.normalContestPage .right .bottomArea .userPanel .disabled {
+.page-normal-contest .right .bottomArea .userPanel .disabled {
   background-color: #626400;
   color: #ffdc2f;
 }
-.normalContestPage .right .bottomArea .userPanel .disabled:hover {
+.page-normal-contest .right .bottomArea .userPanel .disabled:hover {
   cursor: not-allowed;
 }
-.normalContestPage .right .bottomArea .userPanel span {
+.page-normal-contest .right .bottomArea .userPanel span {
   user-select: none;
 }
 /*# sourceMappingURL=index.css.map */

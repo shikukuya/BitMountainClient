@@ -1,10 +1,32 @@
-.addFriend .result {
-  font-size: 15px;
-  color: greenyellow;
-}
-.addFriend .pleaseLogin {
+.components-add-friend .pleaseLogin {
   text-align: center;
   color: greenyellow;
   background-color: rgba(0, 0, 0, 0.8);
+}
+.components-add-friend .idInput {
+  font-family: Consolas, "Microsoft YaHei UI", serif;
+}
+.components-add-friend input {
+  width: 400px;
+  line-height: 2em;
+  margin: 5px;
+  background-color: #1e1e1e;
+  color: greenyellow;
+  outline: none;
+  text-indent: 1em;
+}
+.components-add-friend .result {
+  font-size: 15px;
+  margin: 5px 20px;
+  color: greenyellow;
+}
+.components-add-friend .addBtn {
+  background-color: #333333;
+  padding: 5px 20px;
+  border-radius: 10px;
+  color: greenyellow;
+}
+.components-add-friend .addBtn:hover {
+  cursor: pointer;
 }
 /*# sourceMappingURL=index.css.map */

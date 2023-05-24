@@ -1,9 +1,9 @@
-.homePage {
+.page-home {
   width: 80%;
   margin: 0 auto;
   padding-top: 30px;
 }
-.homePage .serverData {
+.page-home .serverData {
   text-align: left;
   position: fixed;
   top: 60px;
@@ -13,36 +13,36 @@
   padding: 10px;
   color: lightgreen;
 }
-.homePage .serverData p {
+.page-home .serverData p {
   line-height: 1.5em;
 }
-.homePage .area {
+.page-home .area {
   overflow: hidden;
 }
-.homePage .area h1 {
+.page-home .area h1 {
   font-size: 25px;
 }
-.homePage .area .modeGroup {
+.page-home .area .modeGroup {
   width: 100%;
   text-align: center;
 }
-.homePage .area h1 {
+.page-home .area h1 {
   text-align: center;
 }
-.homePage .noticeLine {
+.page-home .noticeLine {
   text-align: center;
   color: greenyellow;
   text-shadow: 0 0 5px black;
   line-height: 2em;
   background-color: black;
 }
-.homePage .record-number {
+.page-home .record-number {
   position: fixed;
   right: 15px;
   bottom: 20px;
   font-size: 12px;
 }
-.homePage .record-number a {
+.page-home .record-number a {
   color: greenyellow;
 }
 /*# sourceMappingURL=index.css.map */

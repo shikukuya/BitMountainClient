@@ -1,4 +1,4 @@
-.codeResult {
+.components-submit-code-result {
   height: 150px;
   width: 100%;
   bottom: -150px;
@@ -8,7 +8,7 @@
   background-color: #1e1e1e;
   transition: all 0.5s;
 }
-.codeResult .close {
+.components-submit-code-result .close {
   width: 40px;
   height: 30px;
   background-color: #1e1e1e;
@@ -21,16 +21,16 @@
   user-select: none;
   border-top: solid 1px whitesmoke;
 }
-.codeResult .close:hover {
+.components-submit-code-result .close:hover {
   cursor: pointer;
   color: greenyellow;
 }
-.codeResult .wrongData {
+.components-submit-code-result .wrongData {
   color: orangered;
   font-size: 13px;
   margin: 5px 0;
 }
-.codeResult .err {
+.components-submit-code-result .err {
   background-color: black;
   padding: 0 5px 0 5px;
   color: darkorange;

@@ -16,7 +16,7 @@ class UnLogin extends Component {
 
     render() {
         return (
-            <div className="unLoginHint">
+            <div className="components-un-login-hint">
                 <h3>
                     <code ref={this.charAni1}>/</code>
                     请您先登录

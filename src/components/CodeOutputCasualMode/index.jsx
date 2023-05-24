@@ -12,7 +12,7 @@ class CodeOutputCasualMode extends Component {
 
   render() {
     return (
-        <div className="outputArea">
+        <div className="components-code-output-casual-mode">
           <h4>程序输出界面</h4>
           {
             this.state.messageArray.map((curText, i) => {

@@ -1,9 +1,9 @@
-.multiContestItem {
+.components-multiple-contest-list-item {
   width: 100%;
   height: 20%;
   position: relative;
 }
-.multiContestItem .questionIcon {
+.components-multiple-contest-list-item .questionIcon {
   position: absolute;
   height: 80px;
   width: 80px;
@@ -20,19 +20,19 @@
   user-select: none;
   transition: all 0.5s;
 }
-.multiContestItem .questionIcon:hover {
+.components-multiple-contest-list-item .questionIcon:hover {
   cursor: pointer;
   background-color: #213939;
   font-size: 30px;
   transform: translateX(10px);
 }
-.multiContestItem .questionIcon:active {
+.components-multiple-contest-list-item .questionIcon:active {
   background-color: darkslategray;
   color: greenyellow;
   font-size: 20px;
   transform: translateX(1px) scale(0.2);
 }
-.multiContestItem .stageIcon {
+.components-multiple-contest-list-item .stageIcon {
   position: absolute;
   width: 30px;
   height: 30px;
@@ -41,24 +41,24 @@
   bottom: 5px;
   z-index: 20;
 }
-.multiContestItem .myStage {
+.components-multiple-contest-list-item .myStage {
   left: 20%;
   transform: rotateY(180deg);
 }
-.multiContestItem .opStage {
+.components-multiple-contest-list-item .opStage {
   right: 20%;
 }
-.multiContestItem .submitList {
+.components-multiple-contest-list-item .submitList {
   position: absolute;
   z-index: 18;
   width: 30px;
   height: 80%;
   top: 20%;
 }
-.multiContestItem .mySubmit {
+.components-multiple-contest-list-item .mySubmit {
   left: 0;
 }
-.multiContestItem .opSubmit {
+.components-multiple-contest-list-item .opSubmit {
   right: 0;
 }
 /*# sourceMappingURL=index.css.map */

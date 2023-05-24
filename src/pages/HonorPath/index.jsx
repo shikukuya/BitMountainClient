@@ -17,7 +17,7 @@ class HonorPath extends Component {
   render() {
     const {isScrollTipShow} = this.state;
     return (
-        <div className="honorPathPage"
+        <div className="page-honor-path"
              ref="honorPathPage"
              onWheel={this.handleWheel}>
           <div className="topBox">

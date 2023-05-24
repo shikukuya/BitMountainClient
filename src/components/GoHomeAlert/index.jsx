@@ -16,7 +16,7 @@ class GoHomeAlert extends Component {
 
         if (isShow) {
             return (
-                <div className="goHomeAlertPanel">
+                <div className="components-go-home-alert">
                     <div className="alertPanel">
                         <p className="title">{title}</p>
                         <p className="reason">{reason}</p>

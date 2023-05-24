@@ -1,18 +1,18 @@
-.autoChessBoard {
+.components-auto-chess-board-area {
   text-align: center;
 }
-.autoChessBoard h2 {
+.components-auto-chess-board-area h2 {
   text-align: center;
 }
-.autoChessBoard .matrix {
+.components-auto-chess-board-area .matrix {
   width: 456px;
   height: 456px;
   margin: 0 auto;
   position: relative;
   overflow: hidden;
 }
-.autoChessBoard .matrix .robot1,
-.autoChessBoard .matrix .robot2 {
+.components-auto-chess-board-area .matrix .robot1,
+.components-auto-chess-board-area .matrix .robot2 {
   position: absolute;
   width: 24px;
   height: 24px;
@@ -22,7 +22,7 @@
   transition: all 0.5s;
   z-index: 500;
 }
-.autoChessBoard .matrix .boom {
+.components-auto-chess-board-area .matrix .boom {
   width: 72px;
   height: 72px;
   margin-left: -24px;
@@ -37,8 +37,8 @@
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
 }
-.autoChessBoard .matrix .robot1View,
-.autoChessBoard .matrix .robot2View {
+.components-auto-chess-board-area .matrix .robot1View,
+.components-auto-chess-board-area .matrix .robot2View {
   width: 120px;
   height: 120px;
   position: absolute;
@@ -47,41 +47,41 @@
   border-radius: 10px;
   z-index: 505;
 }
-.autoChessBoard .matrix .line {
+.components-auto-chess-board-area .matrix .line {
   height: 24px;
 }
-.autoChessBoard .matrix .line .box {
+.components-auto-chess-board-area .matrix .line .box {
   height: 24px;
   width: 24px;
   float: left;
   background-color: #2f5f29;
   position: relative;
 }
-.autoChessBoard .matrix .line .box:hover {
+.components-auto-chess-board-area .matrix .line .box:hover {
   box-shadow: 0 0 2px white inset;
 }
-.autoChessBoard .matrix .line .box .rock {
+.components-auto-chess-board-area .matrix .line .box .rock {
   width: 24px;
   height: 24px;
   background-color: lightslategray;
   box-shadow: #596b7d 0 0 8px inset;
 }
-.autoChessBoard .matrix .line .box .blackPiece,
-.autoChessBoard .matrix .line .box .whitePiece {
+.components-auto-chess-board-area .matrix .line .box .blackPiece,
+.components-auto-chess-board-area .matrix .line .box .whitePiece {
   border-radius: 50%;
   height: 24px;
   transition: all 0.2s;
   user-select: none;
 }
-.autoChessBoard .matrix .line .box .blackPiece {
+.components-auto-chess-board-area .matrix .line .box .blackPiece {
   background-color: black;
   box-shadow: gray 0 0 2px inset;
 }
-.autoChessBoard .matrix .line .box .whitePiece {
+.components-auto-chess-board-area .matrix .line .box .whitePiece {
   background-color: white;
   box-shadow: gray 0 0 2px inset;
 }
-.autoChessBoard button {
+.components-auto-chess-board-area button {
   background-color: #1e1e1e;
   color: greenyellow;
   border: none;
@@ -89,24 +89,24 @@
   width: 20px;
   line-height: 20px;
 }
-.autoChessBoard button:hover {
+.components-auto-chess-board-area button:hover {
   cursor: pointer;
 }
-.autoChessBoard .bar {
+.components-auto-chess-board-area .bar {
   outline: solid 1px;
   width: 300px;
 }
-.autoChessBoard input[type="range"]::-webkit-slider-runnable-track {
+.components-auto-chess-board-area input[type="range"]::-webkit-slider-runnable-track {
   background: black;
 }
-.autoChessBoard input[type="range"]::-moz-range-track {
+.components-auto-chess-board-area input[type="range"]::-moz-range-track {
   background: black;
 }
-.autoChessBoard input[type="range"]::-webkit-slider-thumb {
+.components-auto-chess-board-area input[type="range"]::-webkit-slider-thumb {
   background: lightgreen;
   cursor: pointer;
 }
-.autoChessBoard input[type="range"]::-moz-range-thumb {
+.components-auto-chess-board-area input[type="range"]::-moz-range-thumb {
   background: lightgreen;
 }
 @keyframes boomAni {

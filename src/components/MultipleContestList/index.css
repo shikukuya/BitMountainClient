@@ -1,9 +1,9 @@
-.multipleContestList {
+.components-multiple-contest-list {
   position: relative;
   width: 100%;
   height: 100%;
 }
-.multipleContestList .SpecQue {
+.components-multiple-contest-list .SpecQue {
   width: 10px;
   height: 10px;
   position: absolute;
@@ -11,14 +11,14 @@
   border-style: solid;
   transition: all 0.5s;
 }
-.multipleContestList .mySpec {
+.components-multiple-contest-list .mySpec {
   left: 0;
   border-color: greenyellow;
   border-top-color: transparent;
   border-right-color: transparent;
   border-bottom-color: transparent;
 }
-.multipleContestList .opSpec {
+.components-multiple-contest-list .opSpec {
   right: 0;
   border-color: orangered;
   border-top-color: transparent;

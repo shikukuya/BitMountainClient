@@ -1,4 +1,4 @@
-.loginPanel {
+.components-login-panel {
   width: 100%;
   height: 100vh;
   position: fixed;
@@ -7,7 +7,13 @@
   z-index: 100;
   color: #01fe01;
 }
-.loginPanel .panel {
+.components-login-panel .shakeClass {
+  animation-name: shake;
+  animation-iteration-count: 1;
+  animation-play-state: running;
+  animation-duration: 0.5s;
+}
+.components-login-panel .panel {
   width: 400px;
   height: 500px;
   position: absolute;
@@ -21,23 +27,23 @@
   border: solid 2px lightgreen;
   box-shadow: inset 0 0 25px greenyellow;
 }
-.loginPanel .panel .topLine {
+.components-login-panel .panel .topLine {
   height: 65px;
   text-align: center;
 }
-.loginPanel .panel .topLine .logoImg {
+.components-login-panel .panel .topLine .logoImg {
   width: 100px;
   height: 100px;
   vertical-align: middle;
   margin-right: 10px;
 }
-.loginPanel .panel .topLine span {
+.components-login-panel .panel .topLine span {
   font-size: 25px;
   vertical-align: middle;
   line-height: 65px;
   font-weight: bolder;
 }
-.loginPanel .panel input {
+.components-login-panel .panel input {
   text-indent: 1em;
   background-color: black;
   color: greenyellow;
@@ -51,17 +57,17 @@
   top: 0;
   transition: all 0.1s;
 }
-.loginPanel .panel input:active,
-.loginPanel .panel input:focus-visible {
+.components-login-panel .panel input:active,
+.components-login-panel .panel input:focus-visible {
   border-bottom-width: 0;
   top: 2px;
 }
-.loginPanel .panel .moodTitle {
+.components-login-panel .panel .moodTitle {
   font-size: 20px;
   margin-top: 10px;
 }
-.loginPanel .panel .inputLine,
-.loginPanel .panel .loginButton {
+.components-login-panel .panel .inputLine,
+.components-login-panel .panel .loginButton {
   display: block;
   height: 40px;
   line-height: 2em;
@@ -77,59 +83,59 @@
   top: 0;
   transition: all 0.1s;
 }
-.loginPanel .panel .inputLine:active,
-.loginPanel .panel .loginButton:active,
-.loginPanel .panel .inputLine:focus-visible,
-.loginPanel .panel .loginButton:focus-visible {
+.components-login-panel .panel .inputLine:active,
+.components-login-panel .panel .loginButton:active,
+.components-login-panel .panel .inputLine:focus-visible,
+.components-login-panel .panel .loginButton:focus-visible {
   border-bottom-width: 0;
   top: 2px;
 }
-.loginPanel .panel .loginButton:hover {
+.components-login-panel .panel .loginButton:hover {
   cursor: pointer;
 }
-.loginPanel .panel .loginWait {
+.components-login-panel .panel .loginWait {
   color: red;
 }
-.loginPanel .panel .loginWait:hover {
+.components-login-panel .panel .loginWait:hover {
   cursor: not-allowed !important;
 }
-.loginPanel .panel .subLine {
+.components-login-panel .panel .subLine {
   height: 50px;
   width: 80%;
   margin: 0 auto;
   user-select: none;
 }
-.loginPanel .panel .subLine .left {
+.components-login-panel .panel .subLine .left {
   width: 50%;
   float: left;
   height: 50px;
 }
-.loginPanel .panel .subLine .left p {
+.components-login-panel .panel .subLine .left p {
   cursor: pointer;
 }
-.loginPanel .panel .subLine .right {
+.components-login-panel .panel .subLine .right {
   width: 50%;
   float: right;
   height: 50px;
   text-align: right;
 }
-.loginPanel .panel .subLine .right a {
+.components-login-panel .panel .subLine .right a {
   color: #28ff28;
 }
-.loginPanel .panel .subLine .right p {
+.components-login-panel .panel .subLine .right p {
   cursor: pointer;
 }
-.loginPanel .panel .passwordMoodHint,
-.loginPanel .panel .emailMoodHint {
+.components-login-panel .panel .passwordMoodHint,
+.components-login-panel .panel .emailMoodHint {
   color: orangered;
 }
-.loginPanel .panel .emailMood .inputLine .inputCode {
+.components-login-panel .panel .emailMood .inputLine .inputCode {
   display: block;
   float: left;
   height: 40px;
   width: 60%;
 }
-.loginPanel .panel .emailMood .inputLine .getCodeBtn {
+.components-login-panel .panel .emailMood .inputLine .getCodeBtn {
   display: block;
   float: right;
   height: 40px;
@@ -144,21 +150,21 @@
   top: 0;
   transition: all 0.1s;
 }
-.loginPanel .panel .emailMood .inputLine .getCodeBtn:active,
-.loginPanel .panel .emailMood .inputLine .getCodeBtn:focus-visible {
+.components-login-panel .panel .emailMood .inputLine .getCodeBtn:active,
+.components-login-panel .panel .emailMood .inputLine .getCodeBtn:focus-visible {
   border-bottom-width: 0;
   top: 2px;
 }
-.loginPanel .panel .emailMood .inputLine .getCodeBtn:hover {
+.components-login-panel .panel .emailMood .inputLine .getCodeBtn:hover {
   cursor: pointer;
 }
-.loginPanel .panel .bottomLine {
+.components-login-panel .panel .bottomLine {
   height: 20px;
 }
-.loginPanel .panel .bottomLine a {
+.components-login-panel .panel .bottomLine a {
   color: greenyellow;
 }
-.loginPanel .blackGround {
+.components-login-panel .blackGround {
   width: 100%;
   height: 100vh;
   position: absolute;
@@ -167,7 +173,7 @@
   background-color: black;
   opacity: 30%;
 }
-.loginPanel .close {
+.components-login-panel .close {
   position: absolute;
   left: 105%;
   top: 0;
@@ -177,14 +183,8 @@
   text-shadow: black 0 0 10px;
   transition: all 0.2s;
 }
-.loginPanel .close:hover {
+.components-login-panel .close:hover {
   transform: scale(1.5);
-}
-.shakeClass {
-  animation-name: shake;
-  animation-iteration-count: 1;
-  animation-play-state: running;
-  animation-duration: 0.5s;
 }
 @keyframes shake {
   0% {

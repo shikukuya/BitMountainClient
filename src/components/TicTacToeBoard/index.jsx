@@ -55,7 +55,7 @@ class TicTacToeBoard extends Component {
     this.boardList = this.generateBoardListByHistory(historyList);
 
     return (
-        <div className="ticTacToeBoard">
+        <div className="components-tic-tac-toe-board-area">
           <p className="title">当前对局:{title}</p>
           <div className="board">
             {

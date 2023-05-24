@@ -44,7 +44,7 @@ class CodeInput extends Component {
   render() {
     const {myLoc, opLoc, language, theme, userCode} = this.state;
     return (
-        <div className="showDiv" ref={this.selfDiv}>
+        <div className="components-code-input" ref={this.selfDiv}>
           {/*area1，高度30px*/}
           {/*area2，高度剩下*/}
           <div className="area1">

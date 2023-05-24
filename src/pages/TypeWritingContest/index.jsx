@@ -60,7 +60,7 @@ class TypeWritingContest extends Component {
     } = this.state;
 
     return (
-        <div className="typeWritingContestPage">
+        <div className="page-type-writing-contest">
           {/*右上角的小面板*/}
           <div className="rightTopPanel">
             <div className="line">

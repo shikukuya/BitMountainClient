@@ -19,11 +19,12 @@ class AddFriend extends Component {
     const {resultStr} = this.state;
     if (USER_DATA.isLogin) {
       return (
-          <div className="addFriend">
+          <div className="components-add-friend">
             <div className="line">
               <input
                   type="text"
                   placeholder="请输入对方ID"
+                  className="idInput"
                   ref={this.inputIDEle}
               />
             </div>
@@ -33,11 +34,10 @@ class AddFriend extends Component {
                   placeholder="加好友的理由"
                   ref={this.inputNoteEle}
               />
-              <span ref={this.resultEle} className="result">
-              {resultStr}
-            </span>
+              <button onClick={this.btnHandle} className="addBtn">添加</button>
+              <span ref={this.resultEle} className="result">{resultStr}</span>
             </div>
-            <button onClick={this.btnHandle}>添加</button>
+
           </div>
       );
     } else {
@@ -50,6 +50,7 @@ class AddFriend extends Component {
       SOCKET_OBJ.on(`前端${USER_DATA.id}接收好友请求发送结果`, this.socketHandleRes);
     }
   }
+
   componentWillUnmount() {
     if (USER_DATA.isLogin) {
       SOCKET_OBJ.off(`前端${USER_DATA.id}接收好友请求发送结果`, this.socketHandleRes);

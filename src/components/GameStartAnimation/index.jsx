@@ -15,7 +15,7 @@ class GameStartAnimation extends Component {
       return null;
     }
     return (
-        <div className="gameStartAnimation">
+        <div className="components-game-start-animation">
           <div className="title1">{this.props.moodName}</div>
           <div className="userCard leftUser">
             <img className="headImg" src={require(`../../headImgs/${USER_DATA.headSculpture}.png`)} alt="头像"/>

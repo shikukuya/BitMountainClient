@@ -1,7 +1,4 @@
-.data {
-  font-family: Consolas, serif;
-}
-.showDiv {
+.components-code-input {
   width: 100%;
   height: 100%;
   position: relative;
@@ -12,24 +9,24 @@
   background-color: #2b2b2b;
   color: #a9b7c6;
 }
-.showDiv .area1 {
+.components-code-input .area1 {
   height: 30px;
 }
-.showDiv .area2 {
+.components-code-input .area2 {
   height: calc(100% - 30px);
 }
-.showDiv .area1 {
+.components-code-input .area1 {
   height: 30px;
   display: flex;
   align-items: center;
 }
-.showDiv .area1 span {
+.components-code-input .area1 span {
   font-size: 15px;
   line-height: 30px;
   color: floralwhite;
   font-family: "Microsoft YaHei UI", serif;
 }
-.showDiv .area1 select {
+.components-code-input .area1 select {
   background-color: #383a3c;
   color: floralwhite;
   border: none;
@@ -39,22 +36,22 @@
   font-size: 15px;
   height: 30px;
 }
-.showDiv .area1 select:hover {
+.components-code-input .area1 select:hover {
   cursor: pointer;
 }
-.showDiv .area1 input[type="checkbox"] {
+.components-code-input .area1 input[type="checkbox"] {
   line-height: 30px;
   width: 16px;
   height: 16px;
   margin-right: 2px;
   transition: all 0.2s;
 }
-.showDiv .area1 input[type="checkbox"]:hover {
+.components-code-input .area1 input[type="checkbox"]:hover {
   cursor: pointer;
   width: 20px;
   height: 20px;
 }
-.showDiv .LineTarget {
+.components-code-input .LineTarget {
   width: 8px;
   height: 20px;
   position: absolute;
@@ -63,15 +60,15 @@
   transition: all 0.1s;
   transition-timing-function: linear;
 }
-.showDiv .myLineTarget {
+.components-code-input .myLineTarget {
   left: 0;
   background-color: greenyellow;
 }
-.showDiv .opLineTarget {
+.components-code-input .opLineTarget {
   left: 8px;
   background-color: orangered;
 }
-.showDiv .area2 .vscodeEditor {
+.components-code-input .area2 .vscodeEditor {
   font-size: 18px;
   line-height: 24px;
 }

@@ -1,50 +1,50 @@
-.questionArea {
+.components-question-area {
   width: 100%;
   height: 100%;
   overflow-y: scroll;
   padding: 10px;
 }
-.questionArea::-webkit-scrollbar {
+.components-question-area::-webkit-scrollbar {
   width: 10px;
 }
-.questionArea::-webkit-scrollbar-thumb {
+.components-question-area::-webkit-scrollbar-thumb {
   border-radius: 10px;
   box-shadow: inset 0 0 5px rgba(0, 255, 0, 0.2);
   background: rgba(0, 255, 0, 0.2);
 }
-.questionArea::-webkit-scrollbar-track {
+.components-question-area::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px rgba(0, 255, 0, 0.2);
   border-radius: 0;
   background: rgba(0, 0, 0, 0.1);
 }
-.questionArea h1 {
+.components-question-area h1 {
   text-align: center;
   font-size: 30px;
   line-height: 2em;
 }
-.questionArea h2 {
+.components-question-area h2 {
   font-size: 20px;
   line-height: 2em;
   margin-top: 1em;
 }
-.questionArea p {
+.components-question-area p {
   text-indent: 2em;
   line-height: 2em;
 }
-.questionArea .leftRight {
+.components-question-area .leftRight {
   overflow: hidden;
 }
-.questionArea .leftRight .left {
+.components-question-area .leftRight .left {
   outline: none;
   float: left;
   width: 50%;
 }
-.questionArea .leftRight .right {
+.components-question-area .leftRight .right {
   outline: none;
   float: left;
   width: 50%;
 }
-.questionArea .showArea {
+.components-question-area .showArea {
   outline: none;
   border: none;
   line-height: 2em;
@@ -55,10 +55,10 @@
   margin: 1em;
   padding-left: 1em;
 }
-.questionArea .showArea .line {
+.components-question-area .showArea .line {
   line-height: 1.2em;
 }
-.questionArea .tags .tag {
+.components-question-area .tags .tag {
   margin: 5px;
   background-color: forestgreen;
   color: lightgreen;
@@ -66,7 +66,7 @@
   padding: 3px 10px 3px 10px;
   border-radius: 1000px;
 }
-.questionArea [aria-hidden="true"] {
+.components-question-area [aria-hidden="true"] {
   display: none;
 }
 /*# sourceMappingURL=index.css.map */

@@ -24,7 +24,7 @@ class GobangBoard extends Component {
 
   render() {
     return (
-        <div className="gobangBoard">
+        <div className="components-gobang-board-area">
           <h1>{this.state.matchName}</h1>
           <div className="temp">
             <div className="board">
