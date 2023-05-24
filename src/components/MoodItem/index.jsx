@@ -20,9 +20,9 @@ class ModeItem extends Component {
             <p>{modeName}</p>
             <img className="moodImg"
                  src={require(`./img/${modeName}.png`)}
-                 alt="图失效"/>
-            <img src={require("../../utils/img/拳套.png")} className="leftHand" alt="x"/>
-            <img src={require("../../utils/img/拳套.png")} className="rightHand" alt="x"/>
+                 alt="天梯匹配模式图"/>
+            <img src={require("../../utils/img/拳套.png")} className="leftHand" alt="拳套"/>
+            <img src={require("../../utils/img/拳套.png")} className="rightHand" alt="拳套"/>
             <div className="whiteLight"/>
           </div>
         </div>

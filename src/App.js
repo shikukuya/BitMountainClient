@@ -87,7 +87,7 @@ export default class App extends Component {
 
     let konamiCodeIndex = 0;
 
-    document.addEventListener('keydown', (event) => {
+    this.konamiFunction = (event) => {
       if (event.keyCode === konamiCode[konamiCodeIndex]) {
         konamiCodeIndex++;
         if (konamiCodeIndex === konamiCode.length) {
@@ -98,13 +98,14 @@ export default class App extends Component {
       } else {
         konamiCodeIndex = 0;
       }
-    });
-
+    }
+    document.addEventListener('keydown', this.konamiFunction);
   }
 
   componentWillUnmount() {
     // 取消消息订阅
     PubSub.unsubscribe(this.token);
+    document.removeEventListener('keydown', this.konamiFunction);
   }
 
 }

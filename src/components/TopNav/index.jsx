@@ -50,7 +50,7 @@ class TopNav extends Component {
             <img
                 className="LOGO"
                 src={require('../../utils/img/bitMountainLogo.png')}
-                alt=""
+                alt="x"
             />
             <div className="title">比特山</div>
           </div>
@@ -195,7 +195,7 @@ class TopNav extends Component {
     } else {
       return (
           <div className="right">
-            <img src={require('./defaultUser.png')} alt="" className="headImg"/>
+            <img src={require('./defaultUser.png')} alt="用户头像加载失败" className="headImg"/>
             <span className="login" onClick={this.handleLogin}>
             登录
           </span>

@@ -4,7 +4,6 @@
  */
 export function computeLevel(score) {
     if (score === null || score === undefined) {
-        console.warn("传入的分数是", score);
         return 1;
     }
     if (score < 100) {
@@ -28,8 +27,6 @@ export function computeLevel(score) {
     if (score > 600) {
         return 7;
     }
-
-    console.warn("传入的是", score);
     return 7;
 }
 

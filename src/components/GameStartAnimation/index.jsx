@@ -18,7 +18,7 @@ class GameStartAnimation extends Component {
         <div className="gameStartAnimation">
           <div className="title1">{this.props.moodName}</div>
           <div className="userCard leftUser">
-            <img className="headImg" src={require(`../../headImgs/${USER_DATA.headSculpture}.png`)} alt=""/>
+            <img className="headImg" src={require(`../../headImgs/${USER_DATA.headSculpture}.png`)} alt="头像"/>
             <h2>{USER_DATA.name}</h2>
             <p>
               <img src={require(`../../levelIcon/level${computeLevel(USER_DATA.score)}.png`)} alt=""/>
