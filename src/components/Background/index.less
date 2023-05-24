@@ -7,6 +7,8 @@
   width: 100%;
   z-index: -1;
 
+  @transitionTime: 0.3s;
+
   .greenShadow {
     box-shadow: lawngreen 0 0 50px,
     inset lawngreen 0 0 50px -20px;
@@ -37,13 +39,13 @@
       border-style: solid;
       // 山的高度，山的半径
       border-width: 30px 100px;
-      transition: all 0.5s;
+      transition: all @transitionTime;
 
       border-top-color: transparent;
       border-left-color: transparent;
       border-right-color: transparent;
 
-      filter: blur(2px);
+      //filter: blur(2px);
       opacity: 0.8;
     }
 
@@ -56,16 +58,13 @@
       .tri();
       border-bottom-color: #c13636;
     }
-
-    .triangle {
-
-    }
   }
 
   .down {
     height: 30%;
     perspective: 600px;
     //background-color: pink;
+    transition: all @transitionTime;
 
 
     .grid {
@@ -74,7 +73,7 @@
       height: 1000px;
       transform-style: preserve-3d;
       transform-origin: center top;
-      transition: all 0.5s;
+      transition: all @transitionTime;
 
       transform: rotateX(70deg);
 
@@ -91,7 +90,7 @@
           float: left;
           //transform: scale(0.9);
           outline: solid 1px;
-          transition: all 0.5s;
+          transition: all @transitionTime;
 
           animation-iteration-count: infinite;
           animation-duration: 2s;

@@ -32,16 +32,33 @@ class Background extends Component {
 
     this.matrixDataInit();
 
-    this.mountainArr = [
-      // h, r
-      {h: 20, r: 70, x: 200},
-      {h: 50, r: 120, x: 400},
-      {h: 100, r: 200, x: 500},
-      {h: 30, r: 100, x: 1000},
-    ]
     this.greenColor = {r: 1, g: 255, b: 20};
-    this.redColor = {r: 255, g: 1, b: 20};
+    this.redColor = {r: 255, g: 100, b: 100};
     this.isRed = false;
+
+    this.state = {
+      mountainArr: [
+        // h, r
+        {h: 20, r: 70, x: 400},
+        {h: 50, r: 120, x: 500},
+        {h: 100, r: 200, x: 700},
+        {h: 30, r: 100, x: 1200},
+      ]
+    }
+  }
+
+  changeMountainHeight = (higher) => {
+    for (let m of this.state.mountainArr) {
+      if (higher) {
+        m.h *= 2;
+        m.r *= 2;
+      } else {
+        m.h /= 2;
+        m.r /= 2;
+
+      }
+    }
+    this.setState({mountainArr: this.state.mountainArr});
   }
 
   // 矩阵数据初始化
@@ -156,7 +173,15 @@ class Background extends Component {
 
     // 监听颜色更改
     this.token1 = PubSub.subscribe("数字雨更改颜色", (_, data) => {
-      this.isRed = data["color"] === "red";
+      if (data["color"] === "red") {
+        this.isRed = true;
+        this.changeMountainHeight(true);
+      } else {
+        this.isRed = false;
+        this.changeMountainHeight(false);
+      }
+
+
     });
 
     // 监听下雨大小更改
@@ -170,9 +195,6 @@ class Background extends Component {
     });
   }
 
-
-// 消息发布组件的一个函数中
-
   // 组件即将卸载
   componentWillUnmount() {
     // 清除定时器
@@ -184,7 +206,7 @@ class Background extends Component {
   }
 
   render() {
-
+    const {mountainArr} = this.state;
 
     return (
         <div className="components-background-area">
@@ -195,18 +217,20 @@ class Background extends Component {
 
             {/*画一些山*/}
             {
-              this.mountainArr.map((mObj, i) => {
-                return <div className={this.isRed ? "redTriangle" : "greenTriangle"} key={i} style={{
-                  left: `${mObj.x}px`,
-                  borderWidth: `${mObj.h}px ${mObj.r}px`,
-                }}/>
+              mountainArr.map((mObj, i) => {
+                return <div className={this.isRed ? "redTriangle" : "greenTriangle"} key={i} style={
+                  {
+                    left: `${mObj.x - mObj.r}px`,
+                    borderWidth: `${mObj.h}px ${mObj.r}px`,
+                    filter: this.isRed ? "" : "blur(5px)",
+                  }
+                }/>
               })
             }
-            <div className="triangle M1"/>
           </div>
 
           {/*底部网格*/}
-          <div className="down">
+          <div className="down" style={this.isRed ? {perspective: "400px"} : {perspective: "600px"}}>
             <div className="grid" ref={this.gridDiv}>
               {
                 getArray(10).map((y) => {
@@ -215,7 +239,7 @@ class Background extends Component {
                       getArray(18).map((x) => {
                         return <div className={this.isRed ? "box redBox" : "box greenBox"}
                                     style={{
-                                      animationPlayState: this.badAnimation() ? "paused": "running",
+                                      animationPlayState: this.badAnimation() ? "paused" : "running",
                                     }}
                                     key={x}/>
                       })
@@ -228,6 +252,7 @@ class Background extends Component {
         </div>
     );
   }
+
   // 获取地板瓷砖的style
   badAnimation = () => {
     return !/Edge\/|OPR\/|Chrome\/[\d]+/.test(navigator.userAgent);
