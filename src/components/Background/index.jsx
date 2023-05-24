@@ -215,7 +215,7 @@ class Background extends Component {
                       getArray(18).map((x) => {
                         return <div className={this.isRed ? "box redBox" : "box greenBox"}
                                     style={{
-                                      animationDelay: `${Math.random() * 5}s`,
+                                      animationPlayState: this.badAnimation() ? "paused": "running",
                                     }}
                                     key={x}/>
                       })
@@ -227,6 +227,10 @@ class Background extends Component {
           </div>
         </div>
     );
+  }
+  // 获取地板瓷砖的style
+  badAnimation = () => {
+    return !/Edge\/|OPR\/|Chrome\/[\d]+/.test(navigator.userAgent);
   }
 }
 

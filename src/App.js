@@ -59,7 +59,7 @@ export default class App extends Component {
           <div className="music">
             <audio src={this.state.currentMusicSrc}
                    ref={this.musicRef}
-                   autoPlay loop preload={"auto"}>{hint}</audio>
+                   loop preload={"auto"}>{hint}</audio>
           </div>
         </div>
     )
